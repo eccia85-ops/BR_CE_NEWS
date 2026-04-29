@@ -1,6 +1,7 @@
-def handler(request):
-    return {
-        "statusCode": 200,
-        "body": "OK"
-    }
-``
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"status": "OK"}
