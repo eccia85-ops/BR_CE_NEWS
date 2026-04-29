@@ -2,17 +2,17 @@ from fastapi import FastAPI
 import urllib.request
 import xml.etree.ElementTree as ET
 
-from config.keywords import KEYWORDS
 from config.sources import RSS_SOURCES
+from config.keywords import KEYWORDS
 
-app = FastAPI()   # ✅ 이 줄이 핵심
+app = FastAPI()
 
-def fetch_rss(site, url, keywords=None):
-    items = []
+def fetch_rss(site, url):
     with urllib.request.urlopen(url, timeout=10) as r:
         root = ET.fromstring(r.read())
 
-    for item in root.findall(".//item")[:30]:
+    articles = []
+    for item in root.findall(".//item")[:40]:
         title = item.findtext("title")
         link = item.findtext("link")
         date = item.findtext("pubDate")
@@ -20,33 +20,31 @@ def fetch_rss(site, url, keywords=None):
         if not title:
             continue
 
-        if keywords and not any(k in title for k in keywords):
-            continue
-
-        items.append({
+        articles.append({
             "site": site,
             "title": title,
             "link": link,
             "date": date
         })
-
-    return items
+    return articles
 
 
 @app.get("/api/news")
 def news():
-    results = []
+    bucket = {k: [] for k in KEYWORDS}
 
     for src in RSS_SOURCES:
         try:
-            results.extend(
-                fetch_rss(src["site"], src["url"], KEYWORDS)
-            )
+            articles = fetch_rss(src["site"], src["url"])
         except Exception:
             continue
 
+        for a in articles:
+            for k in KEYWORDS:
+                if k in a["title"]:
+                    bucket[k].append(a)
+
     return {
         "keywords": KEYWORDS,
-        "count": len(results),
-        "items": results
+        "data": bucket
     }
