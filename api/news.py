@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 from config.keywords import KEYWORDS
 from config.sources import RSS_SOURCES
 
-app = FastAPI()
+app = FastAPI()   # ✅ 이 줄이 핵심
 
 def fetch_rss(site, url, keywords=None):
     items = []
@@ -20,9 +20,8 @@ def fetch_rss(site, url, keywords=None):
         if not title:
             continue
 
-        if keywords:
-            if not any(k in title for k in keywords):
-                continue
+        if keywords and not any(k in title for k in keywords):
+            continue
 
         items.append({
             "site": site,
@@ -41,11 +40,7 @@ def news():
     for src in RSS_SOURCES:
         try:
             results.extend(
-                fetch_rss(
-                    src["site"],
-                    src["url"],
-                    KEYWORDS
-                )
+                fetch_rss(src["site"], src["url"], KEYWORDS)
             )
         except Exception:
             continue
@@ -55,4 +50,3 @@ def news():
         "count": len(results),
         "items": results
     }
-``
