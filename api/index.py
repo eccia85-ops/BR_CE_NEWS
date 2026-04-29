@@ -149,6 +149,8 @@ def home():
         const box = document.getElementById(`k-${keyword}`);
 
         items.forEach(i => {
+          box.innerHTML += `<pre style="font-size:11px">${JSON.stringify(i, null,
+          
           box.innerHTML += `
             <div class="card">
               <div class="card-title">
