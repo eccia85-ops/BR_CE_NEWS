@@ -2,60 +2,57 @@ from fastapi import FastAPI
 import urllib.request
 import xml.etree.ElementTree as ET
 
+from config.keywords import KEYWORDS
+from config.sources import RSS_SOURCES
+
 app = FastAPI()
 
-RSS_SOURCES = [
-    {
-        "site": "DailyPharm",
-        "url": "https://www.dailypharm.com/rss/allArticle.xml"
-    },
-    {
-        "site": "HitNews",
-        "url": "https://www.hitnews.co.kr/rss/allArticle.xml"
-    }
-]
-
-def fetch_rss(site, url, keyword=None):
+def fetch_rss(site, url, keywords=None):
     items = []
-    with urllib.request.urlopen(url, timeout=10) as response:
-        xml_data = response.read()
-
-    root = ET.fromstring(xml_data)
+    with urllib.request.urlopen(url, timeout=10) as r:
+        root = ET.fromstring(r.read())
 
     for item in root.findall(".//item")[:30]:
         title = item.findtext("title")
         link = item.findtext("link")
-        pub_date = item.findtext("pubDate")
+        date = item.findtext("pubDate")
 
         if not title:
             continue
-        if keyword and keyword not in title:
-            continue
+
+        if keywords:
+            if not any(k in title for k in keywords):
+                continue
 
         items.append({
             "site": site,
             "title": title,
             "link": link,
-            "date": pub_date
+            "date": date
         })
 
     return items
 
 
 @app.get("/api/news")
-def news(keyword: str | None = None):
+def news():
     results = []
 
     for src in RSS_SOURCES:
         try:
             results.extend(
-                fetch_rss(src["site"], src["url"], keyword)
+                fetch_rss(
+                    src["site"],
+                    src["url"],
+                    KEYWORDS
+                )
             )
         except Exception:
             continue
 
     return {
-        "keyword": keyword,
+        "keywords": KEYWORDS,
         "count": len(results),
         "items": results
     }
+``
