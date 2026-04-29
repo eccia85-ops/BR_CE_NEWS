@@ -2,6 +2,6 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get("/test")
+@app.get("/")
 def test():
     return {"status": "OK"}
