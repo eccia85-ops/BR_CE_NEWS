@@ -149,17 +149,20 @@ def home():
         const box = document.getElementById(`k-${keyword}`);
 
         items.forEach(i => {
-          box.innerHTML += `<pre style="font-size:11px">${JSON.stringify(i, null,
+          // box.innerHTML += `<pre style="font-size:11px">${JSON.stringify(i, null,
           
           box.innerHTML += `
-            <div class="card">
-              <div class="card-title">
-                <a href="${i.link}" target            </div>
-              <div class="card-meta">
-                ${i.site} · ${formatDate(i.date)}
+              <div class="card">
+                <div class="card-title">
+                  <a href="${i.link}" targete}
+                  </a>
+                </div>
+                <div class="card-meta">
+                  ${i.site} · ${formatDate(i.date)}
+                </div>
               </div>
-            </div>
-          `;
+            `;
+
         });
       }
     }
