@@ -154,7 +154,8 @@ def home():
           box.innerHTML += `
               <div class="card">
                 <div class="card-title">
-                  <a href="${i.link}" targete}
+                  <a href="${i.link}" target="_blank">
+                    ${i.title || i.headline || i.subject || "(제목 없음)"}
                   </a>
                 </div>
                 <div class="card-meta">
