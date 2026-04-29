@@ -1,10 +1,7 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.api_route("/{path:path}", methods=["GET", "POST"])
-async def catch_all(request: Request, path: str):
-    return {
-        "received_path": request.url.path,
-        "matched_path_param": path
-    }
+@app.get("/api/test")
+def test():
+    return {"status": "OK"}
