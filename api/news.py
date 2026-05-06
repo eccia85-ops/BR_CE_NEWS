@@ -65,6 +65,10 @@ def in_range(article, range_):
 
 
 def fetch_one(site, url):
+    # 한글 등 non-ASCII 문자를 퍼센트 인코딩, URL 구조 문자는 유지
+    from urllib.parse import quote
+    url = quote(url, safe=':/?=&#+@')
+
     req = urllib.request.Request(
         url,
         headers={"User-Agent": "Mozilla/5.0 (CE-NewsBot/1.0)"}
