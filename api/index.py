@@ -196,7 +196,11 @@ HTML = """<!DOCTYPE html>
         if (!res.ok) throw new Error('서버 오류 ' + res.status);
         const data = await res.json();
         clientCache[range] = data;
-        render(data, range);
+        try {
+          render(data, range);
+        } catch(e) {
+          showFetchError('렌더링 오류: ' + e.message + ' / ' + e.stack);
+        }
       } catch (e) { showFetchError(e.message); }
     }
 
