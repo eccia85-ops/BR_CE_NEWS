@@ -1,3 +1,5 @@
+# 모니터링 RSS 소스 목록
+
 RSS_SOURCES = [
     {
         "site": "데일리팜",
@@ -14,5 +16,13 @@ RSS_SOURCES = [
     {
         "site": "메디칼타임즈",
         "url": "https://www.medicaltimes.com/rss/allArticle.xml"
-    }
+    },
+    {
+        "site": "히트뉴스",
+        "url": "http://www.hitnews.co.kr/rss/allArticle.xml"
+    },
+    {
+        "site": "팜뉴스",
+        "url": "https://www.pharmnews.com/rss/allArticle.xml"
+    },
 ]
