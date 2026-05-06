@@ -196,12 +196,19 @@ HTML = """<!DOCTYPE html>
         if (!res.ok) throw new Error('서버 오류 ' + res.status);
         const data = await res.json();
         clientCache[range] = data;
-        try {
-          render(data, range);
-        } catch(e) {
-          showFetchError('렌더링 오류: ' + e.message + ' / ' + e.stack);
-        }
-      } catch (e) { showFetchError(e.message); }
+
+        // 임시 디버그: 데이터 구조 화면 출력
+        document.getElementById('loading').style.display = 'none';
+        const app = document.getElementById('app');
+        app.style.display = 'block';
+        app.innerHTML = '<div style="padding:16px;font-size:12px;background:white;border-radius:8px;">'
+          + '<b>수신 데이터 키:</b> ' + JSON.stringify(Object.keys(data)) + '<br><br>'
+          + '<b>keywords 수:</b> ' + (data.keywords?.length || 'UNDEFINED') + '<br>'
+          + '<b>categories 키:</b> ' + JSON.stringify(Object.keys(data.categories||{})) + '<br>'
+          + '<b>errors:</b> ' + JSON.stringify(data.errors)
+          + '</div>';
+
+      } catch (e) { showFetchError(e.message + ' / ' + e.stack); }
     }
 
     function refresh() {
