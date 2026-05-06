@@ -214,13 +214,14 @@ HTML = """<!DOCTYPE html>
       loadData(currentTab);
     }
 
-    function toggleKw(uid) {
-      var el  = document.getElementById('al-' + uid);
-      var row = document.getElementById('kr-' + uid);
-      if (!el) return;
-      var isOpen = el.classList.contains('open');
-      el.classList.toggle('open');
-      row.querySelector('.kw-toggle').textContent = isOpen ? '▼' : '▲';
+    function toggleKw(el) {
+      var uid  = el.getAttribute('data-uid');
+      var alEl = document.getElementById('al-' + uid);
+      var tog  = el.querySelector('.kw-toggle');
+      if (!alEl) return;
+      var isOpen = alEl.classList.contains('open');
+      alEl.classList.toggle('open');
+      if (tog) tog.textContent = isOpen ? '▼' : '▲';
     }
 
     function fmtDate(raw) {
@@ -308,7 +309,8 @@ HTML = """<!DOCTYPE html>
           var empty = cnt === 0;
 
           html += '<div class="kw-row' + (empty ? ' empty' : '') + '" id="kr-' + uid + '"'
-                + (!empty ? ' onclick="toggleKw(\'' + uid + '\')"' : '') + '>';
+            + ' data-uid="' + uid + '"'
+            + (!empty ? ' onclick="toggleKw(this)"' : '') + '>';
           html += '<span class="kw-label">' + esc(kw) + '</span>';
           html += '<div class="kw-bar-wrap">'
                 + '<div class="kw-bar" style="width:' + barW + '%"></div></div>';
