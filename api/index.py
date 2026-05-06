@@ -11,16 +11,16 @@ HTML = """<!DOCTYPE html>
   <title>CE 키워드 뉴스</title>
   <style>
     :root {
-      --primary:   #1a56db;
+      --primary:       #1a56db;
       --primary-light: #e8eefb;
-      --bg:        #f0f2f7;
-      --card:      #ffffff;
-      --border:    #e5e7eb;
-      --text:      #111827;
-      --sub:       #6b7280;
-      --badge-bg:  #f3f4f6;
-      --error-bg:  #fef2f2;
-      --error-txt: #991b1b;
+      --bg:            #f0f2f7;
+      --card:          #ffffff;
+      --border:        #e5e7eb;
+      --text:          #111827;
+      --sub:           #6b7280;
+      --badge-bg:      #f3f4f6;
+      --error-bg:      #fef2f2;
+      --error-txt:     #991b1b;
       --cat1-bg: #fff1f2; --cat1-txt: #be123c; --cat1-bd: #fda4af;
       --cat2-bg: #fffbeb; --cat2-txt: #b45309; --cat2-bd: #fcd34d;
       --cat3-bg: #f0fdf4; --cat3-txt: #166534; --cat3-bd: #86efac;
@@ -71,33 +71,19 @@ HTML = """<!DOCTYPE html>
       border-radius: 8px; padding: 10px 14px; font-size: 12px;
       color: var(--error-txt); margin-bottom: 12px;
     }
-    .kw-section { margin-bottom: 22px; }
-    .kw-header { display: flex; align-items: center; gap: 7px; margin-bottom: 9px; }
-    .kw-name { font-size: 15px; font-weight: 700; color: var(--text); }
-    .kw-count {
-      background: var(--primary); color: white;
-      border-radius: 20px; padding: 1px 8px; font-size: 11px; font-weight: 700;
+    .prompt-bar {
+      background: #1e293b; border-radius: 10px; padding: 12px 16px;
+      margin-bottom: 16px; display: flex; justify-content: space-between;
+      align-items: center; gap: 12px;
     }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 9px;
+    .prompt-bar-txt { font-size: 12px; color: #94a3b8; line-height: 1.5; }
+    .prompt-bar-txt b { color: #e2e8f0; display: block; margin-bottom: 2px; }
+    .copy-btn {
+      background: var(--primary); color: white; border: none;
+      border-radius: 7px; padding: 8px 16px; font-size: 13px;
+      font-weight: 600; cursor: pointer; white-space: nowrap;
     }
-    .card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 13px 14px;
-    }
-    .card-title { font-size: 13.5px; font-weight: 600; line-height: 1.5; }
-    .card-title a { color: var(--text); text-decoration: none; }
-    .card-title a:hover { color: var(--primary); text-decoration: underline; }
-    .card-meta {
-      margin-top: 8px; display: flex; gap: 6px;
-      align-items: center; font-size: 11px; color: var(--sub);
-    }
-    .src-tag {
-      background: var(--badge-bg); border-radius: 4px;
-      padding: 1px 6px; font-size: 11px; color: #374151;
-    }
+    .copy-btn:active { transform: scale(0.97); }
     .cat-section { margin-bottom: 20px; }
     .cat-header {
       display: flex; align-items: center; gap: 8px;
@@ -140,14 +126,22 @@ HTML = """<!DOCTYPE html>
     .article-item a { color: var(--text); text-decoration: none; line-height: 1.5; }
     .article-item a:hover { color: var(--primary); text-decoration: underline; }
     .article-meta { font-size: 11px; color: var(--sub); margin-top: 3px; display: flex; gap: 6px; }
+    .src-tag { background: var(--badge-bg); border-radius: 4px; padding: 1px 6px; font-size: 11px; color: #374151; }
+    .kw-section { margin-bottom: 22px; }
+    .kw-section-header { display: flex; align-items: center; gap: 7px; margin-bottom: 9px; }
+    .kw-name { font-size: 15px; font-weight: 700; color: var(--text); }
+    .kw-count { background: var(--primary); color: white; border-radius: 20px; padding: 1px 8px; font-size: 11px; font-weight: 700; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 9px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 13px 14px; }
+    .card-title { font-size: 13.5px; font-weight: 600; line-height: 1.5; }
+    .card-title a { color: var(--text); text-decoration: none; }
+    .card-title a:hover { color: var(--primary); text-decoration: underline; }
+    .card-meta { margin-top: 8px; display: flex; gap: 6px; align-items: center; font-size: 11px; color: var(--sub); }
     .loading { text-align: center; padding: 60px 20px; color: var(--sub); }
     .spinner {
-      width: 34px; height: 34px;
-      border: 3px solid var(--border);
-      border-top-color: var(--primary);
-      border-radius: 50%;
-      animation: spin 0.75s linear infinite;
-      margin: 0 auto 14px;
+      width: 34px; height: 34px; border: 3px solid var(--border);
+      border-top-color: var(--primary); border-radius: 50%;
+      animation: spin 0.75s linear infinite; margin: 0 auto 14px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
     .loading-text { font-size: 13px; }
@@ -163,13 +157,11 @@ HTML = """<!DOCTYPE html>
     <h1>📊 CE 키워드 뉴스</h1>
     <div class="sub">보령 CE기획팀 · 제약 업계 키워드 모니터링</div>
   </div>
-
   <div class="tabs">
     <button class="tab active" id="tab-today" onclick="switchTab('today')">오늘</button>
     <button class="tab"        id="tab-week"  onclick="switchTab('week')">주간</button>
     <button class="tab"        id="tab-month" onclick="switchTab('month')">월간</button>
   </div>
-
   <div class="content">
     <div class="loading" id="loading">
       <div class="spinner"></div>
@@ -227,17 +219,16 @@ HTML = """<!DOCTYPE html>
     function buildPrompt(data, range) {
       var period = range === 'week' ? '최근 7일' : '최근 30일';
       var today  = new Date().toLocaleDateString('ko-KR',
-        {year:'numeric', month:'2-digit', day:'2-digit'});
-      var txt = '아래는 ' + today + ' 기준 ' + period + ' 제약 업계 키워드별 뉴스입니다.\n';
-      txt += 'CE기획팀 관점에서 분류별 핵심 내용을 분석해주세요.\n\n';
-      txt += '[분석 기준]\n';
-      txt += '- 자사 직결: 보령 관련 사업 영향도 중심으로 서술\n';
-      txt += '- 시장 영향: 정책, 급여, 경쟁사 동향 및 대응 필요 여부 중심\n';
-      txt += '- 업계 동향: 중장기 시사점 중심\n\n';
-      txt += '[출력 형식] 주간 뉴스레터 메일 바디 / 우선순위 높은 항목부터\n';
-      txt += '기사가 0건인 키워드는 생략합니다.\n';
+        { year: 'numeric', month: '2-digit', day: '2-digit' });
+      var txt = '아래는 ' + today + ' 기준 ' + period + ' 제약 업계 키워드별 뉴스입니다.' + '\n';
+      txt += 'CE기획팀 관점에서 분류별 핵심 내용을 분석해주세요.' + '\n\n';
+      txt += '[분석 기준]' + '\n';
+      txt += '- 자사 직결: 보령 관련 사업 영향도 중심으로 서술' + '\n';
+      txt += '- 시장 영향: 정책, 급여, 경쟁사 동향 및 대응 필요 여부 중심' + '\n';
+      txt += '- 업계 동향: 중장기 시사점 중심' + '\n\n';
+      txt += '[출력 형식] 주간 뉴스레터 메일 바디 / 우선순위 높은 항목부터' + '\n';
+      txt += '기사가 0건인 키워드는 생략합니다.' + '\n';
       txt += '\n========================================\n\n';
-
       var cats = data.categories;
       var catKeys = Object.keys(cats);
       for (var ci = 0; ci < catKeys.length; ci++) {
@@ -254,7 +245,7 @@ HTML = """<!DOCTYPE html>
           }
         }
         if (!lines.length) continue;
-        txt += '=== ' + cat + ' ===\n\n' + lines.join('\n') + '\n\n';
+        txt += '=== ' + cat + ' ===' + '\n\n' + lines.join('\n') + '\n\n';
       }
       return txt.trim();
     }
@@ -262,31 +253,35 @@ HTML = """<!DOCTYPE html>
     function copyPrompt() {
       var btn  = document.getElementById('copy-btn');
       var data = clientCache[currentTab];
-      if (!data) return;
+      if (!data || !btn) return;
       var txt = buildPrompt(data, currentTab);
-      navigator.clipboard.writeText(txt).then(function() {
-        btn.textContent = '✅ 복사됨';
-        btn.style.background = '#166534';
-        setTimeout(function() {
-          btn.textContent = '📋 프롬프트 복사';
-          btn.style.background = '';
-        }, 2000);
-      }).catch(function() {
-        btn.textContent = '❌ 실패';
-        setTimeout(function() { btn.textContent = '📋 프롬프트 복사'; }, 2000);
-      });
+      navigator.clipboard.writeText(txt)
+        .then(function() {
+          btn.textContent = '✅ 복사됨';
+          btn.style.background = '#166534';
+          setTimeout(function() {
+            btn.textContent = '📋 프롬프트 복사';
+            btn.style.background = '';
+          }, 2000);
+        })
+        .catch(function() {
+          btn.textContent = '❌ 실패';
+          setTimeout(function() {
+            btn.textContent = '📋 프롬프트 복사';
+          }, 2000);
+        });
     }
 
     function fmtDate(raw) {
       if (!raw) return '';
       var d = new Date(raw);
       if (isNaN(d)) return '';
-      var now = new Date();
+      var now  = new Date();
       var diff = Math.floor((now - d) / 60000);
       if (diff < 1)    return '방금';
       if (diff < 60)   return diff + '분 전';
       if (diff < 1440) return Math.floor(diff / 60) + '시간 전';
-      return (d.getMonth()+1) + '.' + String(d.getDate()).padStart(2,'0');
+      return (d.getMonth() + 1) + '.' + String(d.getDate()).padStart(2, '0');
     }
 
     function esc(s) {
@@ -296,15 +291,15 @@ HTML = """<!DOCTYPE html>
     }
 
     function renderToday(data) {
-      var html = '';
+      var html   = '';
       var hasAny = false;
       for (var i = 0; i < data.keywords.length; i++) {
-        var kw = data.keywords[i];
+        var kw    = data.keywords[i];
         var items = data.data[kw];
         if (!items || !items.length) continue;
         hasAny = true;
         html += '<div class="kw-section">';
-        html += '<div class="kw-header">'
+        html += '<div class="kw-section-header">'
               + '<span class="kw-name">' + esc(kw) + '</span>'
               + '<span class="kw-count">' + items.length + '</span>'
               + '</div>';
@@ -329,25 +324,23 @@ HTML = """<!DOCTYPE html>
 
     function renderCat(data, range) {
       var html = '';
-      html += '<div style="background:#1e293b;border-radius:10px;padding:12px 16px;'
-            + 'margin-bottom:16px;display:flex;justify-content:space-between;'
-            + 'align-items:center;gap:12px;">';
-      html += '<div style="font-size:12px;color:#94a3b8;line-height:1.5;">'
-            + '<b style="color:#e2e8f0;display:block;margin-bottom:2px;">📋 AI 요약 프롬프트</b>'
-            + LABEL[range] + ' 뉴스를 Claude 분석용 프롬프트로 추출합니다.</div>';
-      html += '<button id="copy-btn" onclick="copyPrompt()" '
-            + 'style="background:#1a56db;color:white;border:none;border-radius:7px;'
-            + 'padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;">'
+      html += '<div class="prompt-bar">';
+      html += '<div class="prompt-bar-txt">'
+            + '<b>📋 AI 요약 프롬프트</b>'
+            + LABEL[range] + ' 뉴스를 Claude 분석용 프롬프트로 추출합니다.'
+            + '</div>';
+      html += '<button id="copy-btn" class="copy-btn" onclick="copyPrompt()">'
             + '📋 프롬프트 복사</button>';
       html += '</div>';
-      var cats = data.categories;
+
+      var cats    = data.categories;
       var catKeys = Object.keys(cats);
-      var hasAny = false;
+      var hasAny  = false;
 
       for (var ci = 0; ci < catKeys.length; ci++) {
-        var cat  = catKeys[ci];
-        var kws  = cats[cat];
-        var cc   = CAT_CLASS[ci] || 'c1';
+        var cat = catKeys[ci];
+        var kws = cats[cat];
+        var cc  = CAT_CLASS[ci] || 'c1';
 
         var catTotal = 0;
         var maxCount = 1;
@@ -372,9 +365,10 @@ HTML = """<!DOCTYPE html>
           var barW  = cnt ? Math.round((cnt / maxCount) * 100) : 0;
           var empty = cnt === 0;
 
-          html += '<div class="kw-row' + (empty ? ' empty' : '') + '" id="kr-' + uid + '"'
-            + ' data-uid="' + uid + '"'
-            + (!empty ? ' onclick="toggleKw(this)"' : '') + '>';
+          html += '<div class="kw-row' + (empty ? ' empty' : '') + '"'
+                + ' id="kr-' + uid + '"'
+                + ' data-uid="' + uid + '"'
+                + (!empty ? ' onclick="toggleKw(this)"' : '') + '>';
           html += '<span class="kw-label">' + esc(kw) + '</span>';
           html += '<div class="kw-bar-wrap">'
                 + '<div class="kw-bar" style="width:' + barW + '%"></div></div>';
