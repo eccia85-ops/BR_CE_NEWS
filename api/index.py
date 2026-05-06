@@ -196,19 +196,12 @@ HTML = """<!DOCTYPE html>
         if (!res.ok) throw new Error('서버 오류 ' + res.status);
         const data = await res.json();
         clientCache[range] = data;
-
-        // 임시 디버그: 데이터 구조 화면 출력
-        document.getElementById('loading').style.display = 'none';
-        const app = document.getElementById('app');
-        app.style.display = 'block';
-        app.innerHTML = '<div style="padding:16px;font-size:12px;background:white;border-radius:8px;">'
-          + '<b>수신 데이터 키:</b> ' + JSON.stringify(Object.keys(data)) + '<br><br>'
-          + '<b>keywords 수:</b> ' + (data.keywords?.length || 'UNDEFINED') + '<br>'
-          + '<b>categories 키:</b> ' + JSON.stringify(Object.keys(data.categories||{})) + '<br>'
-          + '<b>errors:</b> ' + JSON.stringify(data.errors)
-          + '</div>';
-
-      } catch (e) { showFetchError(e.message + ' / ' + e.stack); }
+        try {
+          render(data, range);
+        } catch(e) {
+          showFetchError('렌더링 오류: ' + e.message + ' / ' + e.stack);
+        }
+      } catch(e) { showFetchError(e.message); }
     }
 
     function refresh() {
@@ -245,26 +238,26 @@ HTML = """<!DOCTYPE html>
       const period = PROMPT_GUIDE[range];
       const today  = new Date().toLocaleDateString('ko-KR',
         {year:'numeric', month:'2-digit', day:'2-digit'});
-      let txt  = `아래는 ${today} 기준 ${period} 제약 업계 키워드별 뉴스입니다.\n`;
-      txt += `CE기획팀 관점에서 분류별 핵심 내용을 분석해주세요.\n\n`;
-      txt += `[분석 기준]\n`;
-      txt += `- 자사 직결: 보령 관련 사업 영향도 중심으로 서술\n`;
-      txt += `- 시장 영향: 정책·급여·경쟁사 동향, 대응 필요 여부 중심\n`;
-      txt += `- 업계 동향: 중장기 시사점 중심\n\n`;
-      txt += `[출력 형식] 주간 뉴스레터 메일 바디 / 우선순위 높은 항목부터\n`;
-      txt += `기사가 0건인 키워드는 생략합니다.\n`;
-      txt += `\n${'='.repeat(40)}\n\n`;
+      let txt = '아래는 ' + today + ' 기준 ' + period + ' 제약 업계 키워드별 뉴스입니다.\n';
+      txt += 'CE기획팀 관점에서 분류별 핵심 내용을 분석해주세요.\n\n';
+      txt += '[분석 기준]\n';
+      txt += '- 자사 직결: 보령 관련 사업 영향도 중심으로 서술\n';
+      txt += '- 시장 영향: 정책·급여·경쟁사 동향, 대응 필요 여부 중심\n';
+      txt += '- 업계 동향: 중장기 시사점 중심\n\n';
+      txt += '[출력 형식] 주간 뉴스레터 메일 바디 / 우선순위 높은 항목부터\n';
+      txt += '기사가 0건인 키워드는 생략합니다.\n';
+      txt += '\n========================================\n\n';
 
       for (const [cat, kws] of Object.entries(data.categories)) {
         const lines = [];
         for (const kw of kws) {
           const items = data.data[kw] || [];
           if (!items.length) continue;
-          lines.push(`[${kw}] ${items.length}건`);
-          items.forEach(a => lines.push(`  - ${a.title} (${a.site})`));
+          lines.push('[' + kw + '] ' + items.length + '건');
+          items.forEach(function(a) { lines.push('  - ' + a.title + ' (' + a.site + ')'); });
         }
         if (!lines.length) continue;
-        txt += `=== ${cat} ===\n\n` + lines.join('\n') + '\n\n';
+        txt += '=== ' + cat + ' ===\n\n' + lines.join('\n') + '\n\n';
       }
       return txt.trim();
     }
@@ -275,10 +268,13 @@ HTML = """<!DOCTYPE html>
         await navigator.clipboard.writeText(buildPrompt(data, range));
         btn.textContent = '✅ 복사됨';
         btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = '📋 프롬프트 복사'; btn.classList.remove('copied'); }, 2000);
-      } catch {
+        setTimeout(function() {
+          btn.textContent = '📋 프롬프트 복사';
+          btn.classList.remove('copied');
+        }, 2000);
+      } catch(e) {
         btn.textContent = '❌ 복사 실패';
-        setTimeout(() => { btn.textContent = '📋 프롬프트 복사'; }, 2000);
+        setTimeout(function() { btn.textContent = '📋 프롬프트 복사'; }, 2000);
       }
     }
 
@@ -287,32 +283,36 @@ HTML = """<!DOCTYPE html>
       const app = document.getElementById('app');
       app.style.display = 'block';
 
-      const total = data.keywords.reduce((s,k) => s + (data.data[k]?.length||0), 0);
+      const total = data.keywords.reduce(function(s,k) {
+        return s + (data.data[k] ? data.data[k].length : 0);
+      }, 0);
 
       let html = '<div class="status-bar"><div class="status-left">';
       html += '<span class="badge">📅 ' + LABEL[range] + '</span>';
       html += '<span class="badge">📰 ' + total + '건</span>';
-      if (data.errors?.length)
+      if (data.errors && data.errors.length)
         html += '<span class="badge badge-error">⚠️ ' + data.errors.length + '개 소스 오류</span>';
       html += '</div><button class="refresh-btn" onclick="refresh()">🔄 새로고침</button></div>';
 
-      if (data.errors?.length)
+      if (data.errors && data.errors.length)
         html += '<div class="error-banner">수집 실패: ' + esc(data.errors.join(', ')) + '</div>';
 
       if (range === 'today') {
         let hasAny = false;
-        for (const kw of data.keywords) {
+        for (let i = 0; i < data.keywords.length; i++) {
+          const kw = data.keywords[i];
           const items = data.data[kw];
-          if (!items?.length) continue;
+          if (!items || !items.length) continue;
           hasAny = true;
           html += '<div class="kw-section"><div class="kw-section-header">'
                 + '<span class="kw-name">' + esc(kw) + '</span>'
                 + '<span class="kw-count">' + items.length + '</span>'
                 + '</div><div class="cards">';
-          for (const item of items) {
+          for (let j = 0; j < items.length; j++) {
+            const item = items[j];
             html += '<div class="card"><div class="card-title">'
                   + '<a href="' + esc(item.link) + '" target="_blank" rel="noopener">'
-                  + esc(item.title||'(제목 없음)') + '</a></div>'
+                  + esc(item.title || '(제목 없음)') + '</a></div>'
                   + '<div class="card-meta"><span class="src-tag">' + esc(item.site) + '</span>'
                   + '<span>' + fmtDate(item.date) + '</span></div></div>';
           }
@@ -331,39 +331,50 @@ HTML = """<!DOCTYPE html>
 
         let hasAny = false;
         let catIdx = 0;
+        const catEntries = Object.entries(data.categories);
 
-        for (const [cat, kws] of Object.entries(data.categories)) {
-          const catTotal = kws.reduce((s,k) => s + (data.data[k]?.length||0), 0);
+        for (let ci = 0; ci < catEntries.length; ci++) {
+          const cat = catEntries[ci][0];
+          const kws = catEntries[ci][1];
           const cc = CAT_CLASS[catIdx] || 'c1';
-          const maxCount = Math.max(...kws.map(k => data.data[k]?.length||0), 1);
+
+          let catTotal = 0;
+          let maxCount = 1;
+          for (let ki = 0; ki < kws.length; ki++) {
+            const cnt = data.data[kws[ki]] ? data.data[kws[ki]].length : 0;
+            catTotal += cnt;
+            if (cnt > maxCount) maxCount = cnt;
+          }
 
           html += '<div class="cat-section">';
           html += '<div class="cat-header ' + cc + '">' + esc(cat)
                 + '<span class="cat-total">' + catTotal + '건</span></div>';
           html += '<div class="kw-list">';
 
-          for (const kw of kws) {
+          for (let ki = 0; ki < kws.length; ki++) {
+            const kw    = kws[ki];
             const items = data.data[kw] || [];
-            const cnt  = items.length;
-            const uid  = esc(kw).replace(/\s/g,'_');
-            const barW = cnt ? Math.round((cnt / maxCount) * 100) : 0;
+            const cnt   = items.length;
+            const uid   = kw.replace(/\s/g, '_');
+            const barW  = cnt ? Math.round((cnt / maxCount) * 100) : 0;
             const empty = cnt === 0;
 
             html += '<div class="kw-row' + (empty ? ' empty' : '') + '" id="kr-' + uid + '" '
                   + (!empty ? 'onclick="toggleKw(\'' + uid + '\')"' : '') + '>';
             html += '<span class="kw-label">' + esc(kw) + '</span>';
             html += '<div class="kw-bar-wrap"><div class="kw-bar" style="width:' + barW + '%"></div></div>';
-            html += '<span class="kw-num">' + (cnt||'-') + '</span>';
+            html += '<span class="kw-num">' + (cnt || '-') + '</span>';
             if (!empty) html += '<span class="kw-toggle">▼</span>';
             html += '</div>';
 
             if (!empty) {
               hasAny = true;
               html += '<div class="article-list" id="al-' + uid + '">';
-              for (const item of items) {
+              for (let ai = 0; ai < items.length; ai++) {
+                const item = items[ai];
                 html += '<div class="article-item">'
                       + '<a href="' + esc(item.link) + '" target="_blank" rel="noopener">'
-                      + esc(item.title||'(제목 없음)') + '</a>'
+                      + esc(item.title || '(제목 없음)') + '</a>'
                       + '<div class="article-meta">'
                       + '<span class="src-tag">' + esc(item.site) + '</span>'
                       + '<span>' + fmtDate(item.date) + '</span></div></div>';
@@ -385,6 +396,7 @@ HTML = """<!DOCTYPE html>
       document.getElementById('loading').style.display = 'block';
       document.getElementById('app').style.display = 'none';
     }
+
     function showFetchError(msg) {
       document.getElementById('loading').style.display = 'none';
       const app = document.getElementById('app');
