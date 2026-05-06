@@ -5,6 +5,7 @@ from fastapi import FastAPI, Query
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import urllib.request
+from urllib.parse import quote
 import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone, timedelta
@@ -12,7 +13,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 
 from config.sources import RSS_SOURCES
-from config.keywords import KEYWORDS
+from config.keywords import KEYWORDS, CATEGORIES
 
 app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET"])
@@ -37,7 +38,6 @@ def parse_date(raw):
 
 
 def ensure_aware(dt):
-    """timezone 정보 없는 datetime은 KST로 간주"""
     if dt.tzinfo is None:
         return dt.replace(tzinfo=KST)
     return dt
@@ -65,10 +65,7 @@ def in_range(article, range_):
 
 
 def fetch_one(site, url):
-    # 한글 등 non-ASCII 문자를 퍼센트 인코딩, URL 구조 문자는 유지
-    from urllib.parse import quote
     url = quote(url, safe=':/?=&#+@')
-
     req = urllib.request.Request(
         url,
         headers={"User-Agent": "Mozilla/5.0 (CE-NewsBot/1.0)"}
@@ -160,7 +157,8 @@ def get_news(range: str = Query("today")):
         bucket[k].sort(key=lambda x: x["date"] or "", reverse=True)
 
     return JSONResponse({
-        "keywords": KEYWORDS,
-        "data":     bucket,
-        "errors":   errors,
+        "keywords":   KEYWORDS,
+        "categories": {cat: kws for cat, kws in CATEGORIES.items()},
+        "data":       bucket,
+        "errors":     errors,
     })
