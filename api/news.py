@@ -18,7 +18,7 @@ app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET"])
 
 _cache: dict = {}
-CACHE_TTL = 1800  # 30분
+CACHE_TTL = 1800
 
 KST = timezone(timedelta(hours=9))
 
@@ -36,11 +36,19 @@ def parse_date(raw):
         return None
 
 
+def ensure_aware(dt):
+    """timezone 정보 없는 datetime은 KST로 간주"""
+    if dt.tzinfo is None:
+        return dt.replace(tzinfo=KST)
+    return dt
+
+
 def in_range(article, range_):
     dt = article.get("date_obj")
     if dt is None:
         return range_ == "month"
 
+    dt = ensure_aware(dt)
     now = datetime.now(tz=timezone.utc)
 
     if range_ == "today":
@@ -120,9 +128,11 @@ def get_all_articles():
 
 
 @app.get("/api/news")
-def news(range: str = Query("today", pattern="^(today|week|month)$")):
-    all_articles, errors = get_all_articles()
+def get_news(range: str = Query("today")):
+    if range not in ("today", "week", "month"):
+        range = "today"
 
+    all_articles, errors = get_all_articles()
     filtered = [a for a in all_articles if in_range(a, range)]
 
     bucket = {k: [] for k in KEYWORDS}
