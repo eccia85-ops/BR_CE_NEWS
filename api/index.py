@@ -171,6 +171,7 @@ HTML = """<!DOCTYPE html>
   </div>
 
   <script>
+    var NL = String.fromCharCode(10);
     var currentTab = 'today';
     var clientCache = {};
     var LABEL = { today: '오늘', week: '최근 7일', month: '최근 30일' };
@@ -220,34 +221,46 @@ HTML = """<!DOCTYPE html>
       var period = range === 'week' ? '최근 7일' : '최근 30일';
       var today  = new Date().toLocaleDateString('ko-KR',
         { year: 'numeric', month: '2-digit', day: '2-digit' });
-      var txt = '아래는 ' + today + ' 기준 ' + period + ' 제약 업계 키워드별 뉴스입니다.' + '\n';
-      txt += 'CE기획팀 관점에서 분류별 핵심 내용을 분석해주세요.' + '\n\n';
-      txt += '[분석 기준]' + '\n';
-      txt += '- 자사 직결: 보령 관련 사업 영향도 중심으로 서술' + '\n';
-      txt += '- 시장 영향: 정책, 급여, 경쟁사 동향 및 대응 필요 여부 중심' + '\n';
-      txt += '- 업계 동향: 중장기 시사점 중심' + '\n\n';
-      txt += '[출력 형식] 주간 뉴스레터 메일 바디 / 우선순위 높은 항목부터' + '\n';
-      txt += '기사가 0건인 키워드는 생략합니다.' + '\n';
-      txt += '\n========================================\n\n';
-      var cats = data.categories;
+      var lines = [];
+      lines.push('아래는 ' + today + ' 기준 ' + period + ' 제약 업계 키워드별 뉴스입니다.');
+      lines.push('CE기획팀 관점에서 분류별 핵심 내용을 분석해주세요.');
+      lines.push('');
+      lines.push('[분석 기준]');
+      lines.push('- 자사 직결: 보령 관련 사업 영향도 중심으로 서술');
+      lines.push('- 시장 영향: 정책, 급여, 경쟁사 동향 및 대응 필요 여부 중심');
+      lines.push('- 업계 동향: 중장기 시사점 중심');
+      lines.push('');
+      lines.push('[출력 형식] 주간 뉴스레터 메일 바디 / 우선순위 높은 항목부터');
+      lines.push('기사가 0건인 키워드는 생략합니다.');
+      lines.push('');
+      lines.push('========================================');
+      lines.push('');
+      var cats    = data.categories;
       var catKeys = Object.keys(cats);
       for (var ci = 0; ci < catKeys.length; ci++) {
-        var cat  = catKeys[ci];
-        var kws  = cats[cat];
-        var lines = [];
+        var cat      = catKeys[ci];
+        var kws      = cats[cat];
+        var catLines = [];
+        var hasItems = false;
+        catLines.push('=== ' + cat + ' ===');
+        catLines.push('');
         for (var ki = 0; ki < kws.length; ki++) {
           var kw    = kws[ki];
           var items = data.data[kw] || [];
           if (!items.length) continue;
-          lines.push('[' + kw + '] ' + items.length + '건');
+          hasItems = true;
+          catLines.push('[' + kw + '] ' + items.length + '건');
           for (var ai = 0; ai < items.length; ai++) {
-            lines.push('  - ' + items[ai].title + ' (' + items[ai].site + ')');
+            catLines.push('  - ' + items[ai].title + ' (' + items[ai].site + ')');
           }
         }
-        if (!lines.length) continue;
-        txt += '=== ' + cat + ' ===' + '\n\n' + lines.join('\n') + '\n\n';
+        if (!hasItems) continue;
+        catLines.push('');
+        for (var li = 0; li < catLines.length; li++) {
+          lines.push(catLines[li]);
+        }
       }
-      return txt.trim();
+      return lines.join(NL);
     }
 
     function copyPrompt() {
