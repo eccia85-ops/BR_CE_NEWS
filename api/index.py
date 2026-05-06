@@ -175,6 +175,19 @@ HTML = """<!DOCTYPE html>
   </div>
 
   <script>
+    window.onerror = function(msg, src, line, col, err) {
+      document.getElementById('loading').style.display = 'none';
+      var app = document.getElementById('app');
+      app.style.display = 'block';
+      app.innerHTML = '<div style="padding:16px;background:#fef2f2;border-radius:8px;font-size:13px;color:#991b1b;">'
+        + '<b>JS 오류 발생</b><br><br>'
+        + '메시지: ' + msg + '<br>'
+        + '라인: ' + line + '<br>'
+        + '컬럼: ' + col + '<br>'
+        + (err ? '스택: ' + err.stack : '')
+        + '</div>';
+      return true;
+    };
     let currentTab = 'today';
     const clientCache = {};
     const CAT_CLASS = { 0: 'c1', 1: 'c2', 2: 'c3' };
