@@ -3,174 +3,327 @@ from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
-@app.get("/", response_class=HTMLResponse)
-def home():
-    return """
-<!DOCTYPE html>
-<html>
+HTML = """<!DOCTYPE html>
+<html lang="ko">
 <head>
   <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
   <title>CE 키워드 뉴스</title>
-
-  <!-- ===== [1] 스타일 영역 ===== -->
   <style>
+    :root {
+      --primary:      #1a56db;
+      --primary-light:#e8eefb;
+      --bg:           #f0f2f7;
+      --card:         #ffffff;
+      --border:       #e5e7eb;
+      --text:         #111827;
+      --sub:          #6b7280;
+      --badge-bg:     #f3f4f6;
+      --error-bg:     #fef2f2;
+      --error-txt:    #991b1b;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: Arial;
-      margin: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                   'Apple SD Gothic Neo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
     }
-
-    /* ---- 탭 버튼 ---- */
-    .tabs button {
-      padding: 6px 14px;
-      margin-right: 6px;
-      border: 1px solid #ccc;
-      background: #f8f8f8;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    .tabs button.active {
-      background: #4f67ff;
+    .header {
+      background: var(--primary);
       color: white;
-      border-color: #4f67ff;
-      font-weight: bold;
+      padding: 14px 18px 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
     }
-
-    /* ---- 키워드 섹션 ---- */
-    .keyword {
-      margin-top: 36px;
+    .header h1  { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; }
+    .header .sub { font-size: 11px; opacity: 0.75; margin-top: 2px; }
+    .tabs {
+      background: white;
+      display: flex;
+      border-bottom: 2px solid var(--border);
+      position: sticky;
+      top: 56px;
+      z-index: 99;
     }
-
-    /* ---- 카드 목록 ---- */
+    .tab {
+      flex: 1;
+      padding: 11px 0;
+      border: none;
+      background: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--sub);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+    }
+    .tab.active {
+      color: var(--primary);
+      font-weight: 700;
+      border-bottom-color: var(--primary);
+    }
+    .content { padding: 12px 14px 32px; max-width: 960px; margin: 0 auto; }
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--sub);
+      padding: 8px 2px 10px;
+    }
+    .status-left { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .badge {
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: 20px;
+      padding: 2px 9px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .badge-error { background: var(--error-bg); color: var(--error-txt); }
+    .refresh-btn {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 11px;
+      font-size: 12px;
+      cursor: pointer;
+      color: var(--sub);
+    }
+    .refresh-btn:active { transform: scale(0.97); }
+    .error-banner {
+      background: var(--error-bg);
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--error-txt);
+      margin-bottom: 12px;
+    }
+    .kw-section { margin-bottom: 22px; }
+    .kw-header {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 9px;
+    }
+    .kw-name  { font-size: 15px; font-weight: 700; }
+    .kw-count {
+      background: var(--primary);
+      color: white;
+      border-radius: 20px;
+      padding: 1px 8px;
+      font-size: 11px;
+      font-weight: 700;
+    }
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 9px;
     }
-
-    /* ---- 카드 ---- */
     .card {
-      border: 1px solid #e0e0e0;
-      border-radius: 6px;
-      padding: 12px;
-      background: white;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 14px;
     }
-
-    /* ---- 카드 제목 (가장 중요) ---- */
-    .card-title {
-      font-size: 15px;
-      font-weight: bold;
-      line-height: 1.4;
-    }
-
-    .card-title a {
-      color: #111;
-      text-decoration: none;
-    }
-
-    .card-title a:hover {
-      text-decoration: underline;
-    }
-
-    /* ---- 카드 하단 정보 (출처 + 날짜) ---- */
+    .card-title { font-size: 13.5px; font-weight: 600; line-height: 1.5; }
+    .card-title a { color: var(--text); text-decoration: none; }
+    .card-title a:hover { color: var(--primary); text-decoration: underline; }
     .card-meta {
-      margin-top: 6px;
-      font-size: 12px;
-      color: #777;
+      margin-top: 8px;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      font-size: 11px;
+      color: var(--sub);
+    }
+    .src-tag {
+      background: var(--badge-bg);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 11px;
+      color: #374151;
+    }
+    .loading { text-align: center; padding: 60px 20px; color: var(--sub); }
+    .spinner {
+      width: 34px; height: 34px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+      margin: 0 auto 14px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { font-size: 13px; }
+    .empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--sub);
+      font-size: 13px;
+      background: white;
+      border-radius: 10px;
+      border: 1px dashed var(--border);
     }
   </style>
 </head>
 
 <body>
-
-  <!-- ===== [2] 페이지 제목 ===== -->
-  <h1>📊 CE 키워드 뉴스</h1>
-
-  <!-- ===== [3] 기간 탭 ===== -->
-  <div class="tabs">
-    <button id="tab-today" onclick="loadView('today')">오늘</button>
-    <button id="tab-week" onclick="loadView('week')">주간</button>
-    <button id="tab-month" onclick="loadView('month')">월간</button>
+  <div class="header">
+    <h1>📊 CE 키워드 뉴스</h1>
+    <div class="sub">보령 CE기획팀 · 제약 업계 키워드 모니터링</div>
   </div>
 
-  <!-- ===== [4] 뉴스 카드가 들어갈 영역 ===== -->
-  <div id="app"></div>
+  <div class="tabs">
+    <button class="tab active" id="tab-today" onclick="switchTab('today')">오늘</button>
+    <button class="tab"        id="tab-week"  onclick="switchTab('week')">주간</button>
+    <button class="tab"        id="tab-month" onclick="switchTab('month')">월간</button>
+  </div>
 
-  <!-- ===== [5] 자바스크립트 ===== -->
+  <div class="content">
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <div class="loading-text">뉴스를 수집하는 중입니다…</div>
+    </div>
+    <div id="app" style="display:none"></div>
+  </div>
+
   <script>
-    let rawData = null;
-    let currentTab = "today";
+    let currentTab = 'today';
+    const clientCache = {};
 
-    // [5-1] 날짜 문자열 → YYYY-MM-DD 변환
-    function formatDate(raw) {
-      if (!raw) return "";
-      const d = new Date(raw);
-      return d.toISOString().slice(0, 10);
-    }
-
-    // [5-2] API 데이터 로드
-    async function loadData() {
-      const res = await fetch('/api/news');
-      rawData = await res.json();
-      setActiveTab('today');
-      render();
-    }
-
-    // [5-3] 선택된 탭 표시
-    function setActiveTab(tab) {
+    function switchTab(tab) {
+      document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
       currentTab = tab;
-      document.querySelectorAll('.tabs button')
-        .forEach(b => b.classList.remove('active'));
-      document.getElementById(`tab-${tab}`)
-        .classList.add('active');
-    }
-
-    function loadView(tab) {
-      setActiveTab(tab);
-      render();
-    }
-
-    // [5-4] 화면에 카드 그리기 (★ 여기 중요)
-    function render() {
-      const app = document.getElementById('app');
-      app.innerHTML = '';
-
-      for (const keyword of rawData.keywords) {
-        const items = rawData.data[keyword];
-        if (!items || items.length === 0) continue;
-
-        app.innerHTML += `
-          <div class="keyword">
-            <h2>${keyword} (${items.length})</h2>
-            <div class="cards" id="k-${keyword}"></div>
-          </div>
-        `;
-
-        const box = document.getElementById(`k-${keyword}`);
-
-        items.forEach(i => {
-          // box.innerHTML += `<pre style="font-size:11px">${JSON.stringify(i, null,
-          
-          box.innerHTML += `
-              <div class="card">
-                <div class="card-title">
-                  <a href="${i.link}" target="_blank">
-                    ${i.title || i.headline || i.subject || "(제목 없음)"}
-                  </a>
-                </div>
-                <div class="card-meta">
-                  ${i.site} · ${formatDate(i.date)}
-                </div>
-              </div>
-            `;
-
-        });
+      if (clientCache[tab]) {
+        render(clientCache[tab], tab);
+      } else {
+        loadData(tab);
       }
     }
 
-    loadData();
-  </script>
+    async function loadData(range) {
+      showLoading();
+      try {
+        const res = await fetch('/api/news?range=' + range);
+        if (!res.ok) throw new Error('서버 오류 ' + res.status);
+        const data = await res.json();
+        clientCache[range] = data;
+        render(data, range);
+      } catch (e) {
+        showFetchError(e.message);
+      }
+    }
 
+    function refresh() {
+      delete clientCache[currentTab];
+      loadData(currentTab);
+    }
+
+    function fmtDate(raw) {
+      if (!raw) return '';
+      const d = new Date(raw);
+      if (isNaN(d)) return '';
+      const now = new Date();
+      const diff = Math.floor((now - d) / 60000);
+      if (diff < 1)    return '방금';
+      if (diff < 60)   return diff + '분 전';
+      if (diff < 1440) return Math.floor(diff / 60) + '시간 전';
+      const mm = d.getMonth() + 1, dd = d.getDate();
+      return mm + '.' + String(dd).padStart(2, '0');
+    }
+
+    function esc(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function render(data, range) {
+      document.getElementById('loading').style.display = 'none';
+      const app = document.getElementById('app');
+      app.style.display = 'block';
+
+      const LABEL = { today: '오늘', week: '최근 7일', month: '최근 30일' };
+      const total = data.keywords.reduce(
+        (s, k) => s + (data.data[k]?.length || 0), 0
+      );
+
+      let html = '<div class="status-bar"><div class="status-left">';
+      html += '<span class="badge">📅 ' + LABEL[range] + '</span>';
+      html += '<span class="badge">📰 ' + total + '건</span>';
+      if (data.errors?.length) {
+        html += '<span class="badge badge-error">⚠️ '
+              + data.errors.length + '개 소스 오류</span>';
+      }
+      html += '</div>';
+      html += '<button class="refresh-btn" onclick="refresh()">🔄 새로고침</button>';
+      html += '</div>';
+
+      if (data.errors?.length) {
+        html += '<div class="error-banner">수집 실패: '
+              + esc(data.errors.join(', ')) + '</div>';
+      }
+
+      let hasAny = false;
+      for (const kw of data.keywords) {
+        const items = data.data[kw];
+        if (!items || items.length === 0) continue;
+        hasAny = true;
+
+        html += '<div class="kw-section">'
+              + '<div class="kw-header">'
+              + '<span class="kw-name">' + esc(kw) + '</span>'
+              + '<span class="kw-count">' + items.length + '</span>'
+              + '</div><div class="cards">';
+
+        for (const item of items) {
+          html += '<div class="card">'
+                + '<div class="card-title"><a href="' + esc(item.link)
+                + '" target="_blank" rel="noopener">'
+                + esc(item.title || '(제목 없음)') + '</a></div>'
+                + '<div class="card-meta">'
+                + '<span class="src-tag">' + esc(item.site) + '</span>'
+                + '<span>' + fmtDate(item.date) + '</span>'
+                + '</div></div>';
+        }
+        html += '</div></div>';
+      }
+
+      if (!hasAny) {
+        html += '<div class="empty">📭 '
+              + LABEL[range] + ' 기간 내 해당 키워드 뉴스가 없습니다.</div>';
+      }
+
+      app.innerHTML = html;
+    }
+
+    function showLoading() {
+      document.getElementById('loading').style.display = 'block';
+      document.getElementById('app').style.display = 'none';
+    }
+
+    function showFetchError(msg) {
+      document.getElementById('loading').style.display = 'none';
+      const app = document.getElementById('app');
+      app.style.display = 'block';
+      app.innerHTML = '<div class="error-banner">⚠️ 데이터를 불러오지 못했습니다: '
+                    + esc(msg) + '</div>';
+    }
+
+    loadData('today');
+  </script>
 </body>
-</html>
-"""
+</html>"""
+
+
+@app.get("/", response_class=HTMLResponse)
+def home():
+    return HTML
