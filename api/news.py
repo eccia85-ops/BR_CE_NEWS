@@ -13,7 +13,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 
 from config.sources import RSS_SOURCES
-from config.keywords import KEYWORDS, CATEGORIES
+from config.keywords import KEYWORDS
 
 app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET"])
@@ -157,8 +157,7 @@ def get_news(range: str = Query("today")):
         bucket[k].sort(key=lambda x: x["date"] or "", reverse=True)
 
     return JSONResponse({
-        "keywords":   KEYWORDS,
-        "categories": {cat: kws for cat, kws in CATEGORIES.items()},
-        "data":       bucket,
-        "errors":     errors,
+        "keywords": KEYWORDS,
+        "data":     bucket,
+        "errors":   errors,
     })
