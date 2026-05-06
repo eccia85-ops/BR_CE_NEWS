@@ -224,6 +224,59 @@ HTML = """<!DOCTYPE html>
       if (tog) tog.textContent = isOpen ? '▼' : '▲';
     }
 
+    function buildPrompt(data, range) {
+      var period = range === 'week' ? '최근 7일' : '최근 30일';
+      var today  = new Date().toLocaleDateString('ko-KR',
+        {year:'numeric', month:'2-digit', day:'2-digit'});
+      var txt = '아래는 ' + today + ' 기준 ' + period + ' 제약 업계 키워드별 뉴스입니다.\n';
+      txt += 'CE기획팀 관점에서 분류별 핵심 내용을 분석해주세요.\n\n';
+      txt += '[분석 기준]\n';
+      txt += '- 자사 직결: 보령 관련 사업 영향도 중심으로 서술\n';
+      txt += '- 시장 영향: 정책, 급여, 경쟁사 동향 및 대응 필요 여부 중심\n';
+      txt += '- 업계 동향: 중장기 시사점 중심\n\n';
+      txt += '[출력 형식] 주간 뉴스레터 메일 바디 / 우선순위 높은 항목부터\n';
+      txt += '기사가 0건인 키워드는 생략합니다.\n';
+      txt += '\n========================================\n\n';
+
+      var cats = data.categories;
+      var catKeys = Object.keys(cats);
+      for (var ci = 0; ci < catKeys.length; ci++) {
+        var cat  = catKeys[ci];
+        var kws  = cats[cat];
+        var lines = [];
+        for (var ki = 0; ki < kws.length; ki++) {
+          var kw    = kws[ki];
+          var items = data.data[kw] || [];
+          if (!items.length) continue;
+          lines.push('[' + kw + '] ' + items.length + '건');
+          for (var ai = 0; ai < items.length; ai++) {
+            lines.push('  - ' + items[ai].title + ' (' + items[ai].site + ')');
+          }
+        }
+        if (!lines.length) continue;
+        txt += '=== ' + cat + ' ===\n\n' + lines.join('\n') + '\n\n';
+      }
+      return txt.trim();
+    }
+
+    function copyPrompt() {
+      var btn  = document.getElementById('copy-btn');
+      var data = clientCache[currentTab];
+      if (!data) return;
+      var txt = buildPrompt(data, currentTab);
+      navigator.clipboard.writeText(txt).then(function() {
+        btn.textContent = '✅ 복사됨';
+        btn.style.background = '#166534';
+        setTimeout(function() {
+          btn.textContent = '📋 프롬프트 복사';
+          btn.style.background = '';
+        }, 2000);
+      }).catch(function() {
+        btn.textContent = '❌ 실패';
+        setTimeout(function() { btn.textContent = '📋 프롬프트 복사'; }, 2000);
+      });
+    }
+
     function fmtDate(raw) {
       if (!raw) return '';
       var d = new Date(raw);
@@ -276,6 +329,17 @@ HTML = """<!DOCTYPE html>
 
     function renderCat(data, range) {
       var html = '';
+      html += '<div style="background:#1e293b;border-radius:10px;padding:12px 16px;'
+            + 'margin-bottom:16px;display:flex;justify-content:space-between;'
+            + 'align-items:center;gap:12px;">';
+      html += '<div style="font-size:12px;color:#94a3b8;line-height:1.5;">'
+            + '<b style="color:#e2e8f0;display:block;margin-bottom:2px;">📋 AI 요약 프롬프트</b>'
+            + LABEL[range] + ' 뉴스를 Claude 분석용 프롬프트로 추출합니다.</div>';
+      html += '<button id="copy-btn" onclick="copyPrompt()" '
+            + 'style="background:#1a56db;color:white;border:none;border-radius:7px;'
+            + 'padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;">'
+            + '📋 프롬프트 복사</button>';
+      html += '</div>';
       var cats = data.categories;
       var catKeys = Object.keys(cats);
       var hasAny = false;
