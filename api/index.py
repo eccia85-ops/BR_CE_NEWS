@@ -21,6 +21,9 @@ HTML = """<!DOCTYPE html>
       --badge-bg:  #f3f4f6;
       --error-bg:  #fef2f2;
       --error-txt: #991b1b;
+      --cat1-bg: #fff1f2; --cat1-txt: #be123c; --cat1-bd: #fda4af;
+      --cat2-bg: #fffbeb; --cat2-txt: #b45309; --cat2-bd: #fcd34d;
+      --cat3-bg: #f0fdf4; --cat3-txt: #166534; --cat3-bd: #86efac;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -95,6 +98,48 @@ HTML = """<!DOCTYPE html>
       background: var(--badge-bg); border-radius: 4px;
       padding: 1px 6px; font-size: 11px; color: #374151;
     }
+    .cat-section { margin-bottom: 20px; }
+    .cat-header {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 14px; border-radius: 10px 10px 0 0;
+      border: 1px solid; border-bottom: none;
+      font-size: 14px; font-weight: 700;
+    }
+    .cat-header.c1 { background: var(--cat1-bg); color: var(--cat1-txt); border-color: var(--cat1-bd); }
+    .cat-header.c2 { background: var(--cat2-bg); color: var(--cat2-txt); border-color: var(--cat2-bd); }
+    .cat-header.c3 { background: var(--cat3-bg); color: var(--cat3-txt); border-color: var(--cat3-bd); }
+    .cat-total {
+      margin-left: auto; font-size: 11px; font-weight: 600;
+      background: rgba(0,0,0,0.08); border-radius: 20px; padding: 1px 8px;
+    }
+    .kw-list {
+      border: 1px solid var(--border); border-top: none;
+      border-radius: 0 0 10px 10px; overflow: hidden; background: white;
+    }
+    .kw-row {
+      display: flex; align-items: center; padding: 11px 14px;
+      border-bottom: 1px solid var(--border);
+      gap: 10px; cursor: pointer;
+    }
+    .kw-row:last-child { border-bottom: none; }
+    .kw-row:hover { background: var(--badge-bg); }
+    .kw-row.empty { cursor: default; opacity: 0.4; }
+    .kw-row.empty:hover { background: white; }
+    .kw-label { font-size: 14px; font-weight: 600; min-width: 80px; }
+    .kw-bar-wrap { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .kw-bar { height: 100%; border-radius: 3px; background: var(--primary); }
+    .kw-num { font-size: 12px; font-weight: 700; color: var(--primary); min-width: 32px; text-align: right; }
+    .kw-toggle { font-size: 11px; color: var(--sub); }
+    .article-list {
+      display: none; border-top: 1px solid var(--border);
+      padding: 10px 14px 12px; background: #fafafa;
+    }
+    .article-list.open { display: block; }
+    .article-item { padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+    .article-item:last-child { border-bottom: none; }
+    .article-item a { color: var(--text); text-decoration: none; line-height: 1.5; }
+    .article-item a:hover { color: var(--primary); text-decoration: underline; }
+    .article-meta { font-size: 11px; color: var(--sub); margin-top: 3px; display: flex; gap: 6px; }
     .loading { text-align: center; padding: 60px 20px; color: var(--sub); }
     .spinner {
       width: 34px; height: 34px;
@@ -137,6 +182,7 @@ HTML = """<!DOCTYPE html>
     var currentTab = 'today';
     var clientCache = {};
     var LABEL = { today: '오늘', week: '최근 7일', month: '최근 30일' };
+    var CAT_CLASS = ['c1', 'c2', 'c3'];
 
     function switchTab(tab) {
       var tabs = document.querySelectorAll('.tab');
@@ -168,6 +214,15 @@ HTML = """<!DOCTYPE html>
       loadData(currentTab);
     }
 
+    function toggleKw(uid) {
+      var el  = document.getElementById('al-' + uid);
+      var row = document.getElementById('kr-' + uid);
+      if (!el) return;
+      var isOpen = el.classList.contains('open');
+      el.classList.toggle('open');
+      row.querySelector('.kw-toggle').textContent = isOpen ? '▼' : '▲';
+    }
+
     function fmtDate(raw) {
       if (!raw) return '';
       var d = new Date(raw);
@@ -184,6 +239,105 @@ HTML = """<!DOCTYPE html>
       return String(s || '')
         .replace(/&/g, '&amp;').replace(/</g, '&lt;')
         .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function renderToday(data) {
+      var html = '';
+      var hasAny = false;
+      for (var i = 0; i < data.keywords.length; i++) {
+        var kw = data.keywords[i];
+        var items = data.data[kw];
+        if (!items || !items.length) continue;
+        hasAny = true;
+        html += '<div class="kw-section">';
+        html += '<div class="kw-header">'
+              + '<span class="kw-name">' + esc(kw) + '</span>'
+              + '<span class="kw-count">' + items.length + '</span>'
+              + '</div>';
+        html += '<div class="cards">';
+        for (var j = 0; j < items.length; j++) {
+          var item = items[j];
+          html += '<div class="card">'
+                + '<div class="card-title">'
+                + '<a href="' + esc(item.link) + '" target="_blank" rel="noopener">'
+                + esc(item.title || '(제목 없음)') + '</a></div>'
+                + '<div class="card-meta">'
+                + '<span class="src-tag">' + esc(item.site) + '</span>'
+                + '<span>' + fmtDate(item.date) + '</span>'
+                + '</div></div>';
+        }
+        html += '</div></div>';
+      }
+      if (!hasAny)
+        html += '<div class="empty">📭 오늘 기간 내 해당 키워드 뉴스가 없습니다.</div>';
+      return html;
+    }
+
+    function renderCat(data, range) {
+      var html = '';
+      var cats = data.categories;
+      var catKeys = Object.keys(cats);
+      var hasAny = false;
+
+      for (var ci = 0; ci < catKeys.length; ci++) {
+        var cat  = catKeys[ci];
+        var kws  = cats[cat];
+        var cc   = CAT_CLASS[ci] || 'c1';
+
+        var catTotal = 0;
+        var maxCount = 1;
+        for (var ki = 0; ki < kws.length; ki++) {
+          var cnt = data.data[kws[ki]] ? data.data[kws[ki]].length : 0;
+          catTotal += cnt;
+          if (cnt > maxCount) maxCount = cnt;
+        }
+
+        html += '<div class="cat-section">';
+        html += '<div class="cat-header ' + cc + '">'
+              + esc(cat)
+              + '<span class="cat-total">' + catTotal + '건</span>'
+              + '</div>';
+        html += '<div class="kw-list">';
+
+        for (var ki = 0; ki < kws.length; ki++) {
+          var kw    = kws[ki];
+          var items = data.data[kw] || [];
+          var cnt   = items.length;
+          var uid   = kw.replace(/\s/g, '_');
+          var barW  = cnt ? Math.round((cnt / maxCount) * 100) : 0;
+          var empty = cnt === 0;
+
+          html += '<div class="kw-row' + (empty ? ' empty' : '') + '" id="kr-' + uid + '"'
+                + (!empty ? ' onclick="toggleKw(\'' + uid + '\')"' : '') + '>';
+          html += '<span class="kw-label">' + esc(kw) + '</span>';
+          html += '<div class="kw-bar-wrap">'
+                + '<div class="kw-bar" style="width:' + barW + '%"></div></div>';
+          html += '<span class="kw-num">' + (cnt || '-') + '</span>';
+          if (!empty) html += '<span class="kw-toggle">▼</span>';
+          html += '</div>';
+
+          if (!empty) {
+            hasAny = true;
+            html += '<div class="article-list" id="al-' + uid + '">';
+            for (var ai = 0; ai < items.length; ai++) {
+              var item = items[ai];
+              html += '<div class="article-item">'
+                    + '<a href="' + esc(item.link) + '" target="_blank" rel="noopener">'
+                    + esc(item.title || '(제목 없음)') + '</a>'
+                    + '<div class="article-meta">'
+                    + '<span class="src-tag">' + esc(item.site) + '</span>'
+                    + '<span>' + fmtDate(item.date) + '</span>'
+                    + '</div></div>';
+            }
+            html += '</div>';
+          }
+        }
+        html += '</div></div>';
+      }
+
+      if (!hasAny)
+        html += '<div class="empty">📭 ' + LABEL[range] + ' 기간 내 해당 키워드 뉴스가 없습니다.</div>';
+      return html;
     }
 
     function render(data, range) {
@@ -209,36 +363,11 @@ HTML = """<!DOCTYPE html>
       if (data.errors && data.errors.length)
         html += '<div class="error-banner">수집 실패: ' + esc(data.errors.join(', ')) + '</div>';
 
-      var hasAny = false;
-      for (var i = 0; i < data.keywords.length; i++) {
-        var kw = data.keywords[i];
-        var items = data.data[kw];
-        if (!items || !items.length) continue;
-        hasAny = true;
-
-        html += '<div class="kw-section">';
-        html += '<div class="kw-header">'
-              + '<span class="kw-name">' + esc(kw) + '</span>'
-              + '<span class="kw-count">' + items.length + '</span>'
-              + '</div>';
-        html += '<div class="cards">';
-
-        for (var j = 0; j < items.length; j++) {
-          var item = items[j];
-          html += '<div class="card">'
-                + '<div class="card-title">'
-                + '<a href="' + esc(item.link) + '" target="_blank" rel="noopener">'
-                + esc(item.title || '(제목 없음)') + '</a></div>'
-                + '<div class="card-meta">'
-                + '<span class="src-tag">' + esc(item.site) + '</span>'
-                + '<span>' + fmtDate(item.date) + '</span>'
-                + '</div></div>';
-        }
-        html += '</div></div>';
+      if (range === 'today') {
+        html += renderToday(data);
+      } else {
+        html += renderCat(data, range);
       }
-
-      if (!hasAny)
-        html += '<div class="empty">📭 ' + LABEL[range] + ' 기간 내 해당 키워드 뉴스가 없습니다.</div>';
 
       app.innerHTML = html;
     }
