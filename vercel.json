@@ -4,6 +4,7 @@
   ],
   "routes": [
     { "src": "^/api/news$", "dest": "/api/news.py" },
+    { "src": "^/manage$",   "dest": "/api/manage.py" },
     { "src": "^/",          "dest": "/api/index.py" }
   ]
 }
