@@ -296,32 +296,41 @@ HTML = """<!DOCTYPE html>
     }
 
     function renderToday(data) {
-      var html   = '';
-      var hasAny = false;
-      for (var i = 0; i < data.keywords.length; i++) {
-        var kw    = data.keywords[i];
-        var items = data.data[kw];
-        if (!items || !items.length) continue;
+      var html    = '';
+      var hasAny  = false;
+      var catKeys = Object.keys(data.categories);
+
+      for (var ci = 0; ci < catKeys.length; ci++) {
+        var cat      = catKeys[ci];
+        var cc       = CAT_CLASS[ci] || 'c1';
+        var articles = data.cat_data[cat] || [];
+        if (!articles.length) continue;
         hasAny = true;
-        html += '<div class="kw-section">';
-        html += '<div class="kw-section-header">'
-              + '<span class="kw-name">' + esc(kw) + '</span>'
-              + '<span class="kw-count">' + items.length + '</span>'
+
+        html += '<div class="cat-section">';
+        html += '<div class="cat-header ' + cc + '">'
+              + esc(cat)
+              + '<span class="cat-total">' + articles.length + '건</span>'
               + '</div>';
-        html += '<div class="cards">';
-        for (var j = 0; j < items.length; j++) {
-          var item = items[j];
-          html += '<div class="card">'
-                + '<div class="card-title">'
-                + '<a href="' + esc(item.link) + '" target="_blank" rel="noopener">'
-                + esc(item.title || '(제목 없음)') + '</a></div>'
-                + '<div class="card-meta">'
-                + '<span class="src-tag">' + esc(item.site) + '</span>'
-                + '<span>' + fmtDate(item.date) + '</span>'
-                + '</div></div>';
+        html += '<div class="kw-list">';
+
+        for (var ai = 0; ai < articles.length; ai++) {
+          var art = articles[ai];
+          html += '<div class="article-item" style="padding:10px 14px;">'
+                + '<a href="' + esc(art.link) + '" target="_blank" rel="noopener">'
+                + esc(art.title || '(제목 없음)') + '</a>'
+                + '<div class="article-meta">'
+                + '<span class="src-tag">' + esc(art.site) + '</span>'
+                + '<span>' + fmtDate(art.date) + '</span>';
+          for (var ti = 0; ti < art.tags.length; ti++) {
+            html += '<span style="background:#e8eefb;color:#1a56db;border-radius:4px;'
+                  + 'padding:1px 6px;font-size:11px;">＃' + esc(art.tags[ti]) + '</span>';
+          }
+          html += '</div></div>';
         }
         html += '</div></div>';
       }
+
       if (!hasAny)
         html += '<div class="empty">📭 오늘 기간 내 해당 키워드 뉴스가 없습니다.</div>';
       return html;
