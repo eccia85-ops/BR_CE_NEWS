@@ -109,10 +109,10 @@ HTML = """<!DOCTYPE html>
     }
     .kw-row:last-child { border-bottom: none; }
     .kw-row:hover { background: var(--badge-bg); }
-    .kw-row.empty { cursor: default; opacity: 0.4; padding-top: 6px; padding-bottom: 6px; }
+    .kw-row.empty { cursor: default; opacity: 0.4; }
     .kw-row.empty:hover { background: white; }
-    .kw-row.empty .kw-bar-wrap { display: none; }
-    .kw-row.empty .kw-num { display: none; }
+    .kw-row.empty .kw-bar-wrap { visibility: hidden; }
+    .kw-row.empty .kw-num { visibility: hidden; }
     .kw-label { font-size: 14px; font-weight: 600; min-width: 80px; }
     .kw-bar-wrap { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
     .kw-bar { height: 100%; border-radius: 3px; background: var(--primary); }
