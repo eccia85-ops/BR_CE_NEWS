@@ -170,9 +170,23 @@ def get_news(range: str = Query("today")):
         articles.sort(key=lambda x: x["date"] or "", reverse=True)
         cat_bucket[cat] = articles
 
+    # 오늘 탭용 기존 버킷도 유지
+    bucket = {k: [] for k in KEYWORDS}
+    for link, art in article_kws.items():
+        for tag in art["tags"]:
+            bucket[tag].append({
+                "site":  art["site"],
+                "title": art["title"],
+                "link":  art["link"],
+                "date":  art["date"],
+            })
+    for k in bucket:
+        bucket[k].sort(key=lambda x: x["date"] or "", reverse=True)
+
     return JSONResponse({
         "keywords":   KEYWORDS,
         "categories": {cat: kws for cat, kws in CATEGORIES.items()},
+        "data":       bucket,
         "cat_data":   cat_bucket,
         "errors":     errors,
     })
