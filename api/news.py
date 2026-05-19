@@ -139,19 +139,43 @@ def get_news(range: str = Query("today")):
     bucket = {k: [] for k in KEYWORDS}
     seen = set()
 
+    # 기사별 매칭 키워드 수집
+    article_kws = {}
     for article in filtered:
+        link = article["link"]
         for keyword in KEYWORDS:
             if keyword in article["title"]:
-                key = (article["link"], keyword)
-                if key in seen:
-                    continue
-                seen.add(key)
-                bucket[keyword].append({
-                    "site":  article["site"],
-                    "title": article["title"],
-                    "link":  article["link"],
-                    "date":  article["date"],
-                })
+                if link not in article_kws:
+                    article_kws[link] = {
+                        "site":  article["site"],
+                        "title": article["title"],
+                        "link":  link,
+                        "date":  article["date"],
+                        "tags":  [],
+                    }
+                if keyword not in article_kws[link]["tags"]:
+                    article_kws[link]["tags"].append(keyword)
+
+    # 카테고리별 버킷 구성 (카테고리 키워드 중 하나라도 매칭되면 포함)
+    cat_bucket = {}
+    for cat, kws in CATEGORIES.items():
+        kw_set = set(kws)
+        articles = []
+        seen_links = set()
+        for link, art in article_kws.items():
+            if kw_set & set(art["tags"]):  # 교집합 있으면 포함
+                if link not in seen_links:
+                    seen_links.add(link)
+                    articles.append(art)
+        articles.sort(key=lambda x: x["date"] or "", reverse=True)
+        cat_bucket[cat] = articles
+
+    return JSONResponse({
+        "keywords":   KEYWORDS,
+        "categories": {cat: kws for cat, kws in CATEGORIES.items()},
+        "cat_data":   cat_bucket,
+        "errors":     errors,
+    })
 
     for k in bucket:
         bucket[k].sort(key=lambda x: x["date"] or "", reverse=True)
