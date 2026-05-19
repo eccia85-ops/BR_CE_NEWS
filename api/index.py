@@ -384,9 +384,10 @@ HTML = """<!DOCTYPE html>
       app.style.display = 'block';
 
       var total = 0;
-      for (var ki = 0; ki < data.keywords.length; ki++) {
-        var k = data.keywords[ki];
-        if (data.data[k]) total += data.data[k].length;
+      var catKeys = Object.keys(data.cat_data || {});
+      for (var ci = 0; ci < catKeys.length; ci++) {
+        var arr = data.cat_data[catKeys[ci]];
+        if (arr) total += arr.length;
       }
 
       var html = '<div class="status-bar"><div class="status-left">';
