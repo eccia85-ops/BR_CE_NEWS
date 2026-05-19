@@ -237,30 +237,20 @@ HTML = """<!DOCTYPE html>
       lines.push('');
       lines.push('========================================');
       lines.push('');
-      var cats    = data.categories;
-      var catKeys = Object.keys(cats);
+      var catKeys = Object.keys(data.categories);
       for (var ci = 0; ci < catKeys.length; ci++) {
         var cat      = catKeys[ci];
-        var kws      = cats[cat];
-        var catLines = [];
-        var hasItems = false;
-        catLines.push('=== ' + cat + ' ===');
-        catLines.push('');
-        for (var ki = 0; ki < kws.length; ki++) {
-          var kw    = kws[ki];
-          var items = data.data[kw] || [];
-          if (!items.length) continue;
-          hasItems = true;
-          catLines.push('[' + kw + '] ' + items.length + '건');
-          for (var ai = 0; ai < items.length; ai++) {
-            catLines.push('  - ' + items[ai].title + ' (' + items[ai].site + ')');
-          }
+        var articles = data.cat_data[cat] || [];
+        if (!articles.length) continue;
+        lines.push('=== ' + cat + ' === (' + articles.length + '건)');
+        lines.push('');
+        for (var ai = 0; ai < articles.length; ai++) {
+          var art  = articles[ai];
+          var tags = art.tags ? art.tags.join(', ') : '';
+          lines.push('- ' + art.title + ' (' + art.site + ')');
+          if (tags) lines.push('  키워드: ' + tags);
         }
-        if (!hasItems) continue;
-        catLines.push('');
-        for (var li = 0; li < catLines.length; li++) {
-          lines.push(catLines[li]);
-        }
+        lines.push('');
       }
       return lines.join(NL);
     }
@@ -353,59 +343,32 @@ HTML = """<!DOCTYPE html>
       var hasAny  = false;
 
       for (var ci = 0; ci < catKeys.length; ci++) {
-        var cat = catKeys[ci];
-        var kws = cats[cat];
-        var cc  = CAT_CLASS[ci] || 'c1';
-
-        var catTotal = 0;
-        var maxCount = 1;
-        for (var ki = 0; ki < kws.length; ki++) {
-          var cnt = data.data[kws[ki]] ? data.data[kws[ki]].length : 0;
-          catTotal += cnt;
-          if (cnt > maxCount) maxCount = cnt;
-        }
+        var cat      = catKeys[ci];
+        var cc       = CAT_CLASS[ci] || 'c1';
+        var articles = data.cat_data[cat] || [];
+        if (!articles.length) continue;
+        hasAny = true;
 
         html += '<div class="cat-section">';
         html += '<div class="cat-header ' + cc + '">'
               + esc(cat)
-              + '<span class="cat-total">' + catTotal + '건</span>'
+              + '<span class="cat-total">' + articles.length + '건</span>'
               + '</div>';
         html += '<div class="kw-list">';
 
-        for (var ki = 0; ki < kws.length; ki++) {
-          var kw    = kws[ki];
-          var items = data.data[kw] || [];
-          var cnt   = items.length;
-          var uid   = kw.replace(/\s/g, '_');
-          var barW  = cnt ? Math.round((cnt / maxCount) * 100) : 0;
-          var empty = cnt === 0;
-
-          html += '<div class="kw-row' + (empty ? ' empty' : '') + '"'
-                + ' id="kr-' + uid + '"'
-                + ' data-uid="' + uid + '"'
-                + (!empty ? ' onclick="toggleKw(this)"' : '') + '>';
-          html += '<span class="kw-label">' + esc(kw) + '</span>';
-          html += '<div class="kw-bar-wrap">'
-                + '<div class="kw-bar" style="width:' + barW + '%"></div></div>';
-          html += '<span class="kw-num">' + (cnt || '-') + '</span>';
-          if (!empty) html += '<span class="kw-toggle">▼</span>';
-          html += '</div>';
-
-          if (!empty) {
-            hasAny = true;
-            html += '<div class="article-list" id="al-' + uid + '">';
-            for (var ai = 0; ai < items.length; ai++) {
-              var item = items[ai];
-              html += '<div class="article-item">'
-                    + '<a href="' + esc(item.link) + '" target="_blank" rel="noopener">'
-                    + esc(item.title || '(제목 없음)') + '</a>'
-                    + '<div class="article-meta">'
-                    + '<span class="src-tag">' + esc(item.site) + '</span>'
-                    + '<span>' + fmtDate(item.date) + '</span>'
-                    + '</div></div>';
-            }
-            html += '</div>';
+        for (var ai = 0; ai < articles.length; ai++) {
+          var art = articles[ai];
+          html += '<div class="article-item" style="padding:10px 14px;">'
+                + '<a href="' + esc(art.link) + '" target="_blank" rel="noopener">'
+                + esc(art.title || '(제목 없음)') + '</a>'
+                + '<div class="article-meta">'
+                + '<span class="src-tag">' + esc(art.site) + '</span>'
+                + '<span>' + fmtDate(art.date) + '</span>';
+          for (var ti = 0; ti < art.tags.length; ti++) {
+            html += '<span style="background:#e8eefb;color:#1a56db;border-radius:4px;'
+                  + 'padding:1px 6px;font-size:11px;">＃' + esc(art.tags[ti]) + '</span>';
           }
+          html += '</div></div>';
         }
         html += '</div></div>';
       }
