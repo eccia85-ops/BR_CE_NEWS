@@ -204,7 +204,6 @@ HTML = """<!DOCTYPE html>
         <div class="range-tabs">
           <button class="range-tab active" id="rt-today" onclick="setRange('today')">오늘</button>
           <button class="range-tab"        id="rt-week"  onclick="setRange('week')">주간</button>
-          <button class="range-tab"        id="rt-month" onclick="setRange('month')">월간</button>
         </div>
         <div class="search-row">
           <input class="search-input" id="search-input" type="text"
