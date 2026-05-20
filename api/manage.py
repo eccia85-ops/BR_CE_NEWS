@@ -157,7 +157,7 @@ HTML = """<!DOCTYPE html>
 
   <div class="content">
 
-    <!-- 키워드 현황 -->
+    <!-- 키워드/수집 소스 현황 -->
     <div class="pane active" id="pane-kw">
       <div class="section">
         <div class="section-title">📋 등록 키워드 현황</div>
