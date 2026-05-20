@@ -172,8 +172,14 @@ HTML = """<!DOCTYPE html>
           <div style="font-size:13px;opacity:0.5;margin-bottom:6px;">
             <span style="color:#991b1b;font-weight:700;">❌</span> 데일리팜 (수집 실패)
           </div>
-          <div style="font-size:13px;opacity:0.5;">
+          <div style="font-size:13px;opacity:0.5;margin-bottom:6px;">
             <span style="color:#991b1b;font-weight:700;">❌</span> 메디칼타임즈 (수집 실패)
+          </div>
+          <div style="font-size:13px;opacity:0.5;margin-bottom:6px;">
+            <span style="color:#991b1b;font-weight:700;">❌</span> 약업닷컴 (RSS 미제공)
+          </div>
+          <div style="font-size:13px;opacity:0.5;margin-bottom:6px;">
+            <span style="color:#991b1b;font-weight:700;">❌</span> 구글뉴스 (중복 기사 다수)
           </div>
         </div>
       </div>
