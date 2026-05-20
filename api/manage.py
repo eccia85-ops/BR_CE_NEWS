@@ -160,7 +160,7 @@ HTML = """<!DOCTYPE html>
     <!-- 키워드 현황 -->
     <div class="pane active" id="pane-kw">
       <div class="section">
-        <div class="section-title">📋 등록 키워드 현황</div>
+        <div class="section-title">📋 등록 키워드 현황 <span style="font-size:12px;font-weight:400;color:var(--sub);">— 주간 기사 수</span></div>
         <div id="kw-list"><div class="loading-inline">로딩 중…</div></div>
       </div>
 
@@ -270,21 +270,53 @@ HTML = """<!DOCTYPE html>
     }
 
     function loadKeywords() {
-      fetch('/api/news?range=today')
+      fetch('/api/news?range=week')
         .then(function(res) { return res.json(); })
         .then(function(data) {
           var cats    = data.categories;
           var catKeys = Object.keys(cats);
-          var html    = '';
+
+          // 키워드별 기사 수 집계
+          var kwCount = {};
+          for (var ci = 0; ci < catKeys.length; ci++) {
+            var kws = cats[catKeys[ci]];
+            for (var ki = 0; ki < kws.length; ki++) {
+              var kw = kws[ki];
+              var cnt = 0;
+              var catArts = data.cat_data[catKeys[ci]] || [];
+              for (var ai = 0; ai < catArts.length; ai++) {
+                if (catArts[ai].tags && catArts[ai].tags.indexOf(kw) !== -1) cnt++;
+              }
+              kwCount[kw] = cnt;
+            }
+          }
+
+          // 카테고리별 최대값 (바 차트용)
+          var html = '';
           for (var ci = 0; ci < catKeys.length; ci++) {
             var cat = catKeys[ci];
             var kws = cats[cat];
             var cc  = CAT_CLASS[ci] || 'c1';
+            var maxCnt = 1;
+            for (var ki = 0; ki < kws.length; ki++) {
+              if (kwCount[kws[ki]] > maxCnt) maxCnt = kwCount[kws[ki]];
+            }
+
             html += '<div class="cat-block">';
             html += '<span class="cat-label ' + cc + '">' + esc(cat) + '</span>';
-            html += '<div class="kw-tags">';
+            html += '<div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">';
             for (var ki = 0; ki < kws.length; ki++) {
-              html += '<span class="kw-tag">' + esc(kws[ki]) + '</span>';
+              var kw  = kws[ki];
+              var cnt = kwCount[kw] || 0;
+              var barW = cnt ? Math.round((cnt / maxCnt) * 100) : 0;
+              html += '<div style="display:flex;align-items:center;gap:8px;">';
+              html += '<span style="font-size:13px;min-width:80px;">' + esc(kw) + '</span>';
+              html += '<div style="flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;">'
+                    + '<div style="width:' + barW + '%;height:100%;background:var(--primary);border-radius:3px;"></div>'
+                    + '</div>';
+              html += '<span style="font-size:12px;font-weight:700;color:var(--primary);min-width:28px;text-align:right;">'
+                    + (cnt || '-') + '</span>';
+              html += '</div>';
             }
             html += '</div></div>';
           }
