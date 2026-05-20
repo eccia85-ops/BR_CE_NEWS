@@ -43,7 +43,7 @@ HTML = """<!DOCTYPE html>
     .tabs {
       background: white; display: flex;
       border-bottom: 2px solid var(--border);
-      position: sticky; top: 62px; z-index: 99;
+      position: sticky; top: 100px; z-index: 99;
     }
     .tab {
       flex: 1; padding: 11px 0; border: none; background: none;
