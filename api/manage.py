@@ -150,14 +150,14 @@ HTML = """<!DOCTYPE html>
   </div>
 
   <div class="tabs">
-    <button class="tab active" id="tab-kw"     onclick="switchTab('kw')">키워드 현황</button>
+    <button class="tab active" id="tab-kw"     onclick="switchTab('kw')">키워드/수집 소스 현황</button>
     <button class="tab"        id="tab-search" onclick="switchTab('search')">검색</button>
     <button class="tab"        id="tab-req"    onclick="switchTab('req')">요청</button>
   </div>
 
   <div class="content">
 
-    <!-- 키워드/수집 소스 현황 -->
+    <!-- 키워드 현황 -->
     <div class="pane active" id="pane-kw">
       <div class="section">
         <div class="section-title">📋 등록 키워드 현황</div>
