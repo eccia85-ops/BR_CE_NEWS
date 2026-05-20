@@ -163,6 +163,21 @@ HTML = """<!DOCTYPE html>
         <div class="section-title">📋 등록 키워드 현황</div>
         <div id="kw-list"><div class="loading-inline">로딩 중…</div></div>
       </div>
+
+      <div class="section">
+        <div class="section-title">📡 수집 소스 현황</div>
+        <div id="src-list"><div class="loading-inline">로딩 중…</div></div>
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
+          <div style="font-size:12px;color:var(--sub);margin-bottom:8px;">비활성 소스</div>
+          <div style="font-size:13px;opacity:0.5;margin-bottom:6px;">
+            <span style="color:#991b1b;font-weight:700;">❌</span> 데일리팜 (수집 실패)
+          </div>
+          <div style="font-size:13px;opacity:0.5;">
+            <span style="color:#991b1b;font-weight:700;">❌</span> 메디칼타임즈 (수집 실패)
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- 검색 -->
