@@ -344,6 +344,35 @@ HTML = """<!DOCTYPE html>
       return html;
     }
 
+    function renderMonth() {
+      var now    = new Date();
+      var year   = now.getFullYear();
+      var month  = now.getMonth() + 1;
+      var weeks  = [
+        { label: '1주차', start: '01', end: '07' },
+        { label: '2주차', start: '08', end: '14' },
+        { label: '3주차', start: '15', end: '21' },
+        { label: '4주차', start: '22', end: String(new Date(year, now.getMonth()+1, 0).getDate()).padStart(2,'0') },
+      ];
+      var html = '';
+      for (var i = 0; i < weeks.length; i++) {
+        var w = weeks[i];
+        html += '<div class="cat-section">';
+        html += '<div class="cat-header c' + (i+1 > 3 ? 3 : i+1) + '">'
+              + month + '월 ' + w.label
+              + '<span class="cat-total">'
+              + year + '.' + String(month).padStart(2,'0') + '.' + w.start
+              + ' ~ ' + w.end
+              + '</span></div>';
+        html += '<div class="kw-list">'
+              + '<div style="padding:16px;font-size:13px;color:var(--sub);text-align:center;">'
+              + '준비 중입니다.</div>'
+              + '</div>';
+        html += '</div>';
+      }
+      return html;
+    }
+
     function renderCat(data, range) {
       var html = '';
       html += '<div class="prompt-bar">';
@@ -421,6 +450,8 @@ HTML = """<!DOCTYPE html>
 
       if (range === 'today') {
         html += renderToday(data);
+      } else if (range === 'month') {
+        html += renderMonth();
       } else {
         html += renderCat(data, range);
       }
