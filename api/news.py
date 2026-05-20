@@ -156,18 +156,34 @@ def get_news(range: str = Query("today")):
                 if keyword not in article_kws[link]["tags"]:
                     article_kws[link]["tags"].append(keyword)
 
-    # 카테고리별 버킷 구성 (카테고리 키워드 중 하나라도 매칭되면 포함)
+    # 다수 보도 카운트 (제목 앞 20자 정규화 후 비교)
+    import re
+    from collections import Counter
+
+    def norm_title(t):
+        return re.sub(r'[^\w]', '', t)[:20]
+
+    norm_count = Counter(norm_title(a["title"]) for a in article_kws.values())
+
+    for link, art in article_kws.items():
+        art["mention_count"] = norm_count[norm_title(art["title"])]
+
+    # 카테고리별 버킷 구성
     cat_bucket = {}
     for cat, kws in CATEGORIES.items():
         kw_set = set(kws)
         articles = []
         seen_links = set()
         for link, art in article_kws.items():
-            if kw_set & set(art["tags"]):  # 교집합 있으면 포함
+            if kw_set & set(art["tags"]):
                 if link not in seen_links:
                     seen_links.add(link)
                     articles.append(art)
-        articles.sort(key=lambda x: x["date"] or "", reverse=True)
+        # 다수 보도 우선 + 날짜 순
+        articles.sort(key=lambda x: (
+            -(x.get("mention_count", 1)),
+            x.get("date") or ""
+        ), reverse=False)
         cat_bucket[cat] = articles
 
     # 오늘 탭용 기존 버킷도 유지
