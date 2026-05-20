@@ -188,6 +188,7 @@ def get_news(range: str = Query("today")):
         "categories": {cat: kws for cat, kws in CATEGORIES.items()},
         "data":       bucket,
         "cat_data":   cat_bucket,
+        "sources":    [src["site"] for src in RSS_SOURCES],
         "errors":     errors,
     })
 
