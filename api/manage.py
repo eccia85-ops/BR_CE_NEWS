@@ -26,6 +26,7 @@ HTML = """<!DOCTYPE html>
       --cat3-bg: #f0fdf4; --cat3-txt: #166534; --cat3-bd: #86efac;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { height: 100%; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
                    'Apple SD Gothic Neo', sans-serif;
