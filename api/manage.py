@@ -30,6 +30,7 @@ HTML = """<!DOCTYPE html>
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
                    'Apple SD Gothic Neo', sans-serif;
       background: var(--bg); color: var(--text); min-height: 100vh;
+      overflow-x: hidden;
     }
     .header {
       background: var(--primary); color: white;
