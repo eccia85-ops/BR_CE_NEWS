@@ -36,7 +36,6 @@ HTML = """<!DOCTYPE html>
       padding: 14px 18px 12px;
       position: sticky; top: 0; z-index: 100;
       box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-      position: relative;
     }
     }
     .header h1  { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; }
