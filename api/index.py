@@ -227,24 +227,48 @@ HTML = """<!DOCTYPE html>
       if (tog) tog.textContent = isOpen ? '▼' : '▲';
     }
 
-    function buildPrompt(data, range) {
+    function buildPrompt(data, range, focus) {
       var period = range === 'week' ? '최근 7일' : '최근 30일';
       var today  = new Date().toLocaleDateString('ko-KR',
         { year: 'numeric', month: '2-digit', day: '2-digit' });
       var lines = [];
-      lines.push('아래는 ' + today + ' 기준 ' + period + ' 제약 업계 키워드별 뉴스입니다.');
-      lines.push('CE기획팀 관점에서 분류별 핵심 내용을 분석해주세요.');
+
+      lines.push('[ CE기획팀 주간 뉴스 분석 요청 ]');
+      lines.push('기준일: ' + today + ' / 기간: ' + period);
       lines.push('');
-      lines.push('[분석 기준]');
-      lines.push('- 자사 직결: 보령 관련 사업 영향도 중심으로 서술');
-      lines.push('- 시장 영향: 정책, 급여, 경쟁사 동향 및 대응 필요 여부 중심');
+
+      lines.push('[ 배경 컨텍스트 ]');
+      lines.push('- 소속: 보령제약 CE기획팀');
+      lines.push('- 주요 사업: 만성질환(순환기/당뇨/이상지질), 항암, 항생제');
+      lines.push('- 사업 방향: 자체 개발 + 바이오시밀러 + 도입 제품 병행 + CDMO');
+      lines.push('');
+
+      if (focus && focus.trim()) {
+        lines.push('[ 이번 주 특이사항 ]');
+        lines.push(focus.trim());
+        lines.push('');
+      }
+
+      lines.push('[ 분석 기준 ]');
+      lines.push('- 자사 직결: 보령 관련 사업 영향도 + 필요 액션 중심');
+      lines.push('- 시장 영향: 정책/급여/경쟁사 동향 + 대응 필요 여부');
       lines.push('- 업계 동향: 중장기 시사점 중심');
       lines.push('');
-      lines.push('[출력 형식] 주간 뉴스레터 메일 바디 / 우선순위 높은 항목부터');
+
+      lines.push('[ 출력 형식 ]');
+      lines.push('1. 핵심 요약 (3줄 이내)');
+      lines.push('2. 분류별 주요 이슈');
+      lines.push('   - 자사 직결: 사업 영향 + 필요 액션');
+      lines.push('   - 시장 영향: 트렌드 + 대응 필요 여부');
+      lines.push('   - 업계 동향: 중장기 시사점');
+      lines.push('3. 이번 주 안건 후보 (1~3개)');
+      lines.push('');
       lines.push('기사가 0건인 키워드는 생략합니다.');
+      lines.push('★ 표시 기사는 복수 매체 동시 보도 = 업계 주목도 높음');
       lines.push('');
       lines.push('========================================');
       lines.push('');
+
       var catKeys = Object.keys(data.categories);
       for (var ci = 0; ci < catKeys.length; ci++) {
         var cat      = catKeys[ci];
@@ -255,8 +279,9 @@ HTML = """<!DOCTYPE html>
         for (var ai = 0; ai < articles.length; ai++) {
           var art  = articles[ai];
           var tags = art.tags ? art.tags.join(', ') : '';
-          lines.push('- ' + art.title + ' (' + art.site + ')');
-          if (tags) lines.push('  키워드: ' + tags);
+          var star = (art.mention_count && art.mention_count > 1) ? '★ ' : '  ';
+          lines.push(star + art.title + ' (' + art.site + ')');
+          if (tags) lines.push('    키워드: ' + tags);
         }
         lines.push('');
       }
@@ -264,10 +289,11 @@ HTML = """<!DOCTYPE html>
     }
 
     function copyPrompt() {
-      var btn  = document.getElementById('copy-btn');
-      var data = clientCache[currentTab];
+      var btn   = document.getElementById('copy-btn');
+      var data  = clientCache[currentTab];
+      var focus = document.getElementById('focus-input');
       if (!data || !btn) return;
-      var txt = buildPrompt(data, currentTab);
+      var txt = buildPrompt(data, currentTab, focus ? focus.value : '');
       navigator.clipboard.writeText(txt)
         .then(function() {
           btn.textContent = '✅ 복사됨';
@@ -376,11 +402,18 @@ HTML = """<!DOCTYPE html>
     function renderCat(data, range) {
       var html = '';
       html += '<div class="prompt-bar">';
+      html += '<div style="flex:1;">';
       html += '<div class="prompt-bar-txt">'
             + '<b>📋 AI 요약 프롬프트</b>'
             + LABEL[range] + ' 뉴스를 Claude 분석용 프롬프트로 추출합니다.'
             + '</div>';
-      html += '<button id="copy-btn" class="copy-btn" onclick="copyPrompt()">'
+      html += '<input id="focus-input" type="text" '
+            + 'placeholder="이번 주 특이사항 입력 (선택)" '
+            + 'style="width:100%;margin-top:8px;padding:7px 10px;border:1px solid #334155;'
+            + 'border-radius:6px;background:#0f172a;color:#e2e8f0;font-size:12px;outline:none;" />';
+      html += '</div>';
+      html += '<button id="copy-btn" class="copy-btn" onclick="copyPrompt()" '
+            + 'style="margin-left:12px;align-self:flex-end;">'
             + '📋 프롬프트 복사</button>';
       html += '</div>';
 
