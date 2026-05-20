@@ -160,13 +160,13 @@ HTML = """<!DOCTYPE html>
   <div class="header">
     <h1>📊 CE 키워드 뉴스</h1>
     <div class="sub">보령 CE기획팀 · 제약 업계 키워드 모니터링</div>
-  </div>
-  <div style="position:absolute;top:14px;right:16px;">
-    <button onclick="location.href='/manage'"
-      style="background:rgba(255,255,255,0.15);border:none;color:white;
-             border-radius:6px;padding:6px 12px;font-size:13px;cursor:pointer;">
-      ⚙️ 관리
-    </button>
+    <div style="position:absolute;top:14px;right:16px;">
+      <button onclick="location.href='/manage'"
+        style="background:rgba(255,255,255,0.15);border:none;color:white;
+               border-radius:6px;padding:6px 12px;font-size:13px;cursor:pointer;">
+        ⚙️ 관리
+      </button>
+    </div>
   </div>
   <div class="tabs">
     <button class="tab active" id="tab-today" onclick="switchTab('today')">오늘</button>
