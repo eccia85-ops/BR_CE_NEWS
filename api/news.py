@@ -191,10 +191,11 @@ def get_news(range: str = Query("today")):
     for link, art in article_kws.items():
         for tag in art["tags"]:
             bucket[tag].append({
-                "site":  art["site"],
-                "title": art["title"],
-                "link":  art["link"],
-                "date":  art["date"],
+                "site":          art["site"],
+                "title":         art["title"],
+                "link":          art["link"],
+                "date":          art["date"],
+                "mention_count": art.get("mention_count", 1),
             })
     for k in bucket:
         bucket[k].sort(key=lambda x: x["date"] or "", reverse=True)
