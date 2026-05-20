@@ -169,17 +169,28 @@ HTML = """<!DOCTYPE html>
         <div id="src-list"><div class="loading-inline">로딩 중…</div></div>
         <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
           <div style="font-size:12px;color:var(--sub);margin-bottom:8px;">비활성 소스</div>
+          <div style="font-size:12px;color:var(--sub);margin-bottom:8px;margin-top:4px;">⚠️ 고려중</div>
+          <div style="font-size:13px;opacity:0.6;margin-bottom:6px;">
+            <span style="color:#b45309;font-weight:700;">⚠️</span> 바이오타임즈 — 광고성 기사 비중 높음, 품질 확인 후 결정
+          </div>
+          <div style="font-size:13px;opacity:0.6;margin-bottom:6px;">
+            <span style="color:#b45309;font-weight:700;">⚠️</span> 청년의사 — 의사 커뮤니티 관점, CE팀 직접 관련도 낮음
+          </div>
+          <div style="font-size:13px;opacity:0.6;margin-bottom:16px;">
+            <span style="color:#b45309;font-weight:700;">⚠️</span> 메디게이트뉴스 — 청년의사와 커버리지 유사, 중복 가능성
+          </div>
+          <div style="font-size:12px;color:var(--sub);margin-bottom:8px;">❌ 비활성</div>
           <div style="font-size:13px;opacity:0.5;margin-bottom:6px;">
-            <span style="color:#991b1b;font-weight:700;">❌</span> 데일리팜 (수집 실패)
+            <span style="color:#991b1b;font-weight:700;">❌</span> 데일리팜 — 수집 실패 (2026.05)
           </div>
           <div style="font-size:13px;opacity:0.5;margin-bottom:6px;">
-            <span style="color:#991b1b;font-weight:700;">❌</span> 메디칼타임즈 (수집 실패)
+            <span style="color:#991b1b;font-weight:700;">❌</span> 메디칼타임즈 — 수집 실패 (2026.05)
           </div>
           <div style="font-size:13px;opacity:0.5;margin-bottom:6px;">
-            <span style="color:#991b1b;font-weight:700;">❌</span> 약업닷컴 (RSS 미제공)
+            <span style="color:#991b1b;font-weight:700;">❌</span> 약업닷컴 — RSS 미제공
           </div>
-          <div style="font-size:13px;opacity:0.5;margin-bottom:6px;">
-            <span style="color:#991b1b;font-weight:700;">❌</span> 구글뉴스 (중복 기사 다수)
+          <div style="font-size:13px;opacity:0.5;">
+            <span style="color:#991b1b;font-weight:700;">❌</span> 구글뉴스 — 중복 기사 다수 (2026.05)
           </div>
         </div>
       </div>
