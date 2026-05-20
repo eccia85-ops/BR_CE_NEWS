@@ -273,10 +273,21 @@ HTML = """<!DOCTYPE html>
             html += '</div></div>';
           }
           document.getElementById('kw-list').innerHTML = html;
+
+          var sources  = data.sources || [];
+          var srcHtml  = '<div style="display:flex;flex-direction:column;gap:8px;">';
+          for (var si = 0; si < sources.length; si++) {
+            srcHtml += '<div style="font-size:13px;">'
+                     + '<span style="color:#166534;font-weight:700;">✅</span> '
+                     + esc(sources[si]) + '</div>';
+          }
+          srcHtml += '</div>';
+          document.getElementById('src-list').innerHTML = srcHtml;
         })
         .catch(function() {
           document.getElementById('kw-list').innerHTML =
             '<div class="empty-result">키워드 목록을 불러오지 못했습니다.</div>';
+          document.getElementById('src-list').innerHTML = '';
         });
     }
 
