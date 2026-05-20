@@ -200,3 +200,31 @@ def get_news(range: str = Query("today")):
         "data":       bucket,
         "errors":     errors,
     })
+@app.get("/api/articles")
+def get_articles(range: str = Query("today")):
+    if range not in ("today", "week", "month"):
+        range = "today"
+
+    all_articles, errors = get_all_articles()
+    filtered = [a for a in all_articles if in_range(a, range)]
+
+    # 중복 링크 제거
+    seen = set()
+    articles = []
+    for a in filtered:
+        if a["link"] not in seen:
+            seen.add(a["link"])
+            articles.append({
+                "site":  a["site"],
+                "title": a["title"],
+                "link":  a["link"],
+                "date":  a["date"],
+            })
+
+    articles.sort(key=lambda x: x["date"] or "", reverse=True)
+
+    return JSONResponse({
+        "articles": articles,
+        "total":    len(articles),
+        "errors":   errors,
+    })
