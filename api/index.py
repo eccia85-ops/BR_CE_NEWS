@@ -169,9 +169,9 @@ HTML = """<!DOCTYPE html>
     </div>
   </div>
   <div class="tabs">
-    <button class="tab active" id="tab-today" onclick="switchTab('today')">오늘</button>
+    <button class="tab active" id="tab-brief" onclick="switchTab('brief')">브리프</button>
+    <button class="tab"        id="tab-today" onclick="switchTab('today')">오늘</button>
     <button class="tab"        id="tab-week"  onclick="switchTab('week')">주간</button>
-    <button class="tab"        id="tab-month" onclick="switchTab('month')">월간</button>
   </div>
   <div class="content">
     <div class="loading" id="loading">
