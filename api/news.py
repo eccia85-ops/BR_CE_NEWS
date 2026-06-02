@@ -252,8 +252,10 @@ def get_articles(range: str = Query("today")):
 
 # ── Gemini 요약 함수 ──────────────────────────────────────────────────────────
 
-def gemini_summarize(articles_by_cat, range_label):
-    """카테고리별 기사 목록을 Gemini로 요약"""
+def gemini_summarize(articles_by_cat, range_label, brief=False):
+    """카테고리별 기사 목록을 Gemini로 요약
+    brief=True 이면 한두 줄 짧게 요약
+    """
     api_key = os.environ.get("GEMINI_API_KEY", "")
     if not api_key:
         return {}
@@ -264,10 +266,13 @@ def gemini_summarize(articles_by_cat, range_label):
     lines.append("보령제약 CE기획팀 관점에서 카테고리별로 핵심 내용을 2~3줄로 요약해주세요.")
     lines.append("주요 사업: 만성질환(순환기/당뇨/이상지질), 항암, 항생제, CDMO")
     lines.append("")
-    lines.append("[출력 형식] 각 카테고리별로 아래 형식으로만 답하세요. 마크다운 사용 금지:")
-    lines.append("자사 직결: (요약 2~3줄, 없으면 '해당 없음')")
-    lines.append("시장 영향: (요약 2~3줄, 없으면 '해당 없음')")
-    lines.append("업계 동향: (요약 2~3줄, 없으면 '해당 없음')")
+    if brief:
+        lines.append("[출력 형식] 각 카테고리별로 아래 형식으로만 답하세요. 마크다운 사용 금지. 각 항목 1~2줄로 간결하게:")
+    else:
+        lines.append("[출력 형식] 각 카테고리별로 아래 형식으로만 답하세요. 마크다운 사용 금지:")
+    lines.append("자사 직결: (요약, 없으면 '해당 없음')")
+    lines.append("시장 영향: (요약, 없으면 '해당 없음')")
+    lines.append("업계 동향: (요약, 없으면 '해당 없음')")
     lines.append("")
     lines.append("========================================")
     lines.append("")
@@ -344,7 +349,7 @@ def load_news_json():
         return [], None
 
 
-def save_news_json(articles, sha=None, daily_summary=None, weekly_summaries=None):
+def save_news_json(articles, sha=None, daily_summary=None, weekly_summaries=None, monthly_summaries=None):
     """GitHub에 news.json 저장"""
     token  = os.environ.get("GITHUB_TOKEN", "")
     repo   = os.environ.get("GITHUB_REPO", "")
@@ -371,12 +376,19 @@ def save_news_json(articles, sha=None, daily_summary=None, weekly_summaries=None
         saved_weekly = [weekly_summaries] + saved_weekly
         saved_weekly = saved_weekly[:12]
 
+    # 월간 요약 누적 (최대 12개월)
+    saved_monthly = existing_data.get("monthly_summaries", []) if isinstance(existing_data, dict) else []
+    if monthly_summaries:
+        saved_monthly = [monthly_summaries] + saved_monthly
+        saved_monthly = saved_monthly[:12]
+
     data = {
-        "updated_at":       datetime.now(tz=KST).strftime("%Y-%m-%d %H:%M"),
-        "total":            len(filtered),
-        "articles":         filtered,
-        "daily_summary":    daily_summary or {},
-        "weekly_summaries": saved_weekly,
+        "updated_at":        datetime.now(tz=KST).strftime("%Y-%m-%d %H:%M"),
+        "total":             len(filtered),
+        "articles":          filtered,
+        "daily_summary":     daily_summary or {},
+        "weekly_summaries":  saved_weekly,
+        "monthly_summaries": saved_monthly,
     }
 
     content = base64.b64encode(
@@ -456,30 +468,46 @@ def collect():
     today_str = datetime.now(tz=KST).strftime("%Y년 %m월 %d일")
     summary = gemini_summarize(articles_by_cat, today_str)
 
-    # 금요일 여부 확인 (주간 요약)
     import datetime as dt
-    is_friday = dt.datetime.now(tz=KST).weekday() == 4
+    now_kst    = dt.datetime.now(tz=KST)
+    is_friday  = now_kst.weekday() == 4
+    last_day   = (now_kst + dt.timedelta(days=1)).day == 1  # 내일이 1일이면 오늘이 말일
 
+    # 주간 요약 (금요일)
     weekly_summary = None
     if is_friday:
-        weekly_label = dt.datetime.now(tz=KST).strftime("%Y년 %m월 %d일 주간")
+        weekly_label = now_kst.strftime("%Y년 %m월 %d일 주간")
         weekly_summary = {
             "label":   weekly_label,
             "summary": summary
+        }
+
+    # 월간 요약 (말일)
+    monthly_summary = None
+    if last_day:
+        monthly_label = now_kst.strftime("%Y년 %m월")
+        # 월간은 좀 더 짧게 요약
+        monthly_sum = gemini_summarize(articles_by_cat, monthly_label, brief=True)
+        monthly_summary = {
+            "label":   monthly_label,
+            "summary": monthly_sum
         }
 
     # GitHub 저장
     ok = save_news_json(
         saved_articles, sha,
         daily_summary=summary,
-        weekly_summaries=weekly_summary
+        weekly_summaries=weekly_summary,
+        monthly_summaries=monthly_summary
     )
 
     return JSONResponse({
-        "status":   "ok" if ok else "save_failed",
-        "new":      new_count,
-        "total":    len(saved_articles),
-        "summary":  summary,
-        "is_friday": is_friday,
-        "errors":   errors,
+        "status":          "ok" if ok else "save_failed",
+        "new":             new_count,
+        "total":           len(saved_articles),
+        "summary":         summary,
+        "is_friday":       is_friday,
+        "is_month_end":    last_day,
+        "monthly_summary": monthly_summary,
+        "errors":          errors,
     })
