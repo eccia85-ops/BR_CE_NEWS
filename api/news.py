@@ -10,6 +10,7 @@ import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone, timedelta
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from collections import Counter
 import time
 import json
 import base64
@@ -131,6 +132,10 @@ def get_all_articles():
     return all_articles, errors
 
 
+def norm_title(t):
+    return re.sub(r'[^\w]', '', t)[:20]
+
+
 @app.get("/api/news")
 def get_news(range: str = Query("today")):
     if range not in ("today", "week", "month"):
@@ -139,10 +144,6 @@ def get_news(range: str = Query("today")):
     all_articles, errors = get_all_articles()
     filtered = [a for a in all_articles if in_range(a, range)]
 
-    bucket = {k: [] for k in KEYWORDS}
-    seen = set()
-
-    # 기사별 매칭 키워드 수집
     article_kws = {}
     for article in filtered:
         link = article["link"]
@@ -159,19 +160,10 @@ def get_news(range: str = Query("today")):
                 if keyword not in article_kws[link]["tags"]:
                     article_kws[link]["tags"].append(keyword)
 
-    # 다수 보도 카운트 (제목 앞 20자 정규화 후 비교)
-    import re
-    from collections import Counter
-
-    def norm_title(t):
-        return re.sub(r'[^\w]', '', t)[:20]
-
     norm_count = Counter(norm_title(a["title"]) for a in article_kws.values())
-
     for link, art in article_kws.items():
         art["mention_count"] = norm_count[norm_title(art["title"])]
 
-    # 카테고리별 버킷 구성
     cat_bucket = {}
     for cat, kws in CATEGORIES.items():
         kw_set = set(kws)
@@ -182,14 +174,12 @@ def get_news(range: str = Query("today")):
                 if link not in seen_links:
                     seen_links.add(link)
                     articles.append(art)
-        # 다수 보도 우선 + 날짜 순
         articles.sort(key=lambda x: (
             -(x.get("mention_count", 1)),
             x.get("date") or ""
         ), reverse=False)
         cat_bucket[cat] = articles
 
-    # 오늘 탭용 기존 버킷도 유지
     bucket = {k: [] for k in KEYWORDS}
     for link, art in article_kws.items():
         for tag in art["tags"]:
@@ -212,15 +202,7 @@ def get_news(range: str = Query("today")):
         "errors":     errors,
     })
 
-    for k in bucket:
-        bucket[k].sort(key=lambda x: x["date"] or "", reverse=True)
 
-    return JSONResponse({
-        "keywords":   KEYWORDS,
-        "categories": {cat: kws for cat, kws in CATEGORIES.items()},
-        "data":       bucket,
-        "errors":     errors,
-    })
 @app.get("/api/articles")
 def get_articles(range: str = Query("today")):
     if range not in ("today", "week", "month"):
@@ -229,7 +211,6 @@ def get_articles(range: str = Query("today")):
     all_articles, errors = get_all_articles()
     filtered = [a for a in all_articles if in_range(a, range)]
 
-    # 중복 링크 제거
     seen = set()
     articles = []
     for a in filtered:
@@ -250,17 +231,12 @@ def get_articles(range: str = Query("today")):
         "errors":   errors,
     })
 
-# ── Gemini 요약 함수 ──────────────────────────────────────────────────────────
 
 def gemini_summarize(articles_by_cat, range_label, brief=False):
-    """카테고리별 기사 목록을 Gemini로 요약
-    brief=True 이면 한두 줄 짧게 요약
-    """
     api_key = os.environ.get("GEMINI_API_KEY", "")
     if not api_key:
         return {}
 
-    # 프롬프트 구성
     lines = []
     lines.append(f"아래는 {range_label} 제약 업계 뉴스입니다.")
     lines.append("보령제약 CE기획팀 관점에서 카테고리별로 핵심 내용을 2~3줄로 요약해주세요.")
@@ -281,13 +257,12 @@ def gemini_summarize(articles_by_cat, range_label, brief=False):
         if not arts:
             continue
         lines.append(f"=== {cat} ===")
-        for a in arts[:20]:  # 카테고리당 최대 20건
+        for a in arts[:20]:
             lines.append(f"- {a['title']} ({a['site']})")
         lines.append("")
 
     prompt = "\n".join(lines)
 
-    # Gemini API 호출
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key={api_key}"
     body = {
         "contents": [{"parts": [{"text": prompt}]}],
@@ -309,7 +284,6 @@ def gemini_summarize(articles_by_cat, range_label, brief=False):
 
 
 def parse_summary(text):
-    """Gemini 응답에서 카테고리별 요약 파싱"""
     result = {}
     patterns = {
         "자사 직결": r"자사 직결[:：]\s*(.+?)(?=시장 영향|업계 동향|$)",
@@ -322,10 +296,8 @@ def parse_summary(text):
             result[cat] = match.group(1).strip()
     return result
 
-# ── GitHub 저장 함수 ──────────────────────────────────────────────────────────
 
 def load_news_json():
-    """GitHub에서 news.json 로드"""
     token  = os.environ.get("GITHUB_TOKEN", "")
     repo   = os.environ.get("GITHUB_REPO", "")
     branch = os.environ.get("GITHUB_BRANCH", "main")
@@ -350,7 +322,6 @@ def load_news_json():
 
 
 def save_news_json(articles, sha=None, daily_summary=None, weekly_summaries=None, monthly_summaries=None):
-    """GitHub에 news.json 저장"""
     token  = os.environ.get("GITHUB_TOKEN", "")
     repo   = os.environ.get("GITHUB_REPO", "")
     branch = os.environ.get("GITHUB_BRANCH", "main")
@@ -358,7 +329,6 @@ def save_news_json(articles, sha=None, daily_summary=None, weekly_summaries=None
     if not token or not repo:
         return False
 
-    # 90일 이상 된 기사 제거
     cutoff = datetime.now(tz=timezone.utc) - timedelta(days=90)
     filtered = []
     for a in articles:
@@ -366,17 +336,14 @@ def save_news_json(articles, sha=None, daily_summary=None, weekly_summaries=None
         if dt is None or ensure_aware(dt) >= cutoff:
             filtered.append(a)
 
-    # 기존 news.json에서 누적 데이터 유지
     existing, _ = load_news_json()
     existing_data = existing[0] if isinstance(existing, tuple) else {}
 
-    # 주간 요약 누적 (최대 12주)
     saved_weekly = existing_data.get("weekly_summaries", []) if isinstance(existing_data, dict) else []
     if weekly_summaries:
         saved_weekly = [weekly_summaries] + saved_weekly
         saved_weekly = saved_weekly[:12]
 
-    # 월간 요약 누적 (최대 6개월)
     saved_monthly = existing_data.get("monthly_summaries", []) if isinstance(existing_data, dict) else []
     if monthly_summaries:
         saved_monthly = [monthly_summaries] + saved_monthly
@@ -423,19 +390,11 @@ def save_news_json(articles, sha=None, daily_summary=None, weekly_summaries=None
 
 
 @app.get("/api/collect")
-
 def collect():
-    """수동 수집 + GitHub 저장 트리거"""
-    # 기존 news.json 로드
     saved_articles, sha = load_news_json()
-
-    # 새 기사 수집 (전체 기간)
     all_articles, errors = get_all_articles()
-
-    # 기존 링크 셋
     existing_links = set(a["link"] for a in saved_articles)
 
-    # 새 기사만 추가
     new_count = 0
     for a in all_articles:
         if a["link"] not in existing_links:
@@ -449,8 +408,6 @@ def collect():
             existing_links.add(a["link"])
             new_count += 1
 
-    # Gemini 요약 생성
-    from config.keywords import CATEGORIES
     articles_by_cat = {}
     for cat, kws in CATEGORIES.items():
         kw_set = set(kws)
@@ -469,31 +426,25 @@ def collect():
     summary = gemini_summarize(articles_by_cat, today_str)
 
     import datetime as dt
-    now_kst    = dt.datetime.now(tz=KST)
-    is_friday  = now_kst.weekday() == 4
-    last_day   = (now_kst + dt.timedelta(days=1)).day == 1  # 내일이 1일이면 오늘이 말일
+    now_kst  = dt.datetime.now(tz=KST)
+    is_friday = now_kst.weekday() == 4
+    last_day  = (now_kst + dt.timedelta(days=1)).day == 1
 
-    # 주간 요약 (금요일)
     weekly_summary = None
     if is_friday:
-        weekly_label = now_kst.strftime("%Y년 %m월 %d일 주간")
         weekly_summary = {
-            "label":   weekly_label,
+            "label":   now_kst.strftime("%Y년 %m월 %d일 주간"),
             "summary": summary
         }
 
-    # 월간 요약 (말일)
     monthly_summary = None
     if last_day:
-        monthly_label = now_kst.strftime("%Y년 %m월")
-        # 월간은 좀 더 짧게 요약
-        monthly_sum = gemini_summarize(articles_by_cat, monthly_label, brief=True)
+        monthly_sum = gemini_summarize(articles_by_cat, now_kst.strftime("%Y년 %m월"), brief=True)
         monthly_summary = {
-            "label":   monthly_label,
+            "label":   now_kst.strftime("%Y년 %m월"),
             "summary": monthly_sum
         }
 
-    # GitHub 저장
     ok = save_news_json(
         saved_articles, sha,
         daily_summary=summary,
@@ -512,9 +463,9 @@ def collect():
         "errors":          errors,
     })
 
+
 @app.get("/api/brief")
 def get_brief():
-    """캐시된 brief 데이터 반환"""
     cached = _cache.get("brief")
     if cached:
         return JSONResponse(cached)
@@ -534,7 +485,6 @@ def get_brief():
             res = json.loads(r.read())
             content = base64.b64decode(res["content"]).decode("utf-8")
             data = json.loads(content)
-            # articles 제외하고 요약 데이터만 반환 (용량 축소)
             brief_data = {
                 "updated_at":        data.get("updated_at", ""),
                 "daily_summary":     data.get("daily_summary", {}),
@@ -543,24 +493,5 @@ def get_brief():
             }
             _cache["brief"] = brief_data
             return JSONResponse(brief_data)
-    except Exception as e:
-        return JSONResponse({"error": str(e)})
-    """news.json에서 브리프 데이터 반환"""
-    token  = os.environ.get("GITHUB_TOKEN", "")
-    repo   = os.environ.get("GITHUB_REPO", "")
-    branch = os.environ.get("GITHUB_BRANCH", "main")
-
-    url = f"https://api.github.com/repos/{repo}/contents/data/news.json?ref={branch}"
-    req = urllib.request.Request(url, headers={
-        "Authorization": f"token {token}",
-        "Accept": "application/vnd.github.v3+json",
-        "User-Agent": "CE-NewsBot/1.0"
-    })
-    try:
-        with urllib.request.urlopen(req, timeout=10) as r:
-            res = json.loads(r.read())
-            content = base64.b64decode(res["content"]).decode("utf-8")
-            data = json.loads(content)
-            return JSONResponse(data)
     except Exception as e:
         return JSONResponse({"error": str(e)})
