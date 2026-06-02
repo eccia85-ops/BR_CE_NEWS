@@ -11,6 +11,8 @@ from email.utils import parsedate_to_datetime
 from datetime import datetime, timezone, timedelta
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
+import json
+import base64
 
 from config.sources import RSS_SOURCES
 from config.keywords import KEYWORDS, CATEGORIES
@@ -245,4 +247,122 @@ def get_articles(range: str = Query("today")):
         "articles": articles,
         "total":    len(articles),
         "errors":   errors,
+    })
+
+# ── GitHub 저장 함수 ──────────────────────────────────────────────────────────
+
+def load_news_json():
+    """GitHub에서 news.json 로드"""
+    token  = os.environ.get("GITHUB_TOKEN", "")
+    repo   = os.environ.get("GITHUB_REPO", "")
+    branch = os.environ.get("GITHUB_BRANCH", "main")
+
+    if not token or not repo:
+        return [], None
+
+    url = f"https://api.github.com/repos/{repo}/contents/data/news.json?ref={branch}"
+    req = urllib.request.Request(url, headers={
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github.v3+json",
+        "User-Agent": "CE-NewsBot/1.0"
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=10) as r:
+            res = json.loads(r.read())
+            content = base64.b64decode(res["content"]).decode("utf-8")
+            data = json.loads(content)
+            return data.get("articles", []), res["sha"]
+    except Exception:
+        return [], None
+
+
+def save_news_json(articles, sha=None):
+    """GitHub에 news.json 저장"""
+    token  = os.environ.get("GITHUB_TOKEN", "")
+    repo   = os.environ.get("GITHUB_REPO", "")
+    branch = os.environ.get("GITHUB_BRANCH", "main")
+
+    if not token or not repo:
+        return False
+
+    # 90일 이상 된 기사 제거
+    cutoff = datetime.now(tz=timezone.utc) - timedelta(days=90)
+    filtered = []
+    for a in articles:
+        dt = parse_date(a.get("date", ""))
+        if dt is None or ensure_aware(dt) >= cutoff:
+            filtered.append(a)
+
+    data = {
+        "updated_at": datetime.now(tz=KST).strftime("%Y-%m-%d %H:%M"),
+        "total": len(filtered),
+        "articles": filtered
+    }
+
+    content = base64.b64encode(
+        json.dumps(data, ensure_ascii=False, indent=2).encode("utf-8")
+    ).decode("utf-8")
+
+    body = {
+        "message": f"Update news.json ({data['updated_at']})",
+        "content": content,
+        "branch":  branch
+    }
+    if sha:
+        body["sha"] = sha
+
+    url = f"https://api.github.com/repos/{repo}/contents/data/news.json"
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(body).encode("utf-8"),
+        headers={
+            "Authorization": f"token {token}",
+            "Accept": "application/vnd.github.v3+json",
+            "User-Agent": "CE-NewsBot/1.0",
+            "Content-Type": "application/json"
+        },
+        method="PUT"
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=15) as r:
+            return r.status in (200, 201)
+    except Exception:
+        return False
+
+
+@app.get("/api/collect")
+
+def collect():
+    """수동 수집 + GitHub 저장 트리거"""
+    # 기존 news.json 로드
+    saved_articles, sha = load_news_json()
+
+    # 새 기사 수집 (전체 기간)
+    all_articles, errors = get_all_articles()
+
+    # 기존 링크 셋
+    existing_links = set(a["link"] for a in saved_articles)
+
+    # 새 기사만 추가
+    new_count = 0
+    for a in all_articles:
+        if a["link"] not in existing_links:
+            saved_articles.append({
+                "site":  a["site"],
+                "title": a["title"],
+                "link":  a["link"],
+                "date":  a["date"],
+                "tags":  [],
+            })
+            existing_links.add(a["link"])
+            new_count += 1
+
+    # GitHub 저장
+    ok = save_news_json(saved_articles, sha)
+
+    return JSONResponse({
+        "status":    "ok" if ok else "save_failed",
+        "new":       new_count,
+        "total":     len(saved_articles),
+        "errors":    errors,
     })
