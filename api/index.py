@@ -388,25 +388,47 @@ HTML = """<!DOCTYPE html>
     }
     
     function renderMonth() {
-      var now    = new Date();
-      var year   = now.getFullYear();
-      var month  = now.getMonth() + 1;
-      var weeks  = [
-        { label: '1주차', start: '01', end: '07' },
-        { label: '2주차', start: '08', end: '14' },
-        { label: '3주차', start: '15', end: '21' },
-        { label: '4주차', start: '22', end: String(new Date(year, now.getMonth()+1, 0).getDate()).padStart(2,'0') },
-      ];
       var html = '';
+
+      // 오늘 기준 지난주 포함 과거 4주 계산
+      var now = new Date();
+
+      // 이번 주 월요일 구하기
+      var day = now.getDay(); // 0=일 1=월 ... 6=토
+      var diffToMon = (day === 0) ? -6 : 1 - day;
+      var thisMonday = new Date(now);
+      thisMonday.setDate(now.getDate() + diffToMon);
+      thisMonday.setHours(0,0,0,0);
+
+      // 지난주 월요일부터 시작해서 4주 역순 생성
+      var weeks = [];
+      for (var w = 1; w <= 4; w++) {
+        var monDate = new Date(thisMonday);
+        monDate.setDate(thisMonday.getDate() - (w * 7));
+        var sunDate = new Date(monDate);
+        sunDate.setDate(monDate.getDate() + 6);
+
+        var mm1 = monDate.getMonth() + 1;
+        var dd1 = monDate.getDate();
+        var mm2 = sunDate.getMonth() + 1;
+        var dd2 = sunDate.getDate();
+        var yy  = monDate.getFullYear();
+
+        var label = yy + '년 ' + mm1 + '월 '
+                  + Math.ceil(dd1 / 7) + '주차';
+        var range = mm1 + '.' + String(dd1).padStart(2,'0')
+                  + ' ~ ' + mm2 + '.' + String(dd2).padStart(2,'0');
+
+        weeks.push({ label: label, range: range });
+      }
+
+      var CAT = ['c1', 'c2', 'c3', 'c3'];
       for (var i = 0; i < weeks.length; i++) {
-        var w = weeks[i];
         html += '<div class="cat-section">';
-        html += '<div class="cat-header c' + (i+1 > 3 ? 3 : i+1) + '">'
-              + month + '월 ' + w.label
-              + '<span class="cat-total">'
-              + year + '.' + String(month).padStart(2,'0') + '.' + w.start
-              + ' ~ ' + w.end
-              + '</span></div>';
+        html += '<div class="cat-header ' + CAT[i] + '">'
+              + weeks[i].label
+              + '<span class="cat-total">' + weeks[i].range + '</span>'
+              + '</div>';
         html += '<div class="kw-list">'
               + '<div style="padding:16px;font-size:13px;color:var(--sub);text-align:center;">'
               + '준비 중입니다.</div>'
