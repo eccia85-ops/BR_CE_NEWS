@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-06-02 17:09",
-  "total": 262,
+  "updated_at": "2026-06-02 17:10",
+  "total": 263,
   "articles": [
     {
       "site": "의학신문",
@@ -1834,6 +1834,13 @@
       "title": "뉴다이브, 자폐·사회적의사소통장애 디지털치료기기 '버디인' 제조인증 획득",
       "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=536121",
       "date": "2026-06-02 14:21:29",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "복지부, '필수특화 기능 강화 지원사업' 공모 실시",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412281",
+      "date": "2026-06-02 17:05:06",
       "tags": []
     }
   ]
