@@ -376,11 +376,11 @@ def save_news_json(articles, sha=None, daily_summary=None, weekly_summaries=None
         saved_weekly = [weekly_summaries] + saved_weekly
         saved_weekly = saved_weekly[:12]
 
-    # 월간 요약 누적 (최대 12개월)
+    # 월간 요약 누적 (최대 6개월)
     saved_monthly = existing_data.get("monthly_summaries", []) if isinstance(existing_data, dict) else []
     if monthly_summaries:
         saved_monthly = [monthly_summaries] + saved_monthly
-        saved_monthly = saved_monthly[:12]
+        saved_monthly = saved_monthly[:6]
 
     data = {
         "updated_at":        datetime.now(tz=KST).strftime("%Y-%m-%d %H:%M"),
