@@ -257,105 +257,89 @@ HTML = """<!DOCTYPE html>
       var updatedAt = data.updated_at || '';
       var daily = data.daily_summary || {};
       var cats = ['자사 직결', '시장 영향', '업계 동향'];
-      var ccMap = {'자사 직결': 'c1', '시장 영향': 'c2', '업계 동향': 'c3'};
 
+      function renderText(text) {
+        var result = '';
+        var bLines = text.split(String.fromCharCode(10));
+        for (var li = 0; li < bLines.length; li++) {
+          var bLine = bLines[li].trim();
+          if (!bLine) continue;
+          if (bLine.charAt(0) === '-') {
+            result += '<div style="display:flex;justify-content:space-between;'
+                    + 'align-items:baseline;margin-top:8px;gap:12px;">';
+            result += '<span style="color:var(--text);">' + esc(bLine) + '</span>';
+            var nextLine = '';
+            for (var ni = li + 1; ni < bLines.length; ni++) {
+              var next = bLines[ni].trim();
+              if (!next) continue;
+              if (next.charAt(0) !== '-') {
+                nextLine = next;
+                li = ni;
+              }
+              break;
+            }
+            if (nextLine) {
+              result += '<span style="color:var(--sub);font-size:12px;white-space:nowrap;">'
+                      + esc(nextLine) + '</span>';
+            }
+            result += '</div>';
+          }
+        }
+        return result;
+      }
+
+      function renderCatRows(sumObj) {
+        var result = '';
+        for (var ci = 0; ci < cats.length; ci++) {
+          var cat = cats[ci];
+          var text = sumObj[cat] || '해당 없음';
+          result += '<div style="padding:14px 16px;border-bottom:1px solid var(--border);">';
+          result += '<div style="margin-bottom:8px;">';
+          result += '<span style="font-size:12px;font-weight:700;padding:2px 10px;';
+          result += 'border-radius:20px;display:inline-block;';
+          result += 'background:var(--primary-light);color:var(--primary);">';
+          result += esc(cat) + '</span></div>';
+          result += '<div style="font-size:13px;line-height:1.8;">';
+          result += renderText(text);
+          result += '</div></div>';
+        }
+        return result;
+      }
+
+      // ── 어제 뉴스 갈무리 ──
       html += '<div class="cat-section">';
       html += '<div class="cat-header c1">📋 어제 뉴스 갈무리';
       html += '<span class="cat-total">' + esc(updatedAt) + '</span></div>';
       html += '<div class="kw-list">';
-      for (var ci = 0; ci < cats.length; ci++) {
-        var cat = cats[ci];
-        var cc = ccMap[cat];
-        var text = daily[cat] || '해당 없음';
-        html += '<div style="padding:14px 16px;border-bottom:1px solid var(--border);">';
-        html += '<div style="margin-bottom:8px;">';
-        html += '<span style="font-size:12px;font-weight:700;padding:2px 10px;';
-        html += 'border-radius:20px;display:inline-block;';
-        html += 'background:var(--primary-light);color:var(--primary);">';
-        html += esc(cat) + '</span></div>';
-        html += '<div style="font-size:13px;line-height:1.8;">';
-        var briefLines = text.split(String.fromCharCode(10));
-        for (var li = 0; li < briefLines.length; li++) {
-          var briefLine = briefLines[li].trim();
-          if (!briefLine) continue;
-          if (briefLine.charAt(0) === '-') {
-            html += '<div style="color:var(--text);margin-top:8px;">' + esc(briefLine) + '</div>';
-          } else {
-            html += '<div style="color:var(--sub);font-size:12px;margin-left:12px;">' + esc(briefLine) + '</div>';
-          }
-        }
-        html += '</div></div>';
-      }
+      html += renderCatRows(daily);
       html += '</div></div>';
 
+      // ── 지난주 요약 ──
       var weekly = (data.weekly_summaries && data.weekly_summaries.length) ? data.weekly_summaries[0] : null;
       html += '<div class="cat-section">';
       if (weekly) {
-        var wsum = weekly.summary || {};
         html += '<div class="cat-header c2">📅 지난주 요약';
         html += '<span class="cat-total">' + esc(weekly.label) + '</span></div>';
         html += '<div class="kw-list">';
-        for (var ci = 0; ci < cats.length; ci++) {
-          var cat = cats[ci];
-          var text = wsum[cat] || '해당 없음';
-          html += '<div style="padding:14px 16px;border-bottom:1px solid var(--border);">';
-          html += '<div style="margin-bottom:8px;">';
-          html += '<span style="font-size:12px;font-weight:700;padding:2px 10px;';
-          html += 'border-radius:20px;display:inline-block;';
-          html += 'background:var(--primary-light);color:var(--primary);">';
-          html += esc(cat) + '</span></div>';
-          html += '<div style="font-size:13px;line-height:1.8;">';
-        var briefLines = text.split(String.fromCharCode(10));
-        for (var li = 0; li < briefLines.length; li++) {
-          var briefLine = briefLines[li].trim();
-          if (!briefLine) continue;
-          if (briefLine.charAt(0) === '-') {
-            html += '<div style="color:var(--text);margin-top:8px;">' + esc(briefLine) + '</div>';
-          } else {
-            html += '<div style="color:var(--sub);font-size:12px;margin-left:12px;">' + esc(briefLine) + '</div>';
-          }
-        }
-        html += '</div></div>';
-        }
+        html += renderCatRows(weekly.summary || {});
         html += '</div>';
       } else {
         html += '<div class="cat-header c2">📅 지난주 요약';
         html += '<span class="cat-total">준비중</span></div>';
         html += '<div class="kw-list">';
-        html += '<div style="font-size:13px;line-height:1.8;">';
-        var briefLines = text.split(String.fromCharCode(10));
-        for (var li = 0; li < briefLines.length; li++) {
-          var briefLine = briefLines[li].trim();
-          if (!briefLine) continue;
-          if (briefLine.charAt(0) === '-') {
-            html += '<div style="color:var(--text);margin-top:8px;">' + esc(briefLine) + '</div>';
-          } else {
-            html += '<div style="color:var(--sub);font-size:12px;margin-left:12px;">' + esc(briefLine) + '</div>';
-          }
-        }
-        html += '</div></div>';
+        html += '<div style="padding:16px;font-size:13px;color:var(--sub);text-align:center;">';
+        html += '금요일 자동 생성됩니다.</div></div>';
       }
       html += '</div>';
 
+      // ── 지난달 요약 ──
       var monthly = (data.monthly_summaries && data.monthly_summaries.length) ? data.monthly_summaries[0] : null;
       html += '<div class="cat-section">';
       if (monthly) {
-        var msum = monthly.summary || {};
         html += '<div class="cat-header c3">📆 지난달 요약';
         html += '<span class="cat-total">' + esc(monthly.label) + '</span></div>';
         html += '<div class="kw-list">';
-        for (var ci = 0; ci < cats.length; ci++) {
-          var cat = cats[ci];
-          var text = msum[cat] || '해당 없음';
-          html += '<div style="padding:14px 16px;border-bottom:1px solid var(--border);">';
-          html += '<div style="margin-bottom:8px;">';
-          html += '<span style="font-size:12px;font-weight:700;padding:2px 10px;';
-          html += 'border-radius:20px;display:inline-block;';
-          html += 'background:var(--primary-light);color:var(--primary);">';
-          html += esc(cat) + '</span></div>';
-          html += '<div style="font-size:13px;line-height:1.7;color:var(--text);">';
-          html += esc(text) + '</div></div>';
-        }
+        html += renderCatRows(monthly.summary || {});
         html += '</div>';
       } else {
         html += '<div class="cat-header c3">📆 지난달 요약';
