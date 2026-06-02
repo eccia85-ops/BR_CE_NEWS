@@ -265,9 +265,9 @@ HTML = """<!DOCTYPE html>
           var bLine = bLines[li].trim();
           if (!bLine) continue;
           if (bLine.charAt(0) === '-') {
-            result += '<div style="display:flex;justify-content:space-between;'
-                    + 'align-items:baseline;margin-top:8px;gap:12px;">';
-            result += '<span style="color:var(--text);">' + esc(bLine) + '</span>';
+            result += '<div style="display:flex;align-items:flex-start;'
+                    + 'margin-top:8px;gap:16px;">';
+            result += '<span style="color:var(--text);flex:1;">' + esc(bLine) + '</span>';
             var nextLine = '';
             for (var ni = li + 1; ni < bLines.length; ni++) {
               var next = bLines[ni].trim();
@@ -279,7 +279,7 @@ HTML = """<!DOCTYPE html>
               break;
             }
             if (nextLine) {
-              result += '<span style="color:var(--sub);font-size:12px;white-space:nowrap;">'
+              result += '<span style="color:var(--sub);font-size:12px;flex:1;">'
                       + esc(nextLine) + '</span>';
             }
             result += '</div>';
