@@ -2,6 +2,12 @@
   "builds": [
     { "src": "api/*.py", "use": "@vercel/python" }
   ],
+  "crons": [
+    {
+      "path": "/api/collect",
+      "schedule": "0 22 * * *"
+    }
+  ],
   "routes": [
     { "src": "^/api/news$",     "dest": "/api/news.py" },
     { "src": "^/api/articles$", "dest": "/api/news.py" },
