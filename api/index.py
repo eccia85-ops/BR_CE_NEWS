@@ -425,8 +425,9 @@ HTML = """<!DOCTYPE html>
 
         html += '<div style="padding:14px 16px;border-bottom:1px solid var(--border);">';
         html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">';
-        html += '<span class="cat-label ' + cc + '" style="font-size:12px;font-weight:700;'
-              + 'padding:2px 10px;border-radius:20px;">' + esc(cat) + '</span>';
+        html += '<span style="font-size:12px;font-weight:700;'
+              + 'padding:2px 10px;border-radius:20px;display:inline-block;'
+              + 'background:var(--primary-light);color:var(--primary);">' + esc(cat) + '</span>';
         html += '</div>';
         html += '<div style="font-size:13px;line-height:1.7;color:var(--text);">'
               + esc(text) + '</div>';
@@ -470,8 +471,9 @@ HTML = """<!DOCTYPE html>
           var text = wsum[cat] || '해당 없음';
           html += '<div style="padding:14px 16px;border-bottom:1px solid var(--border);">';
           html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">';
-          html += '<span class="cat-label ' + cc + '" style="font-size:12px;font-weight:700;'
-                + 'padding:2px 10px;border-radius:20px;">' + esc(cat) + '</span>';
+          html += '<span style="font-size:12px;font-weight:700;'
+              + 'padding:2px 10px;border-radius:20px;display:inline-block;'
+              + 'background:var(--primary-light);color:var(--primary);">' + esc(cat) + '</span>';
           html += '</div>';
           html += '<div style="font-size:13px;line-height:1.7;color:var(--text);">'
                 + esc(text) + '</div>';
@@ -500,8 +502,9 @@ HTML = """<!DOCTYPE html>
           var text = msum[cat] || '해당 없음';
           html += '<div style="padding:14px 16px;border-bottom:1px solid var(--border);">';
           html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">';
-          html += '<span class="cat-label ' + cc + '" style="font-size:12px;font-weight:700;'
-                + 'padding:2px 10px;border-radius:20px;">' + esc(cat) + '</span>';
+          html += '<span style="font-size:12px;font-weight:700;'
+              + 'padding:2px 10px;border-radius:20px;display:inline-block;'
+              + 'background:var(--primary-light);color:var(--primary);">' + esc(cat) + '</span>';
           html += '</div>';
           html += '<div style="font-size:13px;line-height:1.7;color:var(--text);">'
                 + esc(text) + '</div>';
