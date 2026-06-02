@@ -213,11 +213,13 @@ HTML = """<!DOCTYPE html>
           document.getElementById('loading').style.display = 'none';
           var app = document.getElementById('app');
           app.style.display = 'block';
-          try {
-            app.innerHTML = renderBrief(data);
-          } catch(e) {
-            app.innerHTML = '<div class="error-banner">렌더링 오류: ' + esc(e.message) + '</div>';
-          }
+          app.innerHTML = '<div style="padding:16px;background:white;border-radius:8px;font-size:12px;">'
+            + '<b>데이터 확인:</b><br>'
+            + 'updated_at: ' + (data.updated_at || 'NONE') + '<br>'
+            + 'daily_summary keys: ' + JSON.stringify(Object.keys(data.daily_summary || {})) + '<br>'
+            + 'weekly count: ' + (data.weekly_summaries ? data.weekly_summaries.length : 0) + '<br>'
+            + 'articles count: ' + (data.articles ? data.articles.length : 0)
+            + '</div>';
         })
         .catch(function(e) {
           showFetchError('브리프 로드 실패: ' + e.message);
