@@ -657,9 +657,7 @@ HTML = """<!DOCTYPE html>
       if (data.errors && data.errors.length)
         html += '<div class="error-banner">수집 실패: ' + esc(data.errors.join(', ')) + '</div>';
 
-      if (range === 'brief') {
-        html += renderBrief();
-      } else if (range === 'today') {
+      if (range === 'today') {
         html += renderToday(data);
       } else {
         html += renderCat(data, range);
