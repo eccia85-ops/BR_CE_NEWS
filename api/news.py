@@ -511,3 +511,25 @@ def collect():
         "monthly_summary": monthly_summary,
         "errors":          errors,
     })
+
+@app.get("/api/brief")
+def get_brief():
+    """news.json에서 브리프 데이터 반환"""
+    token  = os.environ.get("GITHUB_TOKEN", "")
+    repo   = os.environ.get("GITHUB_REPO", "")
+    branch = os.environ.get("GITHUB_BRANCH", "main")
+
+    url = f"https://api.github.com/repos/{repo}/contents/data/news.json?ref={branch}"
+    req = urllib.request.Request(url, headers={
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github.v3+json",
+        "User-Agent": "CE-NewsBot/1.0"
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=10) as r:
+            res = json.loads(r.read())
+            content = base64.b64decode(res["content"]).decode("utf-8")
+            data = json.loads(content)
+            return JSONResponse(data)
+    except Exception as e:
+        return JSONResponse({"error": str(e)})
