@@ -203,30 +203,10 @@ HTML = """<!DOCTYPE html>
     }
 
     function loadBrief() {
-      showLoading();
-      fetch('/api/brief?t=' + Date.now())
-        .then(function(res) {
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          return res.json();
-        })
-        .then(function(data) {
-          var loadingEl = document.getElementById('loading');
-          loadingEl.style.display = 'none';
-          loadingEl.style.visibility = 'hidden';
-          var app = document.getElementById('app');
-          app.style.display = 'block';
-          app.style.visibility = 'visible';
-          app.style.zIndex = '1';
-          try {
-            var briefHtml = renderBrief(data);
-            app.innerHTML = briefHtml;
-          } catch(err) {
-            app.innerHTML = '<div class="error-banner">오류: ' + err.message + ' / 라인: ' + err.stack + '</div>';
-          }
-        })
-        .catch(function(e) {
-          showFetchError('브리프 로드 실패: ' + e.message);
-        });
+      document.getElementById('loading').style.display = 'none';
+      var app = document.getElementById('app');
+      app.style.display = 'block';
+      app.innerHTML = '<div style="padding:20px;background:white;border-radius:8px;">브리프 탭 테스트</div>';
     }
     
     function loadData(range) {
