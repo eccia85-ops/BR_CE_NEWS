@@ -283,7 +283,7 @@ def gemini_summarize(articles_by_cat, range_label):
     prompt = "\n".join(lines)
 
     # Gemini API 호출
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
     body = {
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {"maxOutputTokens": 1000, "temperature": 0.3}
