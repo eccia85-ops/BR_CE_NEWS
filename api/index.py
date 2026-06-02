@@ -210,9 +210,13 @@ HTML = """<!DOCTYPE html>
           return res.json();
         })
         .then(function(data) {
-          document.getElementById('loading').style.display = 'none';
+          var loadingEl = document.getElementById('loading');
+          loadingEl.style.display = 'none';
+          loadingEl.style.visibility = 'hidden';
           var app = document.getElementById('app');
           app.style.display = 'block';
+          app.style.visibility = 'visible';
+          app.style.zIndex = '1';
           try {
             var briefHtml = renderBrief(data);
             app.innerHTML = briefHtml;
