@@ -243,12 +243,25 @@ def gemini_summarize(articles_by_cat, range_label, brief=False):
     lines.append("주요 사업: 만성질환(순환기/당뇨/이상지질), 항암, 항생제, CDMO")
     lines.append("")
     if brief:
-        lines.append("[출력 형식] 각 카테고리별로 아래 형식으로만 답하세요. 마크다운 사용 금지. 각 항목 1~2줄로 간결하게:")
+        lines.append("[출력 형식] 아래 형식으로만 답하세요. 마크다운 사용 금지. 간결하게:")
     else:
-        lines.append("[출력 형식] 각 카테고리별로 아래 형식으로만 답하세요. 마크다운 사용 금지:")
-    lines.append("자사 직결: (요약, 없으면 '해당 없음')")
-    lines.append("시장 영향: (요약, 없으면 '해당 없음')")
-    lines.append("업계 동향: (요약, 없으면 '해당 없음')")
+        lines.append("[출력 형식] 아래 형식으로만 답하세요. 마크다운 사용 금지:")
+    lines.append("각 카테고리 안에서 항목별로 아래 형식으로 나열하세요.")
+    lines.append("중요도 높은 항목부터 나열하세요.")
+    lines.append("해당 카테고리 기사가 없으면 '해당 없음'으로 표기하세요.")
+    lines.append("")
+    lines.append("예시:")
+    lines.append("자사 직결:")
+    lines.append("- 보령 탁소텔 인수 완료, 글로벌 판매 개시")
+    lines.append("  항암 포트폴리오 확대 발판 마련")
+    lines.append("- 온베브지 급여 확대 검토 중")
+    lines.append("  매출 확대 기회 가능성")
+    lines.append("시장 영향:")
+    lines.append("- GLP-1 계열 급여 논의 본격화")
+    lines.append("  당뇨 시장 지형 변화 예상")
+    lines.append("업계 동향:")
+    lines.append("- AI 신약 개발 투자 확대")
+    lines.append("  중장기 파이프라인 경쟁 심화")
     lines.append("")
     lines.append("========================================")
     lines.append("")
@@ -286,9 +299,9 @@ def gemini_summarize(articles_by_cat, range_label, brief=False):
 def parse_summary(text):
     result = {}
     patterns = {
-        "자사 직결": r"자사 직결[:：]\s*(.+?)(?=시장 영향|업계 동향|$)",
-        "시장 영향": r"시장 영향[:：]\s*(.+?)(?=자사 직결|업계 동향|$)",
-        "업계 동향": r"업계 동향[:：]\s*(.+?)(?=자사 직결|시장 영향|$)",
+        "자사 직결": r"자사 직결[:：]\s*(.+?)(?=\n시장 영향|\n업계 동향|$)",
+        "시장 영향": r"시장 영향[:：]\s*(.+?)(?=\n자사 직결|\n업계 동향|$)",
+        "업계 동향": r"업계 동향[:：]\s*(.+?)(?=\n자사 직결|\n시장 영향|$)",
     }
     for cat, pattern in patterns.items():
         match = re.search(pattern, text, re.DOTALL)
