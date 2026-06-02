@@ -205,15 +205,22 @@ HTML = """<!DOCTYPE html>
     function loadBrief() {
       showLoading();
       fetch('https://raw.githubusercontent.com/eccia85-ops/BR_CE_NEWS/main/data/news.json?t=' + Date.now())
-        .then(function(res) { return res.json(); })
+        .then(function(res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        })
         .then(function(data) {
           document.getElementById('loading').style.display = 'none';
           var app = document.getElementById('app');
           app.style.display = 'block';
-          app.innerHTML = renderBrief(data);
+          try {
+            app.innerHTML = renderBrief(data);
+          } catch(e) {
+            app.innerHTML = '<div class="error-banner">렌더링 오류: ' + esc(e.message) + '</div>';
+          }
         })
         .catch(function(e) {
-          showFetchError('브리프 데이터 로드 실패: ' + e.message);
+          showFetchError('브리프 로드 실패: ' + e.message);
         });
     }
     
