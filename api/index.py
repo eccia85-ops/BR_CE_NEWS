@@ -674,29 +674,4 @@ HTML = """<!DOCTYPE html>
 def home():
     return HTML
 
-@app.get("/api/brief")
-def get_brief():
-    """news.json에서 브리프 데이터 반환"""
-    articles, sha = load_news_json()
-    if isinstance(articles, list) and sha is None and not articles:
-        return JSONResponse({"error": "news.json 로드 실패"})
 
-    # load_news_json이 articles만 반환하므로 전체 데이터 다시 로드
-    token  = os.environ.get("GITHUB_TOKEN", "")
-    repo   = os.environ.get("GITHUB_REPO", "")
-    branch = os.environ.get("GITHUB_BRANCH", "main")
-
-    url = f"https://api.github.com/repos/{repo}/contents/data/news.json?ref={branch}"
-    req = urllib.request.Request(url, headers={
-        "Authorization": f"token {token}",
-        "Accept": "application/vnd.github.v3+json",
-        "User-Agent": "CE-NewsBot/1.0"
-    })
-    try:
-        with urllib.request.urlopen(req, timeout=10) as r:
-            res = json.loads(r.read())
-            content = base64.b64decode(res["content"]).decode("utf-8")
-            data = json.loads(content)
-            return JSONResponse(data)
-    except Exception as e:
-        return JSONResponse({"error": str(e)})
