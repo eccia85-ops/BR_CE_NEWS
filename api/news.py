@@ -344,7 +344,7 @@ def load_news_json():
         return [], None
 
 
-def save_news_json(articles, sha=None):
+def save_news_json(articles, sha=None, daily_summary=None, weekly_summaries=None):
     """GitHub에 news.json 저장"""
     token  = os.environ.get("GITHUB_TOKEN", "")
     repo   = os.environ.get("GITHUB_REPO", "")
@@ -361,10 +361,22 @@ def save_news_json(articles, sha=None):
         if dt is None or ensure_aware(dt) >= cutoff:
             filtered.append(a)
 
+    # 기존 news.json에서 누적 데이터 유지
+    existing, _ = load_news_json()
+    existing_data = existing[0] if isinstance(existing, tuple) else {}
+
+    # 주간 요약 누적 (최대 12주)
+    saved_weekly = existing_data.get("weekly_summaries", []) if isinstance(existing_data, dict) else []
+    if weekly_summaries:
+        saved_weekly = [weekly_summaries] + saved_weekly
+        saved_weekly = saved_weekly[:12]
+
     data = {
-        "updated_at": datetime.now(tz=KST).strftime("%Y-%m-%d %H:%M"),
-        "total": len(filtered),
-        "articles": filtered
+        "updated_at":       datetime.now(tz=KST).strftime("%Y-%m-%d %H:%M"),
+        "total":            len(filtered),
+        "articles":         filtered,
+        "daily_summary":    daily_summary or {},
+        "weekly_summaries": saved_weekly,
     }
 
     content = base64.b64encode(
@@ -444,13 +456,30 @@ def collect():
     today_str = datetime.now(tz=KST).strftime("%Y년 %m월 %d일")
     summary = gemini_summarize(articles_by_cat, today_str)
 
+    # 금요일 여부 확인 (주간 요약)
+    import datetime as dt
+    is_friday = dt.datetime.now(tz=KST).weekday() == 4
+
+    weekly_summary = None
+    if is_friday:
+        weekly_label = dt.datetime.now(tz=KST).strftime("%Y년 %m월 %d일 주간")
+        weekly_summary = {
+            "label":   weekly_label,
+            "summary": summary
+        }
+
     # GitHub 저장
-    ok = save_news_json(saved_articles, sha)
+    ok = save_news_json(
+        saved_articles, sha,
+        daily_summary=summary,
+        weekly_summaries=weekly_summary
+    )
 
     return JSONResponse({
         "status":   "ok" if ok else "save_failed",
         "new":      new_count,
         "total":    len(saved_articles),
         "summary":  summary,
+        "is_friday": is_friday,
         "errors":   errors,
     })
