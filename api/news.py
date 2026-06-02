@@ -299,8 +299,8 @@ def gemini_summarize(articles_by_cat, range_label):
             res = json.loads(r.read())
             text = res["candidates"][0]["content"]["parts"][0]["text"]
             return parse_summary(text)
-    except Exception:
-        return {}
+    except Exception as e:
+        return {"error": str(e)}
 
 
 def parse_summary(text):
