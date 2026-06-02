@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-06-02 17:26",
-  "total": 263,
+  "updated_at": "2026-06-02 17:36",
+  "total": 264,
   "articles": [
     {
       "site": "의학신문",
@@ -1841,6 +1841,13 @@
       "title": "복지부, '필수특화 기능 강화 지원사업' 공모 실시",
       "link": "https://www.medipana.com/news/articleView.html?idxno=412281",
       "date": "2026-06-02 17:05:06",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "\"약국, 어떻게 준비할까\"…약대협·휴베이스 인사이트 콘퍼런스 성료",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=536135",
+      "date": "2026-06-02 17:21:28",
       "tags": []
     }
   ]
