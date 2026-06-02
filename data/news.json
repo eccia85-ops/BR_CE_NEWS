@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-06-02 20:25",
-  "total": 273,
+  "updated_at": "2026-06-03 07:39",
+  "total": 298,
   "articles": [
     {
       "site": "의학신문",
@@ -1912,12 +1912,187 @@
       "link": "https://www.medipana.com/news/articleView.html?idxno=412289",
       "date": "2026-06-02 19:29:15",
       "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "의료기기협회, 의료 사각지대 해소 위한 사회공헌활동 지속 확대",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005592",
+      "date": "2026-06-02 22:11:28",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "의료기기안전정보원, 장애인 안전정보 접근성 향상 힘쓴다",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005591",
+      "date": "2026-06-02 22:11:13",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "한양대병원 윤초석 교수팀, 대한의료관련감염관리학회 우수포스터상",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005590",
+      "date": "2026-06-02 22:10:40",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "대구시의사회, 창립 80주년 기념 ‘건강 걷기대회’ 성료",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005564",
+      "date": "2026-06-02 17:17:02",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "경상국립대병원 서성욱 교수, '경남의사 봉사대상' 수상",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005566",
+      "date": "2026-06-02 17:16:36",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "메드팩토, 항암제 ‘MP010’ 22개국 특허 출원",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005588",
+      "date": "2026-06-02 17:03:53",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "부산백병원, 개원 47주년...'사람중심 의료로 미래 발전'  다짐",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005589",
+      "date": "2026-06-02 17:03:45",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "보령, 탁소텔 인수 완료…글로벌 판매 시작",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005587",
+      "date": "2026-06-02 17:03:32",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "온코닉, ‘자큐보’ 인도 신약 허가 신청 완료",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005586",
+      "date": "2026-06-02 16:27:42",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "신풍제약, “흑자전환 발판 재도약” 선언",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005585",
+      "date": "2026-06-02 16:27:16",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "[칼럼] AI·휴머노이드 융합 제약바이오 스마트공장과 원가 대혁신",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=303949",
+      "date": "2026-06-03 05:20:00",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "美 MFN 약가 동맹...한국 신약 접근성 '적신호'",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=303913",
+      "date": "2026-06-03 05:20:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "팔방미인 GLP-1 계열 비만치료제, 암 진행도 정말 늦추나?",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=76554",
+      "date": "2026-06-03 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "약대협-휴베이스, '6th Insight Conference' 개최",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412305",
+      "date": "2026-06-03 04:58:56",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "한국쿄와기린, '포텔리지오' 발매 2주년 웨비나 개최",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412304",
+      "date": "2026-06-03 04:27:20",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "노바티스, '화농성 한선염에 빛을 비추다' 공식 인스타 개설",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412302",
+      "date": "2026-06-03 04:15:56",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "모더나, CEPI와 에볼라바이러스 백신 개발 협력 확대",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412301",
+      "date": "2026-06-03 04:03:22",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "'타이레놀'·'니코레트', 약사 대상 복약상담·금연상담 중요성 조명",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412300",
+      "date": "2026-06-03 03:44:55",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "BMS-서울시, 5년 연속 국내 바이오·헬스케어 혁신 기술 발굴 나서",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412299",
+      "date": "2026-06-03 03:25:43",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "태전그룹, 생성형 AI 기반 차세대 리더 육성 프로그램 가동",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412298",
+      "date": "2026-06-03 03:18:09",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "바이엘, 폐의약품 올바른 배출 위한 캠페인 진행",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412297",
+      "date": "2026-06-03 03:12:08",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "'로게인 폼', 세계모발학회서 임상 근거 및 활용 전략 조명",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412296",
+      "date": "2026-06-03 03:02:54",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "약사교육연구회, 오는 20일 '제16회 총회 및 학술 세미나' 개최",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412295",
+      "date": "2026-06-03 02:52:50",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "서울시약-약대협 서울권역협력본부, 멘토-멘티 협약",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412294",
+      "date": "2026-06-03 02:41:56",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "차용일 신임 약학정보원장 공식 취임 \"말보다 행동으로\"",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412293",
+      "date": "2026-06-03 02:38:04",
+      "tags": []
     }
   ],
   "daily_summary": {
-    "자사 직결": "- 보령, '탁소텔' 인수 계약 종결 및 글로벌 판매 공식 개시\n  보령의 주요 항암제 포트폴리오 강화 및 글로벌 시장 확대 기회 확보",
-    "시장 영향": "- 의료 AI, 영상 판독 넘어 신약 개발 분야로 확장\n  보령의 R&D 효율성 증대 및 신약 개발 파이프라인 강화 가능성 시사\n- K-바이오 수출 100억 달러 달성, 혁신 신약 경쟁 본격화\n  보령의 혁신 신약 개발 및 글로벌 경쟁력 확보 필요성 증대\n- 큐라클, 당뇨병성 신증 신약 'CU01' 국제특허 출원 완료\n  보령의 당뇨 치료제 분야 경쟁 심화 및 신규 파이프라인 개발 동향 주목\n- 젤잔즈, 강직성 척추염·건선성 관절염 1차 급여 확대\n  보령의 류마티스 질환 치료제 시장 경쟁 환경 변화 및 전략 검토 필요\n- 셀트리온, 자가면역질환 치료제 ‘CT-P55’ 캐나다 품목허가 신청\n  보령의 자가면역질환 치료제 분야 경쟁사 동향 파악 및 시장 진출 전략 고려",
-    "업계 동향": "- 고혈압, 고지혈증, 당뇨병 관리의 중요성 강조\n  보령의 만성질환 치료제 사업의 중요성 재확인 및 환자 관리 프로그램 강화 필요\n- 국제약품, 저용량 고혈압 복합제 ‘엑스듀오정 2.5/80mg’ 출시\n  보령의 고혈압 치료제 시장 경쟁 심화 및 차별화된 제품 개발 필요성 증대\n- 대웅제약, 차임 바이오로직스와 '듀피젠트' 바이오시밀러 공동 개발\n  보령의 바이오시밀러 사업 경쟁 심화 및 차세대 바이오의약품 개발 동향 주목\n- 제약바이오 업계 노조 관련 이슈 부각\n  보령의 안정적인 노사 관계 유지 및 기업 문화 관리의 중요성 강조"
+    "자사 직결": "- 보령, 탁소텔 인수 완료 및 글로벌 판매 시작\n  보령의 항암 포트폴리오 강화 및 글로벌 시장 진출 확대 기회",
+    "시장 영향": "- 온코닉테라퓨틱스 '자큐보', 인도 신약 허가 신청 완료\n  만성질환 치료제 시장 경쟁 심화 및 신규 치료 옵션 등장\n\n- 美 MFN 약가 동맹, 한국 신약 접근성에 적신호\n  국내 신약의 해외 시장 진출 및 약가 협상에 부정적 영향 예상\n\n- 소세포폐암 신약 암젠 ‘임딜리트라’ 유럽 승인\n  항암 분야 경쟁 심화 및 새로운 치료 옵션 등장\n\n- 젤잔즈, 강직성 척추염·건선성 관절염 1차 급여 확대\n  자가면역질환 치료제 시장 경쟁 구도 변화 및 급여 정책 영향\n\n- 셀트리온, 자가면역질환 치료제 ‘CT-P55’ 캐나다 품목허가 신청\n  바이오시밀러 시장 경쟁 심화 및 글로벌 시장 진출 동향\n\n- 종근당 복합제 행보, 약가개편 속 생존 기술\n  국내 제약사들의 약가 정책 대응 전략 및 시장 경쟁 구도",
+    "업계 동향": "- 고혈압·고지혈증·당뇨병 관리 중요성 강조\n  보령의 만성질환 치료제 사업 영역의 중요성 재확인\n\n- AI·바이오·유전자치료제 연구 협력 확대\n  신약 개발 트렌드 변화 및 R&D 투자 방향 모색 필요\n\n- 국제약품, 저용량 고혈압 복합제 ‘엑스듀오정 2.5/80mg’ 출시\n  고혈압 치료제 시장 경쟁 심화 및 복합제 개발 동향\n\n- 대웅제약, '듀피젠트' 바이오시밀러 공동 개발\n  바이오시밀러 시장 경쟁 심화 및 국내 제약사 간 협력 동향\n\n- 큐라클, 당뇨병성 신증 신약 'CU01' 국제특허(PCT) 출원 완료\n  당뇨병성 신증 치료제 개발 경쟁 및 R&D 동향\n\n- 티움바이오, 두경부암 임상데이터 발표\n  항암 분야 R&D 성과 및 글로벌 학회 발표 동향"
   },
   "weekly_summaries": [],
   "monthly_summaries": []
