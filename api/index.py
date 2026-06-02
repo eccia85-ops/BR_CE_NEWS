@@ -372,6 +372,21 @@ HTML = """<!DOCTYPE html>
       return html;
     }
 
+    function renderBrief() {
+      var html = '';
+      html += '<div class="cat-section">';
+      html += '<div class="cat-header c1">📋 업계 뉴스 갈무리'
+            + '<span class="cat-total">준비중</span></div>';
+      html += '<div class="kw-list">'
+            + '<div style="padding:20px;font-size:13px;color:var(--sub);text-align:center;">'
+            + 'AI 요약 브리핑 기능 준비 중입니다.<br>'
+            + '개발 완료 후 어제 뉴스 갈무리가 자동으로 표시됩니다.'
+            + '</div></div>';
+      html += '</div>';
+      html += renderMonth();
+      return html;
+    }
+    
     function renderMonth() {
       var now    = new Date();
       var year   = now.getFullYear();
@@ -483,10 +498,10 @@ HTML = """<!DOCTYPE html>
       if (data.errors && data.errors.length)
         html += '<div class="error-banner">수집 실패: ' + esc(data.errors.join(', ')) + '</div>';
 
-      if (range === 'today') {
+      if (range === 'brief') {
+        html += renderBrief();
+      } else if (range === 'today') {
         html += renderToday(data);
-      } else if (range === 'month') {
-        html += renderMonth();
       } else {
         html += renderCat(data, range);
       }
@@ -506,7 +521,7 @@ HTML = """<!DOCTYPE html>
       app.innerHTML = '<div class="error-banner">⚠️ 데이터를 불러오지 못했습니다: ' + esc(msg) + '</div>';
     }
 
-    loadData('today');
+    loadData('brief');
   </script>
 </body>
 </html>"""
