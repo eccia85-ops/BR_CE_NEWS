@@ -203,10 +203,21 @@ HTML = """<!DOCTYPE html>
     }
 
     function loadBrief() {
-      document.getElementById('loading').style.display = 'none';
-      var app = document.getElementById('app');
-      app.style.display = 'block';
-      app.innerHTML = '<div style="padding:20px;background:white;border-radius:8px;">브리프 탭 테스트</div>';
+      showLoading();
+      fetch('/api/brief?t=' + Date.now())
+        .then(function(res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        })
+        .then(function(data) {
+          document.getElementById('loading').style.display = 'none';
+          var app = document.getElementById('app');
+          app.style.display = 'block';
+          app.innerHTML = renderBrief(data);
+        })
+        .catch(function(e) {
+          showFetchError('브리프 로드 실패: ' + e.message);
+        });
     }
     
     function loadData(range) {
@@ -240,6 +251,102 @@ HTML = """<!DOCTYPE html>
       if (tog) tog.textContent = isOpen ? '▼' : '▲';
     }
 
+
+    function renderBrief(data) {
+      var html = '';
+      var updatedAt = data.updated_at || '';
+      var daily = data.daily_summary || {};
+      var cats = ['자사 직결', '시장 영향', '업계 동향'];
+      var ccMap = {'자사 직결': 'c1', '시장 영향': 'c2', '업계 동향': 'c3'};
+
+      html += '<div class="cat-section">';
+      html += '<div class="cat-header c1">📋 어제 뉴스 갈무리';
+      html += '<span class="cat-total">' + esc(updatedAt) + '</span></div>';
+      html += '<div class="kw-list">';
+      for (var ci = 0; ci < cats.length; ci++) {
+        var cat = cats[ci];
+        var cc = ccMap[cat];
+        var text = daily[cat] || '해당 없음';
+        html += '<div style="padding:14px 16px;border-bottom:1px solid var(--border);">';
+        html += '<div style="margin-bottom:8px;">';
+        html += '<span style="font-size:12px;font-weight:700;padding:2px 10px;';
+        html += 'border-radius:20px;display:inline-block;';
+        html += 'background:var(--primary-light);color:var(--primary);">';
+        html += esc(cat) + '</span></div>';
+        html += '<div style="font-size:13px;line-height:1.7;color:var(--text);">';
+        html += esc(text) + '</div></div>';
+      }
+      html += '</div></div>';
+
+      var weekly = (data.weekly_summaries && data.weekly_summaries.length) ? data.weekly_summaries[0] : null;
+      html += '<div class="cat-section">';
+      if (weekly) {
+        var wsum = weekly.summary || {};
+        html += '<div class="cat-header c2">📅 지난주 요약';
+        html += '<span class="cat-total">' + esc(weekly.label) + '</span></div>';
+        html += '<div class="kw-list">';
+        for (var ci = 0; ci < cats.length; ci++) {
+          var cat = cats[ci];
+          var text = wsum[cat] || '해당 없음';
+          html += '<div style="padding:14px 16px;border-bottom:1px solid var(--border);">';
+          html += '<div style="margin-bottom:8px;">';
+          html += '<span style="font-size:12px;font-weight:700;padding:2px 10px;';
+          html += 'border-radius:20px;display:inline-block;';
+          html += 'background:var(--primary-light);color:var(--primary);">';
+          html += esc(cat) + '</span></div>';
+          html += '<div style="font-size:13px;line-height:1.7;color:var(--text);">';
+          html += esc(text) + '</div></div>';
+        }
+        html += '</div>';
+      } else {
+        html += '<div class="cat-header c2">📅 지난주 요약';
+        html += '<span class="cat-total">준비중</span></div>';
+        html += '<div class="kw-list">';
+        html += '<div style="padding:16px;font-size:13px;color:var(--sub);text-align:center;">';
+        html += '금요일 자동 생성됩니다.</div></div>';
+      }
+      html += '</div>';
+
+      var monthly = (data.monthly_summaries && data.monthly_summaries.length) ? data.monthly_summaries[0] : null;
+      html += '<div class="cat-section">';
+      if (monthly) {
+        var msum = monthly.summary || {};
+        html += '<div class="cat-header c3">📆 지난달 요약';
+        html += '<span class="cat-total">' + esc(monthly.label) + '</span></div>';
+        html += '<div class="kw-list">';
+        for (var ci = 0; ci < cats.length; ci++) {
+          var cat = cats[ci];
+          var text = msum[cat] || '해당 없음';
+          html += '<div style="padding:14px 16px;border-bottom:1px solid var(--border);">';
+          html += '<div style="margin-bottom:8px;">';
+          html += '<span style="font-size:12px;font-weight:700;padding:2px 10px;';
+          html += 'border-radius:20px;display:inline-block;';
+          html += 'background:var(--primary-light);color:var(--primary);">';
+          html += esc(cat) + '</span></div>';
+          html += '<div style="font-size:13px;line-height:1.7;color:var(--text);">';
+          html += esc(text) + '</div></div>';
+        }
+        html += '</div>';
+      } else {
+        html += '<div class="cat-header c3">📆 지난달 요약';
+        html += '<span class="cat-total">준비중</span></div>';
+        html += '<div class="kw-list">';
+        html += '<div style="padding:16px;font-size:13px;color:var(--sub);text-align:center;">';
+        html += '월말 자동 생성됩니다.</div></div>';
+      }
+      html += '</div>';
+
+      return html;
+    }
+
+    function toggleBriefDetail(uid, btn) {
+      var el = document.getElementById(uid);
+      if (!el) return;
+      var isOpen = el.style.display !== 'none';
+      el.style.display = isOpen ? 'none' : 'block';
+      btn.textContent = isOpen ? '관련 기사 보기 ▼' : '관련 기사 닫기 ▲';
+    }
+    
     function buildPrompt(data, range, focus) {
       var period = range === 'week' ? '최근 7일' : '최근 30일';
       var today  = new Date().toLocaleDateString('ko-KR',
