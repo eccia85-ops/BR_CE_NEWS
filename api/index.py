@@ -273,18 +273,8 @@ HTML = """<!DOCTYPE html>
         html += 'border-radius:20px;display:inline-block;';
         html += 'background:var(--primary-light);color:var(--primary);">';
         html += esc(cat) + '</span></div>';
-        html += '<div style="font-size:13px;line-height:1.8;">';
-        var lines = text.split('\n');
-        for (var li = 0; li < lines.length; li++) {
-          var line = lines[li].trim();
-          if (!line) continue;
-          if (line.charAt(0) === '-') {
-            html += '<div style="color:var(--text);margin-top:8px;">' + esc(line) + '</div>';
-          } else {
-            html += '<div style="color:var(--sub);font-size:12px;margin-left:12px;">' + esc(line) + '</div>';
-          }
-        }
-        html += '</div></div>';
+        html += '<div style="font-size:13px;line-height:1.7;color:var(--text);">';
+        html += esc(text) + '</div></div>';
       }
       html += '</div></div>';
 
@@ -304,18 +294,8 @@ HTML = """<!DOCTYPE html>
           html += 'border-radius:20px;display:inline-block;';
           html += 'background:var(--primary-light);color:var(--primary);">';
           html += esc(cat) + '</span></div>';
-          html += '<div style="font-size:13px;line-height:1.8;">';
-        var lines = text.split('\n');
-        for (var li = 0; li < lines.length; li++) {
-          var line = lines[li].trim();
-          if (!line) continue;
-          if (line.charAt(0) === '-') {
-            html += '<div style="color:var(--text);margin-top:8px;">' + esc(line) + '</div>';
-          } else {
-            html += '<div style="color:var(--sub);font-size:12px;margin-left:12px;">' + esc(line) + '</div>';
-          }
-        }
-        html += '</div></div>';
+          html += '<div style="font-size:13px;line-height:1.7;color:var(--text);">';
+          html += esc(text) + '</div></div>';
         }
         html += '</div>';
       } else {
@@ -343,18 +323,8 @@ HTML = """<!DOCTYPE html>
           html += 'border-radius:20px;display:inline-block;';
           html += 'background:var(--primary-light);color:var(--primary);">';
           html += esc(cat) + '</span></div>';
-          html += '<div style="font-size:13px;line-height:1.8;">';
-        var lines = text.split('\n');
-        for (var li = 0; li < lines.length; li++) {
-          var line = lines[li].trim();
-          if (!line) continue;
-          if (line.charAt(0) === '-') {
-            html += '<div style="color:var(--text);margin-top:8px;">' + esc(line) + '</div>';
-          } else {
-            html += '<div style="color:var(--sub);font-size:12px;margin-left:12px;">' + esc(line) + '</div>';
-          }
-        }
-        html += '</div></div>';
+          html += '<div style="font-size:13px;line-height:1.7;color:var(--text);">';
+          html += esc(text) + '</div></div>';
         }
         html += '</div>';
       } else {
