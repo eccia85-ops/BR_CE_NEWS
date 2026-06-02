@@ -273,8 +273,18 @@ HTML = """<!DOCTYPE html>
         html += 'border-radius:20px;display:inline-block;';
         html += 'background:var(--primary-light);color:var(--primary);">';
         html += esc(cat) + '</span></div>';
-        html += '<div style="font-size:13px;line-height:1.7;color:var(--text);">';
-        html += esc(text) + '</div></div>';
+        html += '<div style="font-size:13px;line-height:1.8;">';
+        var briefLines = text.split(String.fromCharCode(10));
+        for (var li = 0; li < briefLines.length; li++) {
+          var briefLine = briefLines[li].trim();
+          if (!briefLine) continue;
+          if (briefLine.charAt(0) === '-') {
+            html += '<div style="color:var(--text);margin-top:8px;">' + esc(briefLine) + '</div>';
+          } else {
+            html += '<div style="color:var(--sub);font-size:12px;margin-left:12px;">' + esc(briefLine) + '</div>';
+          }
+        }
+        html += '</div></div>';
       }
       html += '</div></div>';
 
@@ -294,16 +304,36 @@ HTML = """<!DOCTYPE html>
           html += 'border-radius:20px;display:inline-block;';
           html += 'background:var(--primary-light);color:var(--primary);">';
           html += esc(cat) + '</span></div>';
-          html += '<div style="font-size:13px;line-height:1.7;color:var(--text);">';
-          html += esc(text) + '</div></div>';
+          html += '<div style="font-size:13px;line-height:1.8;">';
+        var briefLines = text.split(String.fromCharCode(10));
+        for (var li = 0; li < briefLines.length; li++) {
+          var briefLine = briefLines[li].trim();
+          if (!briefLine) continue;
+          if (briefLine.charAt(0) === '-') {
+            html += '<div style="color:var(--text);margin-top:8px;">' + esc(briefLine) + '</div>';
+          } else {
+            html += '<div style="color:var(--sub);font-size:12px;margin-left:12px;">' + esc(briefLine) + '</div>';
+          }
+        }
+        html += '</div></div>';
         }
         html += '</div>';
       } else {
         html += '<div class="cat-header c2">📅 지난주 요약';
         html += '<span class="cat-total">준비중</span></div>';
         html += '<div class="kw-list">';
-        html += '<div style="padding:16px;font-size:13px;color:var(--sub);text-align:center;">';
-        html += '금요일 자동 생성됩니다.</div></div>';
+        html += '<div style="font-size:13px;line-height:1.8;">';
+        var briefLines = text.split(String.fromCharCode(10));
+        for (var li = 0; li < briefLines.length; li++) {
+          var briefLine = briefLines[li].trim();
+          if (!briefLine) continue;
+          if (briefLine.charAt(0) === '-') {
+            html += '<div style="color:var(--text);margin-top:8px;">' + esc(briefLine) + '</div>';
+          } else {
+            html += '<div style="color:var(--sub);font-size:12px;margin-left:12px;">' + esc(briefLine) + '</div>';
+          }
+        }
+        html += '</div></div>';
       }
       html += '</div>';
 
