@@ -13,6 +13,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 import json
 import base64
+import re
 
 from config.sources import RSS_SOURCES
 from config.keywords import KEYWORDS, CATEGORIES
@@ -249,6 +250,73 @@ def get_articles(range: str = Query("today")):
         "errors":   errors,
     })
 
+# ── Gemini 요약 함수 ──────────────────────────────────────────────────────────
+
+def gemini_summarize(articles_by_cat, range_label):
+    """카테고리별 기사 목록을 Gemini로 요약"""
+    api_key = os.environ.get("GEMINI_API_KEY", "")
+    if not api_key:
+        return {}
+
+    # 프롬프트 구성
+    lines = []
+    lines.append(f"아래는 {range_label} 제약 업계 뉴스입니다.")
+    lines.append("보령제약 CE기획팀 관점에서 카테고리별로 핵심 내용을 2~3줄로 요약해주세요.")
+    lines.append("주요 사업: 만성질환(순환기/당뇨/이상지질), 항암, 항생제, CDMO")
+    lines.append("")
+    lines.append("[출력 형식] 각 카테고리별로 아래 형식으로만 답하세요:")
+    lines.append("자사 직결: (요약)")
+    lines.append("시장 영향: (요약)")
+    lines.append("업계 동향: (요약)")
+    lines.append("")
+    lines.append("========================================")
+    lines.append("")
+
+    for cat, arts in articles_by_cat.items():
+        if not arts:
+            continue
+        lines.append(f"=== {cat} ===")
+        for a in arts[:20]:  # 카테고리당 최대 20건
+            lines.append(f"- {a['title']} ({a['site']})")
+        lines.append("")
+
+    prompt = "\n".join(lines)
+
+    # Gemini API 호출
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+    body = {
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {"maxOutputTokens": 1000, "temperature": 0.3}
+    }
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(body).encode("utf-8"),
+        headers={"Content-Type": "application/json"},
+        method="POST"
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            res = json.loads(r.read())
+            text = res["candidates"][0]["content"]["parts"][0]["text"]
+            return parse_summary(text)
+    except Exception:
+        return {}
+
+
+def parse_summary(text):
+    """Gemini 응답에서 카테고리별 요약 파싱"""
+    result = {}
+    patterns = {
+        "자사 직결": r"자사 직결[:：]\s*(.+?)(?=시장 영향|업계 동향|$)",
+        "시장 영향": r"시장 영향[:：]\s*(.+?)(?=자사 직결|업계 동향|$)",
+        "업계 동향": r"업계 동향[:：]\s*(.+?)(?=자사 직결|시장 영향|$)",
+    }
+    for cat, pattern in patterns.items():
+        match = re.search(pattern, text, re.DOTALL)
+        if match:
+            result[cat] = match.group(1).strip()
+    return result
+
 # ── GitHub 저장 함수 ──────────────────────────────────────────────────────────
 
 def load_news_json():
@@ -357,12 +425,32 @@ def collect():
             existing_links.add(a["link"])
             new_count += 1
 
+    # Gemini 요약 생성
+    from config.keywords import CATEGORIES
+    articles_by_cat = {}
+    for cat, kws in CATEGORIES.items():
+        kw_set = set(kws)
+        matched = []
+        seen = set()
+        for a in all_articles:
+            if a["link"] not in seen:
+                for kw in kw_set:
+                    if kw in a["title"]:
+                        matched.append(a)
+                        seen.add(a["link"])
+                        break
+        articles_by_cat[cat] = matched
+
+    today_str = datetime.now(tz=KST).strftime("%Y년 %m월 %d일")
+    summary = gemini_summarize(articles_by_cat, today_str)
+
     # GitHub 저장
     ok = save_news_json(saved_articles, sha)
 
     return JSONResponse({
-        "status":    "ok" if ok else "save_failed",
-        "new":       new_count,
-        "total":     len(saved_articles),
-        "errors":    errors,
+        "status":   "ok" if ok else "save_failed",
+        "new":      new_count,
+        "total":    len(saved_articles),
+        "summary":  summary,
+        "errors":   errors,
     })
