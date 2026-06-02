@@ -248,6 +248,7 @@ def gemini_summarize(articles_by_cat, range_label, brief=False):
         lines.append("[출력 형식] 아래 형식으로만 답하세요. 마크다운 사용 금지:")
     lines.append("각 카테고리 안에서 항목별로 아래 형식으로 나열하세요.")
     lines.append("중요도 높은 항목부터 나열하세요.")
+    lines.append("동일한 사건을 다룬 기사는 하나로 통합해서 표기하세요.")
     lines.append("해당 카테고리 기사가 없으면 '해당 없음'으로 표기하세요.")
     lines.append("")
     lines.append("예시:")
