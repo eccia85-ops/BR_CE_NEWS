@@ -204,7 +204,7 @@ HTML = """<!DOCTYPE html>
 
     function loadBrief() {
       showLoading();
-      fetch('https://raw.githubusercontent.com/eccia85-ops/BR_CE_NEWS/main/data/news.json?t=' + Date.now())
+      fetch('/api/brief?t=' + Date.now())
         .then(function(res) {
           if (!res.ok) throw new Error('HTTP ' + res.status);
           return res.json();
