@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-06-03 07:39",
-  "total": 298,
+  "updated_at": "2026-06-04 07:41",
+  "total": 341,
   "articles": [
     {
       "site": "의학신문",
@@ -2087,12 +2087,313 @@
       "link": "https://www.medipana.com/news/articleView.html?idxno=412293",
       "date": "2026-06-03 02:38:04",
       "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "국민성장펀드, 제약바이오 글로벌화 마중물 될까",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005594",
+      "date": "2026-06-04 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "다국적제약, 소셜미디어·팝업·캠페인 등 환자 소통 채널 다각화 '눈길'",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005593",
+      "date": "2026-06-04 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "제약업계, 저용량 치료제 라인업 확대…맞춤 처방 경쟁 본격화",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005571",
+      "date": "2026-06-04 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "오노약품 다계통 위축증 후보 2상 임상결과 양호",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005525",
+      "date": "2026-06-04 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "의약품유통협회-대웅제약 조만간 전격 공식 회동하나",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005440",
+      "date": "2026-06-04 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "주체적인 의사 면허 관리를 위한 단계적 접근을 위한 제언 (VI)",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005181",
+      "date": "2026-06-04 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "수술로봇 특허 경쟁, 센싱·자율제어로 이동…한국 선택과 집중 시급",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005595",
+      "date": "2026-06-04 05:55:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "전공의노조, 윤석열 前 대통령 법정최고형 촉구",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005604",
+      "date": "2026-06-04 05:50:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "싸이·세브란스 비대면·대리처방 의혹...‘VIP 편의 진료’ 도마 위",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005603",
+      "date": "2026-06-04 05:50:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "고소·고발 일상 된 의료현장...필수의료 무너진다",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005602",
+      "date": "2026-06-04 05:50:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "네이밍| 의료와 AI가 만나는 곳…‘GC메디아이’에 담긴 이야기",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005536",
+      "date": "2026-06-04 05:50:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "광주시의사회, 1천석 규모 기아타이거즈 응원 행사 개최",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005601",
+      "date": "2026-06-04 04:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "<font color=#660066>[광고로 읽는 시대]</font>한국화이자제약 '시네칸'",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005514",
+      "date": "2026-06-03 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "유럽 혈관내 원격 수술 로봇 승인",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3005448",
+      "date": "2026-06-03 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "치과의사 자택 마약 투약, “진료행위 아냐” 면허정지 취소",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=303951",
+      "date": "2026-06-04 06:10:00",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "[기자의 펜] 빅파마 CEO 20명이 일본 총리를 만난 '진짜' 이유",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=303940",
+      "date": "2026-06-04 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "'실적 하이킥' 지엘팜텍...신약 파이프라인 출격대기",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=303832",
+      "date": "2026-06-04 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "'K-비만신약', 'ADA 2026' 출격…개발 경쟁력 선보인다",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412311",
+      "date": "2026-06-04 06:04:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "[진단] 한국파마, 외형 키운 도입 확대…상품·위수탁 의존도 ↑",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412314",
+      "date": "2026-06-04 06:03:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "SK바사, 유니세프 독감백신까지 확보…수익기반 안정화 기회",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412309",
+      "date": "2026-06-04 06:02:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "하나제약, 2세 승계구도 변화 오나…지분 격차 1%대로 좁혀져",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412315",
+      "date": "2026-06-04 06:01:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "'배상'에서 '보호'로…공제조합이 그리는 의료인 안전망",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412307",
+      "date": "2026-06-04 06:01:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "글로벌 신약 한국 심사, 240일 허가체계 단축으로 앞당겨진다",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=412310",
+      "date": "2026-06-04 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "6·3 지방선거 약사 8명 당선 확정 '영광의 얼굴은?'",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=536150",
+      "date": "2026-06-04 05:55:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "글로벌제약 혁신 치료제 잇단 급여 확대…한국 공략 '속도'",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=536145",
+      "date": "2026-06-04 05:53:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "여드름 치료제 시장…처방 주류 '벤조일퍼옥사이드' 일반약은 '미미'",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=536140",
+      "date": "2026-06-04 05:52:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "문신사 일반의약품 취급 논의 본격화…약국·약사 역할 커진다",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=536126",
+      "date": "2026-06-04 05:52:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "“한국 신약 허가, 더 이상 ‘후순위’ 아니다”…식약처 240일 체계 가동",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=536142",
+      "date": "2026-06-04 05:51:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "\"강대강 대치 끝나나\"…유통협회·대웅제약 첫 회동 가능성",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=536141",
+      "date": "2026-06-04 05:51:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "약국 밴딩 점유율 15.7%로 '껑충'…밴딩 배분구조 변화 뚜렷",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=536132",
+      "date": "2026-06-04 05:51:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "[약공시론] 오동꽃",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=535996",
+      "date": "2026-06-04 05:51:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "약국은 많은데, 왜 우리 약국이어야 할까",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=535979",
+      "date": "2026-06-04 05:51:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "류규하 약사, 대구 중구청장 3연임 당선 새역사 썼다",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=536149",
+      "date": "2026-06-04 05:50:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "'혈압' 좀 낮추고 싶은데…도움된다는 성분들의 진실",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=535932",
+      "date": "2026-06-04 05:50:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "[릴레이집회-258일차] 숙명약대 개국동문회, 한약사 문제 해결 촉구 동참",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=536143",
+      "date": "2026-06-04 05:49:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "피부 미인의 첫걸음, 건조함부터  '이렇게' 막아라",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=536137",
+      "date": "2026-06-04 05:49:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "'압도적 존재감 마운자로'... 불패신화 쓰던 '키트루다' 가뿐히 넘었다",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=76579",
+      "date": "2026-06-04 06:07:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "K-제약바이오 기술수출 다시 뛴다… 상반기만 13조 '기염'",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=76587",
+      "date": "2026-06-04 06:06:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "'ASCO서 기립박수 받는 K-제약바이오'... 그 날은 오고 있다",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=76582",
+      "date": "2026-06-04 06:05:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "결과 제출 앞둔 콜린 임상재평가… '1차 변수 미충족'이 변수",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=76578",
+      "date": "2026-06-04 06:04:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "240일 신약 허가 체계 세부안 공개… \"신약 허가 선도 심사국으로\"",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=76586",
+      "date": "2026-06-04 06:03:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "젤잔즈·린버크 강직성 척추염 건보 적용… 경구용 치료 접근성 확대",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=76580",
+      "date": "2026-06-04 06:02:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "[경력채용] 제일약품, 환인제약, 국제약품, 명문제약, 비보존제약",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=76575",
+      "date": "2026-06-04 06:01:00",
+      "tags": []
     }
   ],
   "daily_summary": {
-    "자사 직결": "- 보령, 탁소텔 인수 완료 및 글로벌 판매 시작\n  보령의 항암 포트폴리오 강화 및 글로벌 시장 진출 확대 기회",
-    "시장 영향": "- 온코닉테라퓨틱스 '자큐보', 인도 신약 허가 신청 완료\n  만성질환 치료제 시장 경쟁 심화 및 신규 치료 옵션 등장\n\n- 美 MFN 약가 동맹, 한국 신약 접근성에 적신호\n  국내 신약의 해외 시장 진출 및 약가 협상에 부정적 영향 예상\n\n- 소세포폐암 신약 암젠 ‘임딜리트라’ 유럽 승인\n  항암 분야 경쟁 심화 및 새로운 치료 옵션 등장\n\n- 젤잔즈, 강직성 척추염·건선성 관절염 1차 급여 확대\n  자가면역질환 치료제 시장 경쟁 구도 변화 및 급여 정책 영향\n\n- 셀트리온, 자가면역질환 치료제 ‘CT-P55’ 캐나다 품목허가 신청\n  바이오시밀러 시장 경쟁 심화 및 글로벌 시장 진출 동향\n\n- 종근당 복합제 행보, 약가개편 속 생존 기술\n  국내 제약사들의 약가 정책 대응 전략 및 시장 경쟁 구도",
-    "업계 동향": "- 고혈압·고지혈증·당뇨병 관리 중요성 강조\n  보령의 만성질환 치료제 사업 영역의 중요성 재확인\n\n- AI·바이오·유전자치료제 연구 협력 확대\n  신약 개발 트렌드 변화 및 R&D 투자 방향 모색 필요\n\n- 국제약품, 저용량 고혈압 복합제 ‘엑스듀오정 2.5/80mg’ 출시\n  고혈압 치료제 시장 경쟁 심화 및 복합제 개발 동향\n\n- 대웅제약, '듀피젠트' 바이오시밀러 공동 개발\n  바이오시밀러 시장 경쟁 심화 및 국내 제약사 간 협력 동향\n\n- 큐라클, 당뇨병성 신증 신약 'CU01' 국제특허(PCT) 출원 완료\n  당뇨병성 신증 치료제 개발 경쟁 및 R&D 동향\n\n- 티움바이오, 두경부암 임상데이터 발표\n  항암 분야 R&D 성과 및 글로벌 학회 발표 동향"
+    "자사 직결": "- 보령, 탁소텔 인수 완료 및 글로벌 판매 시작\n  보령의 주요 항암제 포트폴리오 강화 및 글로벌 시장 진출 가속화 기대",
+    "시장 영향": "- 온코닉테라퓨틱스 '자큐보', 인도 신약 허가 신청 완료\n  보령의 항암제 경쟁사들의 신약 개발 및 해외 진출 동향 주시 필요\n- 큐라클, 당뇨병성 신증 신약 'CU01' 국제특허(PCT) 출원 완료\n  보령의 당뇨 치료제 분야 경쟁사의 R&D 동향 파악\n- 글로벌 신약 허가 체계 단축 (240일) 및 급여 확대 동향\n  신약 출시 및 시장 진입 속도 변화에 따른 시장 경쟁 환경 변화 대비",
+    "업계 동향": "- 고혈압, 고지혈증, 당뇨병 관리의 중요성 강조\n  보령의 만성질환 치료제 사업 분야에서의 시장 리더십 강화 및 환자 대상 교육/캠페인 강화 필요\n- 대웅제약, 차임 바이오로직스와 '듀피젠트' 바이오시밀러 공동 개발\n  보령의 바이오시밀러 사업 경쟁 심화 예상, 자체 바이오시밀러 R&D 및 사업 전략 점검 필요\n- 국제약품, 고혈압 복합제 '엑스듀오정' 출시\n  보령의 고혈압 치료제 시장 내 경쟁 심화 예상, 제품 차별화 및 마케팅 전략 강화 필요"
   },
   "weekly_summaries": [],
   "monthly_summaries": []
