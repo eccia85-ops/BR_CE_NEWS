@@ -420,9 +420,15 @@ def collect():
     all_articles, errors = get_all_articles()
     existing_links = set(a["link"] for a in saved_articles)
 
+    cutoff_recent = datetime.now(tz=timezone.utc) - timedelta(days=3)
     new_count = 0
     for a in all_articles:
         if a["link"] not in existing_links:
+            dt = a.get("date_obj")
+            if dt is not None:
+                dt = ensure_aware(dt)
+                if dt < cutoff_recent:
+                    continue
             saved_articles.append({
                 "site":  a["site"],
                 "title": a["title"],
