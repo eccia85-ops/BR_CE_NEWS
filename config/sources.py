@@ -58,12 +58,12 @@ RSS_SOURCES = [
     #     "url": "https://www.yakup.com/rss/allArticle.xml"
     # },
     # ✅ 활성 — 제약/바이오 전반 + 보령 관련 주요 매체 커버
-    {
-        "site": "구글뉴스-제약바이오",
-        "url": "https://news.google.com/rss/search?q=제약+바이오&hl=ko&gl=KR&ceid=KR:ko"
-    },
-    {
-        "site": "구글뉴스-보령",
-        "url": "https://news.google.com/rss/search?q=보령제약&hl=ko&gl=KR&ceid=KR:ko"
-    },
+    #{
+    #    "site": "구글뉴스-제약바이오",
+    #    "url": "https://news.google.com/rss/search?q=제약+바이오&hl=ko&gl=KR&ceid=KR:ko"
+    #},
+    #{
+    #    "site": "구글뉴스-보령",
+    #    "url": "https://news.google.com/rss/search?q=보령제약&hl=ko&gl=KR&ceid=KR:ko"
+    #},
 ]
