@@ -409,7 +409,8 @@ def save_news_json(articles, sha=None, daily_summary=None, weekly_summaries=None
     try:
         with urllib.request.urlopen(req, timeout=15) as r:
             return r.status in (200, 201)
-    except Exception:
+    except Exception as e:
+        print(f"SAVE_ERROR: {e}")
         return False
 
 
