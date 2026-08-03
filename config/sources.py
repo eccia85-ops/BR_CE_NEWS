@@ -57,7 +57,7 @@ RSS_SOURCES = [
     #     "site": "약업닷컴",
     #     "url": "https://www.yakup.com/rss/allArticle.xml"
     # },
-    # ✅ 활성 — 제약/바이오 전반 + 보령 관련 주요 매체 커버
+    # ❌ 제외 — 노이즈 많음
     #{
     #    "site": "구글뉴스-제약바이오",
     #    "url": "https://news.google.com/rss/search?q=제약+바이오&hl=ko&gl=KR&ceid=KR:ko"
