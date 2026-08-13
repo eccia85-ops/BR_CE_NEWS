@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-08-13 07:04",
-  "total": 1640,
+  "updated_at": "2026-08-14 07:34",
+  "total": 1841,
   "articles": [
     {
       "site": "의학신문",
@@ -11481,13 +11481,1429 @@
       "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540326",
       "date": "2026-08-12 10:31:01",
       "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "건보공단 광주전라제주본부, 가뭄 피해 지역에 생수 4만2천병 전달",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010197",
+      "date": "2026-08-14 06:26:33",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "병원계 ‘병원 가업상속공제 대상 제외’ 반발 확산",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010199",
+      "date": "2026-08-14 06:04:51",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "“고령 관절·척추질환 중증도 분류체계 개선 시급” 한 목소리",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010196",
+      "date": "2026-08-14 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "<font color= #ff9933>[제약 Weekly]</font>화일약품, 상반기 영업손실 확대…경영진 교체에도 사업 부진",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010192",
+      "date": "2026-08-14 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "“의료창업, 이제 의대 교육에 필요”…한림의대 관련 과목 만든다",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010189",
+      "date": "2026-08-14 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "경구용 항응고제 릭시아나 시장 격돌 임박",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010185",
+      "date": "2026-08-14 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "로슈 알츠하이머병 혈액검사법 日 승인",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010117",
+      "date": "2026-08-14 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "日 정부, 지역별 다른 '사용권장약 리스트' 작성 추진",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010116",
+      "date": "2026-08-14 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "아산재단 ‘메디굿파트너스’ 지분 매각 추진…‘몸값 책정·들러리논란’ 넘을까",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010064",
+      "date": "2026-08-14 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "아이가 이유 없이 피곤하고 멍이 자주 든다면?…‘백혈병’ 신호일 수도",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010188",
+      "date": "2026-08-13 21:56:52",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "팬젠, 영업손실 2.2억…“개발비 증가 따른 적자 전환”",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010193",
+      "date": "2026-08-13 21:56:42",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "건협 울산, 울산중구종합사회복지관과 MOU",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010187",
+      "date": "2026-08-13 16:34:50",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "일산백병원 류향진 간호차장, 한국국제보건의료재단 이사장 표창 수상",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010186",
+      "date": "2026-08-13 15:43:08",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "한국제약바이오협회, ‘2026 CP 가이드북’ 발행",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010184",
+      "date": "2026-08-13 15:09:02",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "'45만 노인 진료·약제비 지원 중단 계획' 철회 촉구",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010178",
+      "date": "2026-08-13 15:08:46",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "계명대 동산병원·간호대학 공동 임상연구 국제학술지 게재",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010181",
+      "date": "2026-08-13 15:05:56",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "고대의대, 지역사회 기반 교육 강화",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010180",
+      "date": "2026-08-13 15:04:32",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "독립 어린이병원 건립 및 소아 의료 환경 개선 절실",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010183",
+      "date": "2026-08-13 15:01:13",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "정부 ‘안전한 병원’ 조직문화 개선 나선다",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010179",
+      "date": "2026-08-13 14:27:51",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "KOFIH-건대병원, 베트남 탄짜우종합병원 의료기기 관리 역량 강화",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010175",
+      "date": "2026-08-13 13:52:32",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "“의료기술 사업화, ‘만남’에서 해법 찾는다”",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010159",
+      "date": "2026-08-13 13:36:49",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "전남의사회, 베네수엘라 지진 이재민 돕기 앞장",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010171",
+      "date": "2026-08-13 12:20:43",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "이화의료원, 몽골서 13번째 의료봉사...1168명 진료",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010174",
+      "date": "2026-08-13 12:17:21",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "고대의대, 백신 개발 전주기 역량 강화",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010145",
+      "date": "2026-08-13 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "'일부 검사 생략' 자동차 검사소 불법 적발",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010115",
+      "date": "2026-08-13 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "국산 mRNA 백신 개발 임상 본궤도 진입",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010111",
+      "date": "2026-08-13 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "코로나19 mRNA 백신 2028년까지 국산화 추진",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010110",
+      "date": "2026-08-13 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "[동물대체시험 미래를 연다③] 콕밤 미래 구상은?",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010078",
+      "date": "2026-08-13 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "미 12시간 지속 다중 증상 감기약 승인",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010021",
+      "date": "2026-08-13 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "미 유방 초음파 판독·보고 AI 승인",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010013",
+      "date": "2026-08-13 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "한국원자력의학원 신임 감사에 정규채 前 한국생산기술연구원 단장",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010172",
+      "date": "2026-08-13 11:57:26",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "바이탈뷰티, ‘슈퍼콜라겐 PDRN’ 출시",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010170",
+      "date": "2026-08-13 11:34:52",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "동국제약, ‘이너케어 필름 4종’ 출시",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010169",
+      "date": "2026-08-13 11:34:43",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "파마리서치, 호주 ‘Aesthetics’ 참가…글로벌 학술 교류 확대",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010168",
+      "date": "2026-08-13 11:34:38",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "안국약품, ‘언어 너머의 언어: 표현으로 허무는 경계’ 展 개최",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010167",
+      "date": "2026-08-13 11:34:31",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "동화약품, 광복절 맞아 독립유공자 지원 캠페인 진행",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010165",
+      "date": "2026-08-13 11:16:02",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "아이소이, ‘바로팜’ 입점…약국 유통 채널 강화",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010162",
+      "date": "2026-08-13 11:15:52",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "한미약품, ‘팔탄 스마트 플랜트’ 품절·품질 지표 향상",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010164",
+      "date": "2026-08-13 11:15:47",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "에스트라, KDD서 AI 피부 진단 기술 연구 성과 공개",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010161",
+      "date": "2026-08-13 11:15:16",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "태극제약, ‘도미나라이트크림’ 60g 출시",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010160",
+      "date": "2026-08-13 11:06:26",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "킴스제약, 그린광학과 의료기기 사업 전략적 제휴",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010158",
+      "date": "2026-08-13 11:03:05",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "레이저옵텍, 기미 전문 국제학회서 ‘헬리오스785 피코’ 우수성 입증",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010156",
+      "date": "2026-08-13 11:02:58",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "국립의전원 설립 논의 본궤도...정부 전문위 가동",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010157",
+      "date": "2026-08-13 10:57:18",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "국립암센터 실험동물운용팀 20주년...전임상 연구지원 고도화",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010155",
+      "date": "2026-08-13 10:50:27",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "“야간·휴일 의료공백, 개별 의사 아닌 지역체계 대응 필요”",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010154",
+      "date": "2026-08-13 10:47:58",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "동남권원자력의학원, AI·로봇 활용 맞춤형 재활 연구 모색",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010148",
+      "date": "2026-08-13 10:34:21",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "동아제약, ‘챔토피 연질캡슐’ 출시",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010147",
+      "date": "2026-08-13 10:34:15",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "HLA-DQ 항체 있어도 신장이식 가능…장기 추적 필수",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010142",
+      "date": "2026-08-13 10:34:09",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "부산성모병원, 국내 최초 '레볼루션 바이브' 도입 운영",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010150",
+      "date": "2026-08-13 10:34:04",
+      "tags": []
+    },
+    {
+      "site": "의학신문",
+      "title": "을지재단, 양양에 '클리프비치 리조트&풀빌라' 오픈",
+      "link": "https://www.bosa.co.kr/news/articleView.html?idxno=3010144",
+      "date": "2026-08-13 10:33:35",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "트론티네맙이 바꾼 판… 글로벌 빅파마, BBB 셔틀 다시 '눈독'",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78392",
+      "date": "2026-08-14 06:06:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "제약 산업 진흥 두 축 '보산진-한약진', '투 高' 원장 체제 가동",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78398",
+      "date": "2026-08-14 06:05:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "비대면진료 하위법령 격론… 초진·처방·배송 어디까지 제한?",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78388",
+      "date": "2026-08-14 06:04:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "프롬바이오 사업재편 윤곽…건기식은 'AI', 바이오는 '후속 파이프라인'",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78397",
+      "date": "2026-08-14 06:03:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "아이에게 설탕 덜 먹였더니 성인 치매 위험 23% 낮았다",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78307",
+      "date": "2026-08-14 06:02:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "홍보 현장서 찾은 '공약수'… '최헌수의 정책홍보 핵심'",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78395",
+      "date": "2026-08-14 06:01:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "[경력채용] 경보제약, 휴젤, 한독, 일양바이오팜, 제뉴원사이언스",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78396",
+      "date": "2026-08-14 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "[HIT알공] SK케미칼, 상반기 매출 1.4조…전년비 24% 증가",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78380",
+      "date": "2026-08-13 19:05:50",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "[실적]SK케미칼, 2분기 매출 4791억·영업익 319억 기록",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78393",
+      "date": "2026-08-13 19:05:16",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "[실적] 팬젠, 2분기 매출 39억...전년 동기 대비 13.5%↑",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78391",
+      "date": "2026-08-13 16:23:19",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "[주식] 코오롱티슈진, 슬금슬금 오르더니 '껑충'…20% 급등",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78390",
+      "date": "2026-08-13 15:58:37",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "[실적] 한국파마, 상반기 영업이익 35억원, 280%↑",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78389",
+      "date": "2026-08-13 15:47:49",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "식약처, 골수섬유증 치료 희귀약 '본조캡슐' 허가",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78386",
+      "date": "2026-08-13 15:23:52",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "아이진 컨소시엄, 차세대 코로나19 mRNA 백신 1상 IND 승인",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78384",
+      "date": "2026-08-13 15:02:31",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "바이오 투자 '자금 공백' 메운다…후기임상 위험분담·장기자본 논의",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78387",
+      "date": "2026-08-13 14:59:44",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "티끌모아 태산? 잘 키운 똘똘한 의약품 하나가 성장 주도",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78329",
+      "date": "2026-08-13 12:04:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "바이오 플랫폼 특허, 하나의 권리로 여러 파이프라인 지킬 수 있나",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78290",
+      "date": "2026-08-13 12:02:00",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "[실적] 지엘팜텍, 상반기 매출 191억원…전년 대비 18% 증가",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78383",
+      "date": "2026-08-13 11:50:15",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "한미약품 팔탄 스마트 플랜트, 상반기 품절 57% 감소",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78382",
+      "date": "2026-08-13 11:06:57",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "한독학술경영대상에 이강영 세브란스병원장 선정",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78379",
+      "date": "2026-08-13 09:25:29",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "동국제약, 다이소 전용 '이너케어 필름' 4종 출시",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78378",
+      "date": "2026-08-13 09:22:56",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "동아제약, 어린이 아토피습진 가려움 완화 '챔토피' 출시",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78377",
+      "date": "2026-08-13 09:19:56",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "시지메드텍, 과기정통부 '우수기업연구소' 지정",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78376",
+      "date": "2026-08-13 09:16:54",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "묵현상 전 국가신약개발사업단장, 뉴 패스바이오 대표됐다",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78375",
+      "date": "2026-08-13 09:09:56",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "[실적] 씨티씨바이오, 상반기 영업익 272%…수익성 개선 뚜렷",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78374",
+      "date": "2026-08-13 08:52:05",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "국립암센터, 실험동물운용팀 20주년 워크숍 개최",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78373",
+      "date": "2026-08-13 08:46:07",
+      "tags": []
+    },
+    {
+      "site": "히트뉴스",
+      "title": "셀트리온, CT-P73 미국 FDA 패스트트랙 지정",
+      "link": "https://www.hitnews.co.kr/news/articleView.html?idxno=78372",
+      "date": "2026-08-13 08:10:41",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "사노피가 점찍은 큐라클, 파이프라인 MT-101·CU01 기술이전 정조준",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305601",
+      "date": "2026-08-14 01:55:00",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "\"기저귀 없인 운전 못했다\"...투병 끝 린버크로 일상 되찾아",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305603",
+      "date": "2026-08-14 01:50:00",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "이재명 대통령 방향성과 역행...톡신 국가핵심기술 해제 4년째 발목잡기",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305559",
+      "date": "2026-08-14 01:50:00",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "애브비, 유파다시티닙...임상3상에서 환자 절반 24주 만에 모발 회복",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305593",
+      "date": "2026-08-14 01:45:00",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "차바이오텍, 상반기 연결 매출 6461억원... 전년比 7% 증가",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305600",
+      "date": "2026-08-13 17:59:00",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "셀타스퀘어, '의료 AI 데이터 활용 바우처 사업' 선정... RWD 실증 착수",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305599",
+      "date": "2026-08-13 17:56:18",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "팬젠, 2분기 매출 39.6억원... 전년比 13.5% 증가",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305598",
+      "date": "2026-08-13 17:52:40",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "한국제약바이오협회, '2026 CP가이드북' 발간... 5차 개정사항 반영",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305597",
+      "date": "2026-08-13 17:50:48",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "GC녹십자, 코로나19 mRNA 백신 개발 현황 발표... 지난달 2상 IND 제출",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305596",
+      "date": "2026-08-13 17:47:24",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "큐렉소, 상반기 매출 397억원…전년 동기 대비 증가",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305595",
+      "date": "2026-08-13 16:42:52",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "한국파마, 상반기 영업이익 35억원…매출 14.3% 증가",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305590",
+      "date": "2026-08-13 16:30:00",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "식약처, 골수섬유증 치료제 ‘본조캡슐’ 수입 허가",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305592",
+      "date": "2026-08-13 16:08:40",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "장벽 없는 분배, 약사업이 증명한 성평등과 소득 안정성",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305591",
+      "date": "2026-08-13 15:07:06",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "서흥, ‘CPHI/Hi Korea 2026’·‘Vitafoods Asia 2026’ 참가",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305566",
+      "date": "2026-08-13 14:15:00",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "레이저옵텍, 기미·색소질환 학술대회 ‘SINMELASMA’ 참가",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305565",
+      "date": "2026-08-13 14:05:00",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "파마리서치, 호주 ‘Aesthetics 2026’ 참가…학술 프로그램 진행",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305564",
+      "date": "2026-08-13 14:00:00",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "“병원이 안전해야 환자도 안전”...정부·보건의료계 공동 대응",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305587",
+      "date": "2026-08-13 13:57:52",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "현대바이오, ‘페니트리움’ 전립선암 임상 1상 첫 환자 투약",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305569",
+      "date": "2026-08-13 13:30:00",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "아이진 컨소시엄, 코로나19 mRNA 백신 'BMI2012주' 임상 1상 IND 승인",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305586",
+      "date": "2026-08-13 12:03:05",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "[건강칼럼] 오목가슴·새가슴, 성장기 발견과 보호자의 역할이 중요",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305585",
+      "date": "2026-08-13 11:14:11",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "한미약품 팔탄 스마트 플랜트, 품질 관리 지표 향상",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305584",
+      "date": "2026-08-13 10:54:08",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "GC녹십자엠에스, 가정용 의료기기 브랜드 'GCFiT' 론칭",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305583",
+      "date": "2026-08-13 10:39:18",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "전주 새강병원, 실시간 환자 모니터링 기반 스마트 병원 운영 체계 구축",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305582",
+      "date": "2026-08-13 10:33:58",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "동아제약, 어린이 아토피습진 치료제 '챔토피 연질캡슐' 출시",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305580",
+      "date": "2026-08-13 10:06:54",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "한독, 제23회 한독학술경영대상 수상자로 이강영 연세대학교 세브란스병원장 선정",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305579",
+      "date": "2026-08-13 10:02:15",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "시지메드텍, 과기정통부 '우수기업연구소' 지정",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305578",
+      "date": "2026-08-13 10:00:57",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "헥토헬스케어, '드시모네 포뮬러' 담즙산 대사 변화 임상 결과 국제학술지 게재",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305577",
+      "date": "2026-08-13 09:57:27",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "바로팜, 코스닥 상장예비심사 승인... IPO 절차 본격화",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305576",
+      "date": "2026-08-13 09:56:24",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "조아제약 '활비톤액', 출시 3년 만에 누적 판매 300만개 돌파",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305575",
+      "date": "2026-08-13 09:51:49",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "현대약품, 당뇨 환자용 균형 영양식 '큐어웰 당큐어' 출시",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305574",
+      "date": "2026-08-13 09:50:50",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "태극제약, 기미·색소침착 치료제 '도미나라이트크림' 60g 출시",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305573",
+      "date": "2026-08-13 09:49:31",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "대한약사영양학회, '제2회 약사 임상영양요법 통합 학술대회' 8월 30일 개최",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305572",
+      "date": "2026-08-13 09:47:49",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "서울시약사회, '의약품 안전 사용 특별대책팀' 가동... 1차 회의 개최",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305571",
+      "date": "2026-08-13 09:45:41",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "CMG제약, 10대 1 주식병합 결정... 10월 27일 변경상장 예정",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305570",
+      "date": "2026-08-13 09:43:57",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "서울시약사회, 2025년도 제3차 보충교육 완료... 389명 이수",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305568",
+      "date": "2026-08-13 09:42:43",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "20년 GMO 장벽 허문 EU, 유전자 편집 작물 연다",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305567",
+      "date": "2026-08-13 09:39:53",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "의료사고 이력 공개 법안 추진에 정부 “반대”",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305563",
+      "date": "2026-08-13 08:59:31",
+      "tags": []
+    },
+    {
+      "site": "팜뉴스",
+      "title": "[부음] 알리코제약 김용수 홍보부장 모친상",
+      "link": "https://www.pharmnews.com/news/articleView.html?idxno=305561",
+      "date": "2026-08-13 08:50:08",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "명인제약, 상장 후 설비투자 속도…시설자금 절반 이상 집행",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415989",
+      "date": "2026-08-14 06:04:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "진료실서 찾은 문제, 기술로 푼다…달라지는 의사의 역할",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415976",
+      "date": "2026-08-14 06:03:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "환인제약, 중앙연구소장·제제연구2실장 영입…R&D 체계 변화",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415986",
+      "date": "2026-08-14 06:02:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "\"비대면진료, 처방 아닌 '연속관리'로 설계해야\"",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415988",
+      "date": "2026-08-14 06:01:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "25년 홍보인이 찾은 '공약수'…\"정책홍보, 결국 사람과 신뢰\"",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415990",
+      "date": "2026-08-14 06:00:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "식약처, 희귀약 '본조' 국내 허가…골수섬유증 치료 선택지 확대",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415985",
+      "date": "2026-08-13 18:53:14",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "성장기 심해지는 오목가슴·새가슴…\"치료 시기 놓치지 말아야\"",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415984",
+      "date": "2026-08-13 17:50:58",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "우리아이들병원 2곳, 항생제 처방률 3년 연속 '1등급'",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415983",
+      "date": "2026-08-13 17:47:59",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "공공보건의원 추진에 의료계 반발…\"의료취약지로 한정해야\"",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415982",
+      "date": "2026-08-13 17:45:55",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "독립 어린이병원 추진…\"기존 소아의료 기반도 지켜야\"",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415980",
+      "date": "2026-08-13 17:40:11",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "쓰리빌리언, 상반기 매출 72억…해외 진단사업 성장",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415981",
+      "date": "2026-08-13 17:39:09",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "고혈압·당뇨 관리체계 개편 논란…\"45만명 지원 중단 재검토해야\"",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415979",
+      "date": "2026-08-13 17:35:24",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "SK케미칼, 2Q 분기 최대 매출…전 사업 고른 성장",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415978",
+      "date": "2026-08-13 17:15:39",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "자생한방병원, 전국 4개 병원에서 '공동간병실' 본격 운영",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415977",
+      "date": "2026-08-13 16:50:11",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "동구바이오제약, 'GMP 취소' 1심 패소…제약사 '줄패소' 난항",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415975",
+      "date": "2026-08-13 16:39:07",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "[주가] 8월 13일 주요 제약·바이오·기기 5% 변동 현황",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415973",
+      "date": "2026-08-13 15:41:40",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "하지정맥류 입원 판결 후폭풍…정맥통증학회 \"확대해석 안돼\"",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415972",
+      "date": "2026-08-13 15:11:38",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "법원, 얼라인 '덴티움 사외이사 직무정지' 신청 기각",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415971",
+      "date": "2026-08-13 14:22:46",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "원텍, 의료기기 기술·성장성 인정…코스닥 라이징스타 선정",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415970",
+      "date": "2026-08-13 14:18:16",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "차광렬 차병원 연구소장, 한화손보서 K-Cell 미래 비전 공유",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415968",
+      "date": "2026-08-13 14:11:29",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "건양대병원, 27일 폐암 건강강좌…진단·치료 정보 공유",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415967",
+      "date": "2026-08-13 14:02:35",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "GC녹십자, 코로나19 mRNA 백신 2상 준비…2028년 허가 목표",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415966",
+      "date": "2026-08-13 13:59:30",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "광동제약, \"미래 인재와 지역 상생 잇는다\" 제주대 하계 인턴십 진행",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415964",
+      "date": "2026-08-13 13:10:40",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "세계적 임상 역량에도 의료기술 사업화 '벽'…연결이 관건",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415959",
+      "date": "2026-08-13 11:58:05",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "'바로에젯·피타큐젯' 질주…후발 가세에도 78% 사수",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415914",
+      "date": "2026-08-13 11:57:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "30년 데이터로 안전성 보여준 폐경 치료제 '페모스톤'",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415915",
+      "date": "2026-08-13 11:55:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "한미약품, 비만신약 추가 L/O 기대…MASH 임상 데이터 촉각",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415956",
+      "date": "2026-08-13 11:52:52",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "\"미용의료, 시술 중심서 환자 중심으로…'원인 진단'이 우선\"",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415905",
+      "date": "2026-08-13 11:50:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "국가바이오혁신위원회, 바이오 투자 확대를 위한 토론회 개최",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415963",
+      "date": "2026-08-13 11:38:38",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "복지부·노동부 등 6개 기관, '일하고 싶은 안전한 병원' 만든다",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415957",
+      "date": "2026-08-13 11:38:35",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "울산대병원, 혈관 폐색 위치 따른 맞춤형 혈전제거술 전략 제시",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415962",
+      "date": "2026-08-13 11:35:57",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "서울시약, 안전상비약 확대 '근거'로 막는다…실태조사 착수",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415960",
+      "date": "2026-08-13 11:27:01",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "서울시약, 대한약사회와 현안 대응 집중 논의",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415958",
+      "date": "2026-08-13 11:19:16",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "한미약품 팔탄공장, 품절 57%↓…품질·생산 지표 개선",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415954",
+      "date": "2026-08-13 10:58:06",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "바로팜, OTC 정보 한곳에…'OTC플러스' 출시",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415955",
+      "date": "2026-08-13 10:57:10",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "셀트리온, ADC 'CT-P73' 美 패스트트랙…임상 3종 모두 지정",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415953",
+      "date": "2026-08-13 10:46:54",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "동국제약, 구강용해필름 '이너케어 4종' 다이소 출시",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415952",
+      "date": "2026-08-13 10:46:22",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "GC메디아이, EMR 넘어 AI·클라우드 플랫폼 전환",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415949",
+      "date": "2026-08-13 10:45:19",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "파마리서치, 호주서 리쥬란 학술 교류…현지 의료진 교육 확대",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415950",
+      "date": "2026-08-13 10:38:26",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "한국에자이, 광주대와 지역사회 기반 인지건강 모델 구축",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415951",
+      "date": "2026-08-13 10:37:02",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "클래시스, 해외 '질주' · 내수 '주춤'‥ 하반기 회복 시험대",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415945",
+      "date": "2026-08-13 10:23:17",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "파인메딕스, 상반기 매출 44%↑…영업이익 흑자전환",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415948",
+      "date": "2026-08-13 10:21:24",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "P&K피부임상연구센타, 선케어 4개 시험법 국제 숙련도 '적합'",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415946",
+      "date": "2026-08-13 10:17:42",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "쉬어도 피로 계속된다면…'만성콩팥병' 신호일 수도",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415944",
+      "date": "2026-08-13 10:05:49",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "조선대병원, 뇌졸중 전문병동 재가동…입원 대기 줄인다",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415943",
+      "date": "2026-08-13 09:59:37",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "상부요로암 침윤 깊이 초음파로 확인…신장 보존 판단 돕는다",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415942",
+      "date": "2026-08-13 09:57:40",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "포괄수련종합병원 뭉친다…\"전문의 중심 전환 지원 필요\"",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415941",
+      "date": "2026-08-13 09:56:33",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "시지메드텍, 27년 R&D 역량 인정…'우수기업연구소' 지정",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415940",
+      "date": "2026-08-13 09:54:29",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "중입자치료 상담 용인서 받는다…연세암병원으로 연계",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415939",
+      "date": "2026-08-13 09:53:00",
+      "tags": []
+    },
+    {
+      "site": "메디파나뉴스",
+      "title": "전립선암 로봇수술 권위자 최영득 교수, 중앙대병원 합류",
+      "link": "https://www.medipana.com/news/articleView.html?idxno=415938",
+      "date": "2026-08-13 09:52:13",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "\"AI에 물어봤어요\"…약국 찾는 '셀프진단' 환자들",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540508",
+      "date": "2026-08-14 05:54:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "'집중호우'에 생산 멈춘 화이자 시타라빈…내년 3월까지 공급부족 전망",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540488",
+      "date": "2026-08-14 05:52:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "명인제약, 제약사 지분 투자 확대…녹십자·유한양행에 305억",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540535",
+      "date": "2026-08-14 05:51:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "부광약품 '라투다' 출시 2년만 처방 시장 6위 안착",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540524",
+      "date": "2026-08-14 05:51:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "[인터뷰]\"정책은 달라도 가치는 하나\"…25년 홍보맨이 찾은 '공약수'",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540529",
+      "date": "2026-08-14 05:50:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "[영상] \"일본 가면 약부터 쓸어 담는다?\" 그럴 필요 없는 이유",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540510",
+      "date": "2026-08-14 05:50:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "\"일본 가면 약부터 쓸어 담는다?\" 그럴 필요 없는 이유",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540507",
+      "date": "2026-08-14 05:50:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "우리 아이 가슴이 툭 튀어나왔다면… 흉곽 기형 살펴야",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540476",
+      "date": "2026-08-14 05:50:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "뱃살에 '이것'까지 부족하면… 50세 이상 사망 위험 2배 높아",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540516",
+      "date": "2026-08-14 05:49:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "매일 마시는 커피, 유방암 생존율과 연관?…“폴리페놀 식단 주목”",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540515",
+      "date": "2026-08-14 05:49:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "2분기 바이오파마 매출 ‘급증’…릴리·사노피·리제네론·아스텔라스 주도",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540513",
+      "date": "2026-08-14 05:49:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "[릴레이집회-330일차]약국 밖으로 나온 약사들 \"한약사 문제 해결을\"",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540533",
+      "date": "2026-08-14 05:48:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "보건복지부 인사 발령(8/18)",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540518",
+      "date": "2026-08-13 18:28:10",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "서울시약 '약사정책 최고위 과정' 마무리, 55명 수료",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540494",
+      "date": "2026-08-13 16:20:17",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "은평구약, 약국 에어컨 청소사업 완료…95개 약국 참여",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540491",
+      "date": "2026-08-13 16:02:51",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "혈소판 낮아 기존 치료 어려운 골수섬유증 환자에 새 선택지…‘본조캡슐’ 허가",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540487",
+      "date": "2026-08-13 15:15:26",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "조제과실 약사 '혐의없음' 불송치…\"단순 착오와 처방변경 구분해야\"",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540472",
+      "date": "2026-08-13 12:28:45",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "알테오젠·휴젤 등 6곳, 코스닥 승강제 '1부리그' 후보 부상",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540475",
+      "date": "2026-08-13 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "이재명 대통령, 가업상속공제 축소 강조…약국 공제 대상서 제외",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540474",
+      "date": "2026-08-13 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "한미약품 하반기 과제… '북경한미 정상화'와 '신약 성과'",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540473",
+      "date": "2026-08-13 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "온라인 의약품 불법유통, 일반쇼핑몰로 번졌다…식약처 '클린-온' 대응 강화",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540471",
+      "date": "2026-08-13 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "계단 자주 오르는 사람, 심혈관 사망 위험 39% 낮다",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540460",
+      "date": "2026-08-13 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "[약사, 문학을 말하다] 내 작은 방",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540455",
+      "date": "2026-08-13 12:00:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "알파시그마, 노르딕파마 인수 추진…관절염 치료제 확보·日·캐나다 진출",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540464",
+      "date": "2026-08-13 11:59:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "레전드바이오텍, 카빅티 힘입어 첫 분기 흑자…이중항체·경쟁 CAR-T 대응 주목",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540463",
+      "date": "2026-08-13 11:59:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "릴리, 미승인 비만약 ‘레타트루타이드’ 불법 판매 6개사 제소",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540462",
+      "date": "2026-08-13 11:59:00",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "안국문화재단, 여름 기획전 '언어 너머의 언어' 개최",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540469",
+      "date": "2026-08-13 10:48:22",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "식약처, 온라인 의약품 불법 판매·광고 432건 차단",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540470",
+      "date": "2026-08-13 10:47:49",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "파마리서치 '리쥬란', 호주 미용의학 무대서 임상 근거 조명",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540468",
+      "date": "2026-08-13 10:45:45",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "현대약품, 혈당 관리 겨냥 균형영양식 '큐어웰 당큐어' 출시",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540466",
+      "date": "2026-08-13 10:43:10",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "태극제약, '도미나라이트크림' 60g 출시…색소침착 치료제 용량 확대",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540461",
+      "date": "2026-08-13 10:35:36",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "현대바이오 '페니트리움', 전립선암 임상 1상 첫 투약",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540459",
+      "date": "2026-08-13 10:33:02",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "약사영양학회, ‘제2회 약사 임상영양요법 통합 학술대회’ 개최",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540457",
+      "date": "2026-08-13 10:29:51",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "조아제약 '활비톤액', 출시 3년 만에 누적 판매량 300만 개 돌파",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540453",
+      "date": "2026-08-13 10:25:30",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "바로팜, IPO 본격화 코스닥 상장예비심사 승인",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540450",
+      "date": "2026-08-13 10:15:13",
+      "tags": []
+    },
+    {
+      "site": "약사공론",
+      "title": "셀트리온, ADC 신약 3종 FDA 패스트트랙 'CT-P73' 자궁경부암 정조준",
+      "link": "https://www.kpanews.co.kr/news/articleView.html?idxno=540445",
+      "date": "2026-08-13 09:03:40",
+      "tags": []
     }
   ],
   "daily_summary": {
-    "자사 직결": "- 팩트: JW중외제약, 통풍 신약 '에파미뉴라드' 임상 3상서 유효성 입증\n  시사점: 보령의 만성질환 치료제 포트폴리오 강화 및 경쟁사 신약 개발 동향 파악 필요",
-    "시장 영향": "- 팩트: 삼성바이오에피스, 키트루다 시밀러 SB27 국내 첫 허가 신청\n  시사점: 항암제 바이오시밀러 시장 경쟁 심화 예상, 보령의 항암제 포트폴리오 전략 점검 필요\n- 팩트: 과기정통부, K-문샷 AI 신약개발 분야 첫 혁신거점 세운다\n  시사점: AI 신약 개발 분야의 정부 지원 확대는 보령의 R&D 혁신 동력 확보에 긍정적 영향 기대\n- 팩트: 윈레브에어 급여 550일째 지연…'100일 신속등재' 전환 촉구\n  시사점: 신약의 급여 등재 지연은 시장 진입 및 매출 확보에 큰 영향을 미치므로, 보령 제품의 급여 전략 점검 필요",
-    "업계 동향": "- 팩트: 제약·바이오 20社, 상반기 이익 40%↑…대형 바이오 쏠림\n  시사점: 시장 전반의 성장세는 긍정적이나, 보령의 수익성 개선 및 성장 동력 확보 전략 강화 필요\n- 팩트: 한미약품, 대한혈관학회 학술대회서 심혈관 치료제 임상 연구 공유\n  시사점: 보령의 주력 치료영역인 심혈관 질환 분야 경쟁사의 R&D 활동 및 임상 결과 주시 필요\n- 팩트: 글로벌 자산운용사, K-바이오 지분 확대…긍정적이지만 변수도\n  시사점: 국내 제약·바이오 산업에 대한 투자 심리 개선은 긍정적이나, 시장 변동성 대비 필요"
+    "자사 직결": "- 해당 없음",
+    "시장 영향": "- 골수섬유증 치료제 '본조캡슐'이 국내 허가되어 환자들에게 새로운 치료 옵션이 제공됨\n  만성질환 치료제 포트폴리오를 보유한 보령에게는 경쟁 환경 변화 및 신규 시장 진입 기회 모색 필요\n- 한미약품의 비만신약 추가 기술이전 기대감 및 MASH 임상 데이터에 대한 업계의 관심이 높음\n  보령의 만성질환 포트폴리오 강화 및 신규 비만 치료제 개발 가능성 탐색 필요\n- 셀트리온의 ADC 신약 3종이 FDA 패스트트랙으로 지정되어 자궁경부암 치료에 대한 기대감이 높아짐\n  항암 분야의 경쟁 심화 및 바이오시밀러 외 신규 항암제 R&D 전략 점검 필요",
+    "업계 동향": "- 국산 mRNA 백신 개발 임상이 본궤도에 진입하며 백신 주권 확보 노력이 가속화됨\n  보령의 CDMO 사업 확장 및 백신 관련 기술 개발 동향 주시 필요\n- 바이오 투자 시장에서 후기 임상 위험 분담 및 장기 자본 논의가 활발함\n  보령의 R&D 투자 및 파이프라인 확보 전략에 대한 재검토 필요\n- 한국제약바이오협회가 '2026 CP 가이드북'을 발행하여 CP(공정거래) 준수 강화 노력을 보임\n  보령의 CP 준수 현황 점검 및 윤리 경영 강화 노력 지속 필요"
   },
-  "weekly_summaries": [],
+  "weekly_summaries": [
+    {
+      "label": "2026년 08월 14일 주간",
+      "summary": {
+        "자사 직결": "- 해당 없음",
+        "시장 영향": "- 골수섬유증 치료제 '본조캡슐'이 국내 허가되어 환자들에게 새로운 치료 옵션이 제공됨\n  만성질환 치료제 포트폴리오를 보유한 보령에게는 경쟁 환경 변화 및 신규 시장 진입 기회 모색 필요\n- 한미약품의 비만신약 추가 기술이전 기대감 및 MASH 임상 데이터에 대한 업계의 관심이 높음\n  보령의 만성질환 포트폴리오 강화 및 신규 비만 치료제 개발 가능성 탐색 필요\n- 셀트리온의 ADC 신약 3종이 FDA 패스트트랙으로 지정되어 자궁경부암 치료에 대한 기대감이 높아짐\n  항암 분야의 경쟁 심화 및 바이오시밀러 외 신규 항암제 R&D 전략 점검 필요",
+        "업계 동향": "- 국산 mRNA 백신 개발 임상이 본궤도에 진입하며 백신 주권 확보 노력이 가속화됨\n  보령의 CDMO 사업 확장 및 백신 관련 기술 개발 동향 주시 필요\n- 바이오 투자 시장에서 후기 임상 위험 분담 및 장기 자본 논의가 활발함\n  보령의 R&D 투자 및 파이프라인 확보 전략에 대한 재검토 필요\n- 한국제약바이오협회가 '2026 CP 가이드북'을 발행하여 CP(공정거래) 준수 강화 노력을 보임\n  보령의 CP 준수 현황 점검 및 윤리 경영 강화 노력 지속 필요"
+      }
+    }
+  ],
   "monthly_summaries": []
 }
